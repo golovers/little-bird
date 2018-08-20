@@ -1,0 +1,35 @@
+package: gitlab.com/7chip/books
+import:
+- package: cloud.google.com/go
+  version: ^0.25.0
+  subpackages:
+  - datastore
+  - pubsub
+  - storage
+- package: github.com/go-sql-driver/mysql
+  version: ^1.4.0
+- package: github.com/gorilla/handlers
+  version: ^1.3.0
+- package: github.com/gorilla/mux
+  version: ^1.6.2
+- package: github.com/gorilla/sessions
+  version: ^1.1.1
+- package: github.com/kelseyhightower/envconfig
+  version: ^1.3.0
+- package: github.com/satori/go.uuid
+  version: ^1.2.0
+- package: golang.org/x/net
+  subpackages:
+  - context
+- package: golang.org/x/oauth2
+  subpackages:
+  - google
+- package: google.golang.org/api
+  subpackages:
+  - plus/v1
+- package: google.golang.org/appengine
+  version: ^1.1.0
+- package: gopkg.in/mgo.v2
+  subpackages:
+  - bson
+-package: github.com/sirupsen/logrus

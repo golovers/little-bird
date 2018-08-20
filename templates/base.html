@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Little Bird - Golang Knowledge Sharing</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- CSS -->
+<link rel="stylesheet" href="../static/css/main.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" sizes="32x32" href="../static/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/img/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../static/img/apple-touch-icon.png">
+</head>
+<body cz-shortcut-listen="true">
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="/">
+        <h2 class="nav-title">LittleBird</h2>
+      </a>
+      <ul>
+        <li><a href="/post">Posts</a></li>
+        <li>
+          <!-- [START auth] -->
+          {{if .AuthEnabled}}
+          {{if .Profile}}
+          <form method="post" action="{{.LogoutURL}}">
+            <button >Log out</button>
+          </form>
+          <div>
+            {{if .Profile.ImageURL}}
+              <img class="img-circle" width="24" src="{{.Profile.ImageURL}}">
+            {{end}}
+            <span>{{.Profile.DisplayName}}</span>
+          </div>
+          {{else}}
+          <div>
+            <a href="{{.LoginURL}}">Log in</a>
+          </div>
+          {{end}}
+          {{end}}
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    {{template "body" .Data}}
+  </div>
+  <footer>
+    <span>
+      © <time datetime="2018-08-20">2018</time> LittleBird
+    </span>
+  </footer>
+</body>
+</html>
