@@ -1,19 +1,12 @@
-hash: c42ff1ea0b02f1faacb45f2e4da3d6cbe082ebddc147a8d5db6a8ab9c95e99a9
-updated: 2018-07-26T18:18:32.894984987+07:00
+hash: 0f36470faa2615c9c84530458fcb2c5d6d0b3b4e6e1c2a32689f832bb5fcd5b8
+updated: 2018-08-20T20:04:54.436127045+07:00
 imports:
 - name: cloud.google.com/go
-  version: aad3f485ee528456e0768f20397b4d9dd941e755
+  version: 64a2037ec6be8a4b0c1d1f706ed35b428b989239
   subpackages:
   - datastore
   - pubsub
   - storage
-  - iam
-  - internal/optional
-  - internal/version
-  - pubsub/apiv1
-  - pubsub/internal/distribution
-  - internal
-  - internal/trace
   - compute/metadata
 - name: github.com/go-sql-driver/mysql
   version: d523deb1b23d913de5bdada721a6071e71283618
@@ -21,18 +14,10 @@ imports:
   version: 93b26e6a70e37abb14f2f88194949312b0592a84
   subpackages:
   - proto
-  - ptypes
-  - ptypes/duration
-  - ptypes/any
-  - ptypes/timestamp
-  - ptypes/empty
-  - protoc-gen-go/descriptor
-- name: github.com/googleapis/gax-go
-  version: 1ef592c90f479e3ab30c6c2312e20e13881b7ea6
 - name: github.com/gorilla/context
   version: 08b5f424b9271eedf6f9f0ce86cb9396ed337a42
 - name: github.com/gorilla/handlers
-  version: 90663712d74cb411cbef281bc1e08c19d1a76145
+  version: 7e0847f9db758cdebd26c149d0ae9d5d0b9c98ce
 - name: github.com/gorilla/mux
   version: e3702bed27f0d39777b0b37b664b6280e8ef8fbf
 - name: github.com/gorilla/securecookie
@@ -43,39 +28,11 @@ imports:
   version: f611eb38b3875cc3bd991ca91c51d06446afa14c
 - name: github.com/satori/go.uuid
   version: f58768cc1a7a7e77a3bd49e98cdd21419399b6a3
-- name: github.com/sirupsen/logrus
-  version: c108f5553c369120b773da633aca62a8b42b1cf4
-- name: go.opencensus.io
-  version: 9260bbf87e9331af7c9a6ceb7d43dde112b93c39
-  subpackages:
-  - plugin/ocgrpc
-  - stats
-  - stats/view
-  - tag
-  - trace
-  - trace/propagation
-  - stats/internal
-  - internal/tagencoding
-  - exporter/stackdriver/propagation
-  - plugin/ochttp
-  - internal
-  - trace/internal
-  - plugin/ochttp/propagation/b3
-- name: golang.org/x/crypto
-  version: c126467f60eb25f8f27e5a981f32a87e3965053f
-  subpackages:
-  - ssh/terminal
 - name: golang.org/x/net
   version: 3673e40ba22529d22c3fd7c93e97b0ce50fa7bdd
   subpackages:
   - context
   - context/ctxhttp
-  - http2
-  - trace
-  - http/httpguts
-  - http2/hpack
-  - idna
-  - internal/timeseries
 - name: golang.org/x/oauth2
   version: 3d292e4d0cdc3a0113e6d207bb137145ef1de42f
   subpackages:
@@ -83,39 +40,13 @@ imports:
   - internal
   - jws
   - jwt
-- name: golang.org/x/sync
-  version: 1d60e4601c6fd243af51cc01ddf169918a5407ca
-  subpackages:
-  - errgroup
-  - semaphore
-- name: golang.org/x/sys
-  version: e072cadbbdc8dd3d3ffa82b8b4b9304c261d9311
-  subpackages:
-  - unix
-  - windows
-- name: golang.org/x/text
-  version: 0605a8320aceb4207a5fb3521281e17ec2075476
-  subpackages:
-  - secure/bidirule
-  - unicode/bidi
-  - unicode/norm
-  - transform
 - name: google.golang.org/api
   version: 082d5fa4f1f046d7c35245229282ed6f488892c0
   subpackages:
   - plus/v1
-  - option
-  - support/bundler
-  - googleapi
-  - iterator
-  - storage/v1
-  - transport/http
   - gensupport
-  - transport
-  - internal
+  - googleapi
   - googleapi/internal/uritemplates
-  - googleapi/transport
-  - transport/grpc
 - name: google.golang.org/appengine
   version: b1f26356af11148e710935ed1ac8a7f5702c7612
   subpackages:
@@ -128,46 +59,6 @@ imports:
   - internal/remote_api
   - urlfetch
   - internal/urlfetch
-  - socket
-  - internal/socket
-- name: google.golang.org/genproto
-  version: 02b4e95473316948020af0b7a4f0f22c73929b0e
-  subpackages:
-  - googleapis/pubsub/v1
-  - protobuf/field_mask
-  - googleapis/iam/v1
-  - googleapis/api/annotations
-  - googleapis/rpc/status
-  - googleapis/rpc/code
-- name: google.golang.org/grpc
-  version: fe131d6f028e9d892e0b5177cdecde4e8e3c5cba
-  subpackages:
-  - codes
-  - keepalive
-  - status
-  - metadata
-  - grpclog
-  - stats
-  - balancer
-  - balancer/roundrobin
-  - connectivity
-  - credentials
-  - encoding
-  - encoding/proto
-  - internal
-  - internal/backoff
-  - internal/channelz
-  - internal/envconfig
-  - internal/grpcrand
-  - internal/transport
-  - naming
-  - peer
-  - resolver
-  - resolver/dns
-  - resolver/passthrough
-  - tap
-  - balancer/base
-  - credentials/oauth
 - name: gopkg.in/mgo.v2
   version: 9856a29383ce1c59f308dd1cf0363a79b5bef6b5
   subpackages:

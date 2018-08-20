@@ -1,4 +1,4 @@
-package: gitlab.com/7chip/books
+package: gitlab.com/7chip/little-bird
 import:
 - package: cloud.google.com/go
   version: ^0.25.0
