@@ -22,6 +22,8 @@ func RegisterHandlers() {
 	r.Path("/posts/add").Methods("GET").Handler(appHandler(postAdd))
 	r.Path("/posts/details").Methods("GET").Handler(appHandler(post))
 
+	r.Path("/posts/add").Methods("POSt").Handler(appHandler(postSave))
+
 	r.Methods("GET").Path("/login").Handler(appHandler(loginHandler))
 	r.Methods("POST").Path("/logout").Handler(appHandler(logoutHandler))
 	r.Methods("GET").Path("/oauth2callback").Handler(appHandler(oauthCallbackHandler))
