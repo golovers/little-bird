@@ -103,7 +103,7 @@ pre code{
   color:#aaa;
   font-family:Palatino,"Palatino LT STD","Palatino Linotype","Book Antiqua","Georgia",serif;
   letter-spacing:0.5px;
-  text-align:center
+  text-align:left
 }
 .post-info span{
   font-style:italic
@@ -113,13 +113,14 @@ pre code{
   font-family:"Helvetica Neue","Segoe UI",Helvetica,Arial,sans-serif;
   font-size:4rem;
   margin:1rem 0;
-  text-align:center
+  text-align:left
 }
 .post-line{
-  border-top:0.4rem solid #353535;
+  border-top:0.4rem solid #520d0d;
   display:block;
-  margin:0 auto 3rem;
-  width:4rem
+  margin:0 0 3rem;
+  width:4rem;
+  text-align: left
 }
 .post p{
   margin:0 0 1rem;
