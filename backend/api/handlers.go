@@ -15,7 +15,12 @@ func RegisterHandlers() {
 	r := mux.NewRouter()
 
 	r.Methods("GET").Path("/").Handler(appHandler(index))
-	r.Methods("GET").Path("/post").Handler(appHandler(post))
+
+	r.Path("/posts").Methods("GET").Handler(appHandler(index))
+	r.Path("/posts/trending").Methods("GET").Handler(appHandler(postTrending))
+	r.Path("/posts/mine").Methods("GET").Handler(appHandler(postMine))
+	r.Path("/posts/add").Methods("GET").Handler(appHandler(postAdd))
+	r.Path("/posts/details").Methods("GET").Handler(appHandler(post))
 
 	r.Methods("GET").Path("/login").Handler(appHandler(loginHandler))
 	r.Methods("POST").Path("/logout").Handler(appHandler(logoutHandler))
@@ -33,11 +38,6 @@ func RegisterHandlers() {
 // index display the  index page
 func index(w http.ResponseWriter, r *http.Request) *appError {
 	return indexTmpl.Execute(w, r, "")
-}
-
-// post display the  post page
-func post(w http.ResponseWriter, r *http.Request) *appError {
-	return postTmpl.Execute(w, r, "")
 }
 
 type appHandler func(http.ResponseWriter, *http.Request) *appError
