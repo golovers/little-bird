@@ -1,5 +1,5 @@
-hash: 0f36470faa2615c9c84530458fcb2c5d6d0b3b4e6e1c2a32689f832bb5fcd5b8
-updated: 2018-08-21T17:36:50.305608925+07:00
+hash: e166bce8d034a9cc35cfe580b70cc0a98fbf13a3c330d6cc4c23a602b43840ec
+updated: 2018-08-27T23:19:23.472179891+07:00
 imports:
 - name: cloud.google.com/go
   version: 64a2037ec6be8a4b0c1d1f706ed35b428b989239
@@ -14,6 +14,8 @@ imports:
   version: 93b26e6a70e37abb14f2f88194949312b0592a84
   subpackages:
   - proto
+- name: github.com/golovers/xtract
+  version: b7fe05ed4d5db2a9dafb1ef5f5ef05d617c29a35
 - name: github.com/gorilla/context
   version: 08b5f424b9271eedf6f9f0ce86cb9396ed337a42
 - name: github.com/gorilla/handlers
@@ -77,4 +79,6 @@ imports:
   - internal/sasl
   - internal/scram
   - internal/json
+- name: gopkg.in/russross/blackfriday.v2
+  version: cadec560ec52d93835bf2f15bd794700d3a2473b
 testImports: []

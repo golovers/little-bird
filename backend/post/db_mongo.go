@@ -91,7 +91,7 @@ func (db *mongoDB) Update(b *Post) error {
 // List returns a list of posts, ordered by title.
 func (db *mongoDB) List() ([]*Post, error) {
 	var result []*Post
-	if err := db.c.Find(nil).Sort("title").All(&result); err != nil {
+	if err := db.c.Find(nil).Sort("-lastupdate").All(&result); err != nil {
 		return nil, err
 	}
 	return result, nil

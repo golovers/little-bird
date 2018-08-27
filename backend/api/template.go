@@ -6,6 +6,8 @@ import (
 	"io/ioutil"
 	"net/http"
 	"path/filepath"
+
+	"github.com/golovers/xtract"
 )
 
 var (
@@ -21,6 +23,7 @@ func parseTemplate(filename string) *appTemplate {
 	tmpl := template.Must(template.ParseFiles("templates/base.html"))
 	fn := template.FuncMap{
 		"htmlNoEscape": htmlNoEscape,
+		"htmlShort":    htmlShort,
 	}
 	tmpl.Funcs(fn)
 	// Put the named file into a template called "body"
@@ -68,4 +71,8 @@ func (tmpl *appTemplate) Execute(w http.ResponseWriter, r *http.Request, data in
 
 func htmlNoEscape(v string) template.HTML {
 	return template.HTML(v)
+}
+
+func htmlShort(v string, n int) string {
+	return xtract.ValueLim(v, n)
 }

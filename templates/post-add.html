@@ -32,6 +32,7 @@
         postData = {
             Title: $("#postTile").val(),
             Content: htmlValue,
+            Markdown: simplemde.value(),
         }
         $.ajax({
             type: "POST",
@@ -41,7 +42,7 @@
             crossDomain: true,
             dataType: "json",
             success: function (data, status, jqXHR) {
-                alert("success");// write success in " "
+                $(location).attr('href', '/posts/details/'+data.ID)
             },
             error: function (jqXHR, status) {
                 console.log(jqXHR);

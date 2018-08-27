@@ -9,13 +9,13 @@
             </div>
         </div>
         <div class="col-sm-10">
-            <a href="/posts/details/{{.ID}}" class="catalogue-item">
+            <a href=/posts/details/{{.ID}} class="catalogue-item">
                 <div>
                 <time datetime="2017-03-29 00:00:00 +0000" class="catalogue-time">{{.LastUpdate}}</time>
                 <h1 class="catalogue-title">{{.Title}}</h1>
                 <div class="catalogue-line"></div>
                 <div>
-                    {{htmlNoEscape .Content}}
+                    {{htmlShort .Content 50 }}
                 </div>
               </div>
             </a>

@@ -1,6 +1,7 @@
 package api
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -47,8 +48,9 @@ func index(w http.ResponseWriter, r *http.Request) *appError {
 	if err != nil {
 		return appErrorf(err, "failed to list all posts")
 	}
+	// don't need the markdown details in this case
 	for _, p := range posts {
-		log.Println(p.Content)
+		p.Markdown = ""
 	}
 	return indexTmpl.Execute(w, r, posts)
 }
@@ -76,4 +78,15 @@ func appErrorf(err error, format string, v ...interface{}) *appError {
 		Message: fmt.Sprintf(format, v...),
 		Code:    500,
 	}
+}
+
+func appOK(id int64, w http.ResponseWriter) *appError {
+	data := struct {
+		ID int64
+	}{
+		ID: id,
+	}
+	b, _ := json.Marshal(data)
+	w.Write(b)
+	return nil
 }

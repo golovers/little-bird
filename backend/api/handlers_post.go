@@ -2,6 +2,7 @@ package api
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"strconv"
@@ -28,6 +29,11 @@ func postDetails(w http.ResponseWriter, r *http.Request) *appError {
 }
 
 func postAdd(w http.ResponseWriter, r *http.Request) *appError {
+	profile := profileFromSession(r)
+	if profile == nil {
+		http.Redirect(w, r, "/login?redirect=/posts/add", http.StatusFound)
+		return nil
+	}
 	return postAddTmpl.Execute(w, r, "")
 }
 
@@ -47,6 +53,10 @@ func postSave(w http.ResponseWriter, r *http.Request) *appError {
 }
 
 func apiPostAdd(w http.ResponseWriter, r *http.Request) *appError {
+	profile := profileFromSession(r)
+	if profile == nil {
+		return appErrorf(fmt.Errorf("unauthorized"), "unauthorized")
+	}
 	b, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		return appErrorf(err, "failed to read input body")
@@ -56,14 +66,15 @@ func apiPostAdd(w http.ResponseWriter, r *http.Request) *appError {
 	if err != nil {
 		return appErrorf(err, "invalid input")
 	}
-	post.Add(&p)
-	w.WriteHeader(http.StatusOK)
-	buff, err := json.Marshal(p)
+	p.LastUpdate = time.Now()
+	p.CreatedByID = profile.ID
+	p.CreatedBy = profile.DisplayName
+	id, err := post.Add(&p)
 	if err != nil {
 		return appErrorf(err, "internal server error")
 	}
-	w.Write(buff)
-	return nil
+	w.WriteHeader(http.StatusOK)
+	return appOK(id, w)
 }
 
 type Post struct {

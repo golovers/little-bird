@@ -32,4 +32,6 @@ import:
 - package: gopkg.in/mgo.v2
   subpackages:
   - bson
--package: github.com/sirupsen/logrus
+- package: github.com/sirupsen/logrus
+- package: gopkg.in/russross/blackfriday.v2
+- package: github.com/golovers/xtract
