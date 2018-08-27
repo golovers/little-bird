@@ -1,4 +1,4 @@
-package api
+package post
 
 // PostDatabase provides thread-safe access to a database of posts.
 type PostDatabase interface {

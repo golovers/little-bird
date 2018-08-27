@@ -1,3 +1,10 @@
+.vertical-align-center {
+  display: flex;
+  align-items: center;
+}
+
+body { padding-top: 70px; }
+
 *{
   -webkit-box-sizing:border-box;
   -moz-box-sizing:border-box;
@@ -12,7 +19,6 @@
 html,body{
   color:#555;
   margin:0;
-  padding:0
 }
 html{
   font-family:"Libre Baskerville","Times New Roman",Times,serif;
@@ -155,7 +161,7 @@ pre code{
   border-bottom:1px solid #e5e5e5;
   color:#555;
   display:inline-block;
-  padding:2rem 0
+  /* padding:2rem 0 */
 }
 .catalogue-item:hover {
   text-decoration: none;

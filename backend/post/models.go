@@ -1,6 +1,13 @@
-package api
+package post
 
 import "time"
+
+type Cfg struct {
+	DbURI      string `envconfig:"DB_URI"`
+	DbName     string `envconfig:"DB_NAME"`
+	DbUser     string `envconfig:"DB_USERNAME"`
+	DbPassword string `envconfig:"DB_PASSWORD"`
+}
 
 // Post holds metadata about a book.
 type Post struct {

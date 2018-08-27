@@ -1,4 +1,4 @@
-package api
+package post
 
 import (
 	"crypto/rand"
@@ -13,9 +13,6 @@ type mongoDB struct {
 	conn *mgo.Session
 	c    *mgo.Collection
 }
-
-// Ensure mongoDB conforms to the PostDatabase interface.
-var _ PostDatabase = &mongoDB{}
 
 // NewMongoDB creates a new PostDatabase backed by a given Mongo server,
 // authenticated with given credentials.

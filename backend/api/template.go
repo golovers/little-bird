@@ -19,7 +19,10 @@ var (
 // parseTemplate applies a given file to the body of the base template.
 func parseTemplate(filename string) *appTemplate {
 	tmpl := template.Must(template.ParseFiles("templates/base.html"))
-
+	fn := template.FuncMap{
+		"htmlNoEscape": htmlNoEscape,
+	}
+	tmpl.Funcs(fn)
 	// Put the named file into a template called "body"
 	path := filepath.Join("templates", filename)
 	b, err := ioutil.ReadFile(path)
@@ -61,4 +64,8 @@ func (tmpl *appTemplate) Execute(w http.ResponseWriter, r *http.Request, data in
 		return appErrorf(err, "could not write template: %v", err)
 	}
 	return nil
+}
+
+func htmlNoEscape(v string) template.HTML {
+	return template.HTML(v)
 }

@@ -1,12 +1,10 @@
 package api
 
 import (
-	"log"
-
+	"gitlab.com/7chip/little-bird/backend/common"
 	"gopkg.in/mgo.v2"
 
 	"github.com/gorilla/sessions"
-	"github.com/kelseyhightower/envconfig"
 
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
@@ -21,10 +19,6 @@ var (
 
 //Cfg wrapper of configurations
 type Cfg struct {
-	DbURI              string `envconfig:"DB_URI"`
-	DbName             string `envconfig:"DB_NAME"`
-	DbUser             string `envconfig:"DB_USERNAME"`
-	DbPassword         string `envconfig:"DB_PASSWORD"`
 	HTTPAddress        string `envconfig:"HTTP_ADDRESS"`
 	OAuth2ClientID     string `envconfig:"OAUTH2_CLIENT_ID"`
 	OAuth2ClientSecret string `envconfig:"OAUTH2_CLIENT_SECRET"`
@@ -32,7 +26,7 @@ type Cfg struct {
 }
 
 func init() {
-	loadCfgFromEnv(&cfg)
+	common.LoadCfgFromEnv(&cfg)
 
 	oauthConfig = configureOAuthClient(cfg.OAuth2ClientID, cfg.OAuth2ClientSecret)
 	cookieStore := sessions.NewCookieStore([]byte("Little Bird - August 20, 2018 - Spread out the world with little things"))
@@ -54,12 +48,5 @@ func configureOAuthClient(clientID, clientSecret string) *oauth2.Config {
 		RedirectURL:  redirectURL,
 		Scopes:       []string{"email", "profile"},
 		Endpoint:     google.Endpoint,
-	}
-}
-
-//Load load configuration from environment
-func loadCfgFromEnv(t interface{}) {
-	if err := envconfig.Process("", t); err != nil {
-		log.Fatalf("config: unable to load config for %T: %s", t, err)
 	}
 }

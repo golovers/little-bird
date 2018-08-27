@@ -8,19 +8,23 @@ import (
 
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
+	"gitlab.com/7chip/little-bird/backend/post"
 )
 
 // RegisterHandlers register all necessary handlers
 func RegisterHandlers() {
 	r := mux.NewRouter()
+	// REST API
+	r.Path("/api/v1/posts").Methods("POST").Handler(appHandler(apiPostAdd))
 
+	// Form request
 	r.Methods("GET").Path("/").Handler(appHandler(index))
 
 	r.Path("/posts").Methods("GET").Handler(appHandler(index))
 	r.Path("/posts/trending").Methods("GET").Handler(appHandler(postTrending))
 	r.Path("/posts/mine").Methods("GET").Handler(appHandler(postMine))
 	r.Path("/posts/add").Methods("GET").Handler(appHandler(postAdd))
-	r.Path("/posts/details").Methods("GET").Handler(appHandler(post))
+	r.Path("/posts/details/{id:[a-z0-9]+}").Methods("GET").Handler(appHandler(postDetails))
 
 	r.Path("/posts/add").Methods("POSt").Handler(appHandler(postSave))
 
@@ -39,7 +43,14 @@ func RegisterHandlers() {
 
 // index display the  index page
 func index(w http.ResponseWriter, r *http.Request) *appError {
-	return indexTmpl.Execute(w, r, "")
+	posts, err := post.List()
+	if err != nil {
+		return appErrorf(err, "failed to list all posts")
+	}
+	for _, p := range posts {
+		log.Println(p.Content)
+	}
+	return indexTmpl.Execute(w, r, posts)
 }
 
 type appHandler func(http.ResponseWriter, *http.Request) *appError

@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/latest/styles/github.min.css">
 
 <div>
-    <form action="/posts/add" method="POST">
+    <form>
         <div class="form-group">
             <label for="exampleInputEmail1">Title</label>
             <input type="title" class="form-control" id="postTile" name="postTitle" aria-describedby="postTitle" placeholder="Enter title">
@@ -13,7 +13,7 @@
             <label for="postContent">Content</label>
             <textarea id="postContent" name="postContent" class="form-control"></textarea>
         </div>
-        <button type="submit" id="btnPostNow" class="btn btn-primary">Post Now</button>
+        <button type="button" id="btnPostNow" class="btn btn-primary">Post Now</button>
     </form>    
 </div>
 
@@ -29,5 +29,26 @@
     //simplemde.value("default value");
     $( "#btnPostNow" ).click(function() {
         htmlValue = simplemde.markdown(simplemde.value())
+        postData = {
+            Title: $("#postTile").val(),
+            Content: htmlValue,
+        }
+        $.ajax({
+            type: "POST",
+            url: "/api/v1/posts",
+            data: JSON.stringify(postData),
+            contentType: "application/json; charset=utf-8",
+            crossDomain: true,
+            dataType: "json",
+            success: function (data, status, jqXHR) {
+                alert("success");// write success in " "
+            },
+            error: function (jqXHR, status) {
+                console.log(jqXHR);
+                alert('fail' + status.code);
+            }
+        });
     });
+
+    
 </script>

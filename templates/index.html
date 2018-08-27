@@ -1,13 +1,43 @@
 <div class="catalogue">  
-    <a href="/posts/details" class="catalogue-item">
-        <div>
-        <time datetime="2017-03-29 00:00:00 +0000" class="catalogue-time">March 29, 2017</time>
-        <h1 class="catalogue-title">Introducing LittleBird</h1>
-        <div class="catalogue-line"></div>
-        <p>
-            LittleBird is a little site to share little things about Golang languages...
-        </p>
-      </div>
-    </a>
+    {{ range .}}
+    <div class="row vertical-align-center">
+        <div class="col-sm-2">
+            <div id="topic" class="upvote">
+                <a class="upvote upvote-on"></a>
+                <span class="count">6</span>
+                <a class="downvote"></a>
+            </div>
+        </div>
+        <div class="col-sm-10">
+            <a href="/posts/details/{{.ID}}" class="catalogue-item">
+                <div>
+                <time datetime="2017-03-29 00:00:00 +0000" class="catalogue-time">{{.LastUpdate}}</time>
+                <h1 class="catalogue-title">{{.Title}}</h1>
+                <div class="catalogue-line"></div>
+                <div>
+                    {{htmlNoEscape .Content}}
+                </div>
+              </div>
+            </a>
+        </div>
+    </div>
+    <hr>
+    {{ else }}
+    <h1>No post found</h1>
+    {{ end }}
 </div>
-  
+
+<script src="../static/js/upvote/jquery.upvote.js"></script>
+<link rel="stylesheet" href="../static/js/upvote/jquery.upvote.css">
+
+<script>
+    var callback = function(data) {
+        $.ajax({
+            url: '/vote',
+            type: 'post',
+            data: { id: data.id, up: data.upvoted, down: data.downvoted, star: data.starred }
+        });
+        alert('call back: upvotted: ' + data.upvoted + ' - downvotted: ' +  data.downvoted+ ' -starred: ' + data.star)
+    };
+    $('#topic').upvote({id: 123, callback: callback});
+</script>

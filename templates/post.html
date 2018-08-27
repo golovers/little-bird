@@ -1,20 +1,13 @@
 <main>
     <div class="post">
         <div class="post-info">
-            <span>Written by</span>Jack<br>
-            <span>on&nbsp;</span><time datetime="Aug 20, 2018">Aug 20, 2018</time>
+            <span>Written by</span>{{.CreatedBy}}<br>
+            <span>on&nbsp;</span><time datetime="Aug 20, 2018">{{.LastUpdate}}</time>
         </div>
-        <h1 class="post-title">Introducing Little Bird</h1>
+        <h1 class="post-title">{{.Title}}</h1>
         <div class="post-line"></div>
-        <p>
-                LittleBird is a little site to share little things about Golang languages...
-                LittleBird is a little site to share little things about Golang languages...
-                LittleBird is a little site to share little things about Golang languages...
-                LittleBird is a little site to share little things about Golang languages...
-                LittleBird is a little site to share little things about Golang languages...
-                LittleBird is a little site to share little things about Golang languages...
-                LittleBird is a little site to share little things about Golang languages...
-                LittleBird is a little site to share little things about Golang languages...
-        </p>
+        <div>
+             {{htmlNoEscape .Content}}
+        </div>
     </div>
 </main>
