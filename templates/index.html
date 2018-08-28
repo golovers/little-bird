@@ -2,23 +2,28 @@
     <div class="col-sm-2"></div>
     <div class="catalogue col-sm-8">  
         {{ range .}}
-        <div class="row vertical-align-center catalogue-item-wrapper">
+        <div class="row vertical-align-top catalogue-item-wrapper">
             <div class="col-sm-1">
                 <div id="topic" class="upvote">
-                    <a class="upvote upvote-on"></a>
+                    <a class="upvote">
+                        <span class="glyphicon glyphicon-arrow-up"></span>
+                    </a>
                     <span class="count">6</span>
-                    <a class="downvote"></a>
+                    <a class="downvote">
+                        <span class="glyphicon glyphicon-arrow-down"></span>
+                    </a>
                 </div>
             </div>
             <div class="col-sm-11">
                 <a href=/posts/details/{{.ID}} class="catalogue-item">
                     <div>
-                    <time datetime="2017-03-29 00:00:00 +0000" class="catalogue-time">{{.LastUpdate}}</time>
-                    <h1 class="catalogue-title">{{.Title}}</h1>
-                    <div class="catalogue-line"></div>
-                    <div>
-                        {{htmlShort .Content 108 }}
-                    </div>
+                        <div>
+                            <span class="catalogue-title">{{.Title}}</span>
+                            <span class="catalogue-time">{{.LastUpdate}}</span>
+                        </div>
+                        <div>
+                            {{htmlShort .Content 108 }}
+                        </div>
                   </div>
                 </a>
             </div>
@@ -30,17 +35,8 @@
     <div class="col-sm-2"></div>
 </div>
 
-<script src="../static/js/upvote/jquery.upvote.js"></script>
-<link rel="stylesheet" href="../static/js/upvote/jquery.upvote.css">
+<link rel="stylesheet" href="../static/js/upvote/upvote.css">
 
 <script>
-    var callback = function(data) {
-        $.ajax({
-            url: '/vote',
-            type: 'post',
-            data: { id: data.id, up: data.upvoted, down: data.downvoted, star: data.starred }
-        });
-        alert('call back: upvotted: ' + data.upvoted + ' - downvotted: ' +  data.downvoted+ ' -starred: ' + data.star)
-    };
-    $('#topic').upvote({id: 123, callback: callback});
+    
 </script>
