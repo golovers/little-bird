@@ -186,8 +186,8 @@ pre code{
    text-overflow: ellipsis;
    word-wrap: break-word;
    overflow: hidden;
-   max-height: 25em;
-   text-shadow: #353535;
+   max-height: 20em;
+   
 }
 .catalogue-item:hover {
   text-decoration: none;
