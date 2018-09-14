@@ -1,6 +1,6 @@
 package post
 
-import "gitlab.com/7chip/little-bird/backend/common"
+import "gitlab.com/7chip/little-bird/backend/micro/config"
 
 type simpleService struct {
 	db PostDatabase
@@ -8,7 +8,7 @@ type simpleService struct {
 
 func newSimplePostService() PostService {
 	var cfg Cfg
-	common.LoadCfgFromEnv(&cfg)
+	config.LoadEnvConfig(&cfg)
 	db, err := newMongoDB(cfg)
 	if err != nil {
 		panic(err)

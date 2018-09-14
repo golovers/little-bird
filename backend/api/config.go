@@ -1,7 +1,7 @@
 package api
 
 import (
-	"gitlab.com/7chip/little-bird/backend/common"
+	"gitlab.com/7chip/little-bird/backend/micro/config"
 	"gopkg.in/mgo.v2"
 
 	"github.com/gorilla/sessions"
@@ -26,7 +26,7 @@ type Cfg struct {
 }
 
 func init() {
-	common.LoadCfgFromEnv(&cfg)
+	config.LoadEnvConfig(&cfg)
 
 	oauthConfig = configureOAuthClient(cfg.OAuth2ClientID, cfg.OAuth2ClientSecret)
 	cookieStore := sessions.NewCookieStore([]byte("Little Bird - August 20, 2018 - Spread out the world with little things"))
