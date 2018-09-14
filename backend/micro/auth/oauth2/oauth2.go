@@ -3,8 +3,6 @@ package oauth2
 import (
 	"strings"
 
-	"github.com/dgrijalva/jwt-go"
-
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"

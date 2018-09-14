@@ -1,6 +1,6 @@
 package tracing
 
-import "bitbucket.org/disruptive-technologies/micro/config"
+import "gitlab.com/7chip/backend/micro/config"
 
 // Config for Google Cloud Platform.
 type Config struct {

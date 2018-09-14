@@ -8,9 +8,9 @@ import (
 	"os/signal"
 	"syscall"
 
-	"bitbucket.org/disruptive-technologies/micro/auth"
-	"bitbucket.org/disruptive-technologies/micro/health"
-	"bitbucket.org/disruptive-technologies/micro/tracing"
+	"gitlab.com/7chip/backend/micro/auth"
+	"gitlab.com/7chip/backend/micro/health"
+	"gitlab.com/7chip/backend/micro/tracing"
 	"github.com/grpc-ecosystem/go-grpc-middleware"
 	"github.com/grpc-ecosystem/go-grpc-prometheus"
 	"github.com/prometheus/client_golang/prometheus"

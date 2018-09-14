@@ -4,8 +4,7 @@ import (
 	"errors"
 	"strings"
 
-	"gitlab.com/7chip/little-bird/backend/micro/auth/oauth2"
-	"github.com/dgrijalva/jwt-go"
+	"gitlab.com/7chip/little-bird/backend/micro/auth"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc/metadata"
 )

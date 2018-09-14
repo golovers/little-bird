@@ -1,7 +1,7 @@
-# bitbucket.org/disruptive-technologies/micro
+# gitlab.com/7chip/backend/micro
 
 Micro-services toolkit for internal use.
 
 ```
-go get bitbucket.org/disruptive-technologies/micro
+go get gitlab.com/7chip/backend/micro
 ```

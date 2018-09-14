@@ -1,10 +1,10 @@
 package server
 
 import (
-	"bitbucket.org/disruptive-technologies/micro/auth"
-	"bitbucket.org/disruptive-technologies/micro/config"
-	"bitbucket.org/disruptive-technologies/micro/health"
-	"bitbucket.org/disruptive-technologies/micro/tracing"
+	"gitlab.com/7chip/little-bird/backend/microauth"
+	"gitlab.com/7chip/little-bird/backend/micro/config"
+	"gitlab.com/7chip/backend/micro/health"
+	"gitlab.com/7chip/backend/micro/tracing"
 	"google.golang.org/grpc"
 )
 
