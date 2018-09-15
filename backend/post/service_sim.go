@@ -1,6 +1,6 @@
 package post
 
-import "gitlab.com/7chip/little-bird/backend/micro/config"
+import "gitlab.com/koffee/micro/config"
 
 type simpleService struct {
 	db PostDatabase

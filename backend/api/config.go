@@ -1,10 +1,10 @@
 package api
 
 import (
-	"gitlab.com/7chip/little-bird/backend/micro/config"
-	"gopkg.in/mgo.v2"
+	"gitlab.com/koffee/micro/config"
 
 	"github.com/gorilla/sessions"
+	"gopkg.in/mgo.v2"
 
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"

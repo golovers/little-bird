@@ -1,7 +1,7 @@
 package main
 
 import (
-	"gitlab.com/7chip/little-bird/backend/api"
+	"gitlab.com/koffee/little-bird/backend/api"
 	"google.golang.org/appengine"
 )
 

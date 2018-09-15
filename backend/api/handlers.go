@@ -9,7 +9,7 @@ import (
 
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
-	"gitlab.com/7chip/little-bird/backend/post"
+	"gitlab.com/koffee/little-bird/backend/post"
 )
 
 // RegisterHandlers register all necessary handlers

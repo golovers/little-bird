@@ -1,4 +1,4 @@
-package: gitlab.com/7chip/little-bird
+package: gitlab.com/koffee/little-bird
 import:
 - package: cloud.google.com/go
   version: ^0.25.0
@@ -35,3 +35,4 @@ import:
 - package: github.com/sirupsen/logrus
 - package: gopkg.in/russross/blackfriday.v2
 - package: github.com/golovers/xtract
+- package: gitlab.com/koffee/micro/

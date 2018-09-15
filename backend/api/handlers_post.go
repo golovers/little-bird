@@ -10,7 +10,7 @@ import (
 
 	"github.com/gorilla/mux"
 
-	"gitlab.com/7chip/little-bird/backend/post"
+	"gitlab.com/koffee/little-bird/backend/post"
 
 	"github.com/sirupsen/logrus"
 )

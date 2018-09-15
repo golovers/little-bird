@@ -1,17 +1,19 @@
-hash: e166bce8d034a9cc35cfe580b70cc0a98fbf13a3c330d6cc4c23a602b43840ec
-updated: 2018-08-27T23:19:23.472179891+07:00
+hash: 8890eae336deba9f3d7143f70ce90e547175e7b4757ad04e7181732e76cef6d9
+updated: 2018-09-15T21:33:12.07637236+07:00
 imports:
 - name: cloud.google.com/go
-  version: 64a2037ec6be8a4b0c1d1f706ed35b428b989239
+  version: c728a003b238b26cef9ab6753a5dc424b331c3ad
   subpackages:
   - datastore
   - pubsub
   - storage
   - compute/metadata
+- name: github.com/go-mgo/mgo
+  version: 7446a0344b7872c067b3d6e1b7642571eafbae17
 - name: github.com/go-sql-driver/mysql
   version: d523deb1b23d913de5bdada721a6071e71283618
 - name: github.com/golang/protobuf
-  version: 93b26e6a70e37abb14f2f88194949312b0592a84
+  version: a47340a8e42c4ceb44c00c2a05199e24b24fcaef
   subpackages:
   - proto
 - name: github.com/golovers/xtract
@@ -23,38 +25,44 @@ imports:
 - name: github.com/gorilla/mux
   version: e3702bed27f0d39777b0b37b664b6280e8ef8fbf
 - name: github.com/gorilla/securecookie
-  version: 78f3d318a8bf316cda921f25e96fd0b441c5173d
+  version: bb1ab76598893258e90f45d8a708a2505a95af2a
 - name: github.com/gorilla/sessions
-  version: 03b6f63cc43ef9c7240a635a5e22b13180e822b8
+  version: 81547393f870a35be888759a606ba7bf71dbe5c7
 - name: github.com/kelseyhightower/envconfig
   version: f611eb38b3875cc3bd991ca91c51d06446afa14c
 - name: github.com/satori/go.uuid
   version: f58768cc1a7a7e77a3bd49e98cdd21419399b6a3
 - name: github.com/sirupsen/logrus
-  version: c108f5553c369120b773da633aca62a8b42b1cf4
+  version: f3df9aeffda7c12bd9f5a03f9251d75d35993165
+- name: gitlab.com/koffee/micro
+  version: 6bf377e57a12181e0f72061b9abe4d3b0c7b63fe
+  subpackages:
+  - config
 - name: golang.org/x/crypto
-  version: c126467f60eb25f8f27e5a981f32a87e3965053f
+  version: 0e37d006457bf46f9e6692014ba72ef82c33022c
   subpackages:
   - ssh/terminal
 - name: golang.org/x/net
-  version: 3673e40ba22529d22c3fd7c93e97b0ce50fa7bdd
+  version: 26e67e76b6c3f6ce91f7c52def5af501b4e0f3a2
   subpackages:
   - context
+  - html
   - context/ctxhttp
+  - html/atom
 - name: golang.org/x/oauth2
-  version: 3d292e4d0cdc3a0113e6d207bb137145ef1de42f
+  version: d2e6202438beef2727060aa7cabdd924d92ebfd9
   subpackages:
   - google
   - internal
   - jws
   - jwt
 - name: golang.org/x/sys
-  version: e072cadbbdc8dd3d3ffa82b8b4b9304c261d9311
+  version: d0be0721c37eeb5299f245a996a483160fc36940
   subpackages:
   - unix
   - windows
 - name: google.golang.org/api
-  version: 082d5fa4f1f046d7c35245229282ed6f488892c0
+  version: 1644ed9defba3c60a9bc80d0ce82c9595f786f76
   subpackages:
   - plus/v1
   - gensupport
@@ -76,9 +84,9 @@ imports:
   version: 9856a29383ce1c59f308dd1cf0363a79b5bef6b5
   subpackages:
   - bson
+  - internal/json
   - internal/sasl
   - internal/scram
-  - internal/json
 - name: gopkg.in/russross/blackfriday.v2
   version: cadec560ec52d93835bf2f15bd794700d3a2473b
 testImports: []
