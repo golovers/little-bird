@@ -1,35 +1,65 @@
 syntax = "proto3";
 
 import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/field_mask.proto";
 
 package littlebird.article.v1;
 
 // ArticleService provide all operations related to articles
 service ArticleService {
     // List articles
-    rpc List (ListArticlesRequest) returns (ListArticlesResponse) {
+    rpc ListArticles (ListArticleRequest) returns (ListArticleResponse) {
         option (google.api.http) = { get: "/v1/articles"};
+    }
+    rpc DeleteArticle(DeleteArticletRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/v1/articles/{id=*}" };
+    }
+    rpc GetArticle(GetArticletRequest) returns (Article) {
+        option (google.api.http) = { get: "/v1/articles/{id=*}" };
+    }
+    rpc ListArticleCreatedBy (ListArticleCreatedByRequest) returns (ListArticleResponse) {
+        option (google.api.http) = { get: "/v1/articles/createdby"};
+    }
+    rpc UpdateArticle(UpdateArticletRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { put: "/v1/articles/{id=*}" };
     }
 }
 
-message ListArticlesRequest {
+message UpdateArticletRequest {
+    string id = 1;
+    Article article = 2;
+}
+
+message ListArticleCreatedByRequest {
+    string owner_id = 1;    
+}
+
+message GetArticletRequest {
+    string id = 1;
+}
+
+message DeleteArticletRequest {
+    string id = 1;
+}
+
+message ListArticleRequest {
     int64 offset = 1;
     int64 limit = 2;
 }
 
-message ListArticlesResponse {
+message ListArticleResponse {
     repeated Article articles = 1;
 }
 
-
 message Article {
-    string ID = 1;
-	string Title = 2;
-	string Content = 3;
-	string Markdown = 4;
-	string LastUpdate = 5;
+    string id = 1;
+	string title = 2;
+	string content = 3;
+	string markdown = 4;
+	string last_update = 5;
 
-	string CreatedBy = 6;
-	string CreatedByID = 7;
+	string created_by = 6;
+	string created_by_id = 7;
 }
 

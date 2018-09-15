@@ -18,12 +18,12 @@
     "/v1/articles": {
       "get": {
         "summary": "List articles",
-        "operationId": "List",
+        "operationId": "ListArticles",
         "responses": {
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/v1ListArticlesResponse"
+              "$ref": "#/definitions/v1ListArticleResponse"
             }
           }
         },
@@ -47,36 +47,157 @@
           "ArticleService"
         ]
       }
+    },
+    "/v1/articles/createdby": {
+      "get": {
+        "operationId": "ListArticleCreatedBy",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/v1ListArticleResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "owner_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ArticleService"
+        ]
+      }
+    },
+    "/v1/articles/{id}": {
+      "get": {
+        "operationId": "GetArticle",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/v1Article"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ArticleService"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteArticle",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ArticleService"
+        ]
+      },
+      "put": {
+        "operationId": "UpdateArticle",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ArticleService"
+        ]
+      }
     }
   },
   "definitions": {
+    "protobufEmpty": {
+      "type": "object",
+      "description": "service Foo {\n      rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n    }\n\nThe JSON representation for `Empty` is empty JSON object `{}`.",
+      "title": "A generic empty message that you can re-use to avoid defining duplicated\nempty messages in your APIs. A typical example is to use it as the request\nor the response type of an API method. For instance:"
+    },
     "v1Article": {
       "type": "object",
       "properties": {
-        "ID": {
+        "id": {
           "type": "string"
         },
-        "Title": {
+        "title": {
           "type": "string"
         },
-        "Content": {
+        "content": {
           "type": "string"
         },
-        "Markdown": {
+        "markdown": {
           "type": "string"
         },
-        "LastUpdate": {
+        "last_update": {
           "type": "string"
         },
-        "CreatedBy": {
+        "created_by": {
           "type": "string"
         },
-        "CreatedByID": {
+        "created_by_id": {
           "type": "string"
         }
       }
     },
-    "v1ListArticlesRequest": {
+    "v1DeleteArticletRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetArticletRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ListArticleCreatedByRequest": {
+      "type": "object",
+      "properties": {
+        "owner_id": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ListArticleRequest": {
       "type": "object",
       "properties": {
         "offset": {
@@ -89,7 +210,7 @@
         }
       }
     },
-    "v1ListArticlesResponse": {
+    "v1ListArticleResponse": {
       "type": "object",
       "properties": {
         "articles": {
@@ -97,6 +218,17 @@
           "items": {
             "$ref": "#/definitions/v1Article"
           }
+        }
+      }
+    },
+    "v1UpdateArticletRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "article": {
+          "$ref": "#/definitions/v1Article"
         }
       }
     }
