@@ -8,7 +8,7 @@ GRPC_GATEWAY=vendor/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapi
 
 all: proto
 
-proto: init proto_go proto_gateway proto_swagger
+proto: init proto_go
 
 init:
 	cd vendor/github.com/golang/protobuf/protoc-gen-go && go build && go install
