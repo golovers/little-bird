@@ -27,6 +27,82 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
+type CreateRequest struct {
+	Article              *Article `protobuf:"bytes,1,opt,name=article,proto3" json:"article,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CreateRequest) Reset()         { *m = CreateRequest{} }
+func (m *CreateRequest) String() string { return proto.CompactTextString(m) }
+func (*CreateRequest) ProtoMessage()    {}
+func (*CreateRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7eb0a1d4c43f90a9, []int{0}
+}
+func (m *CreateRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateRequest.Unmarshal(m, b)
+}
+func (m *CreateRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateRequest.Marshal(b, m, deterministic)
+}
+func (m *CreateRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateRequest.Merge(m, src)
+}
+func (m *CreateRequest) XXX_Size() int {
+	return xxx_messageInfo_CreateRequest.Size(m)
+}
+func (m *CreateRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateRequest proto.InternalMessageInfo
+
+func (m *CreateRequest) GetArticle() *Article {
+	if m != nil {
+		return m.Article
+	}
+	return nil
+}
+
+type CreateResponse struct {
+	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CreateResponse) Reset()         { *m = CreateResponse{} }
+func (m *CreateResponse) String() string { return proto.CompactTextString(m) }
+func (*CreateResponse) ProtoMessage()    {}
+func (*CreateResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7eb0a1d4c43f90a9, []int{1}
+}
+func (m *CreateResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateResponse.Unmarshal(m, b)
+}
+func (m *CreateResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateResponse.Marshal(b, m, deterministic)
+}
+func (m *CreateResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateResponse.Merge(m, src)
+}
+func (m *CreateResponse) XXX_Size() int {
+	return xxx_messageInfo_CreateResponse.Size(m)
+}
+func (m *CreateResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateResponse proto.InternalMessageInfo
+
+func (m *CreateResponse) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
 type TrendingRequest struct {
 	Offset               int64    `protobuf:"varint,1,opt,name=offset,proto3" json:"offset,omitempty"`
 	Limit                int64    `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
@@ -39,7 +115,7 @@ func (m *TrendingRequest) Reset()         { *m = TrendingRequest{} }
 func (m *TrendingRequest) String() string { return proto.CompactTextString(m) }
 func (*TrendingRequest) ProtoMessage()    {}
 func (*TrendingRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7eb0a1d4c43f90a9, []int{0}
+	return fileDescriptor_7eb0a1d4c43f90a9, []int{2}
 }
 func (m *TrendingRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TrendingRequest.Unmarshal(m, b)
@@ -73,7 +149,7 @@ func (m *TrendingRequest) GetLimit() int64 {
 	return 0
 }
 
-type UpdateArticletRequest struct {
+type UpdateRequest struct {
 	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Article              *Article `protobuf:"bytes,2,opt,name=article,proto3" json:"article,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -81,159 +157,159 @@ type UpdateArticletRequest struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *UpdateArticletRequest) Reset()         { *m = UpdateArticletRequest{} }
-func (m *UpdateArticletRequest) String() string { return proto.CompactTextString(m) }
-func (*UpdateArticletRequest) ProtoMessage()    {}
-func (*UpdateArticletRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7eb0a1d4c43f90a9, []int{1}
+func (m *UpdateRequest) Reset()         { *m = UpdateRequest{} }
+func (m *UpdateRequest) String() string { return proto.CompactTextString(m) }
+func (*UpdateRequest) ProtoMessage()    {}
+func (*UpdateRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7eb0a1d4c43f90a9, []int{3}
 }
-func (m *UpdateArticletRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateArticletRequest.Unmarshal(m, b)
+func (m *UpdateRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateRequest.Unmarshal(m, b)
 }
-func (m *UpdateArticletRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateArticletRequest.Marshal(b, m, deterministic)
+func (m *UpdateRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateRequest.Marshal(b, m, deterministic)
 }
-func (m *UpdateArticletRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateArticletRequest.Merge(m, src)
+func (m *UpdateRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateRequest.Merge(m, src)
 }
-func (m *UpdateArticletRequest) XXX_Size() int {
-	return xxx_messageInfo_UpdateArticletRequest.Size(m)
+func (m *UpdateRequest) XXX_Size() int {
+	return xxx_messageInfo_UpdateRequest.Size(m)
 }
-func (m *UpdateArticletRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateArticletRequest.DiscardUnknown(m)
+func (m *UpdateRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_UpdateArticletRequest proto.InternalMessageInfo
+var xxx_messageInfo_UpdateRequest proto.InternalMessageInfo
 
-func (m *UpdateArticletRequest) GetId() string {
+func (m *UpdateRequest) GetId() string {
 	if m != nil {
 		return m.Id
 	}
 	return ""
 }
 
-func (m *UpdateArticletRequest) GetArticle() *Article {
+func (m *UpdateRequest) GetArticle() *Article {
 	if m != nil {
 		return m.Article
 	}
 	return nil
 }
 
-type ListArticleCreatedByRequest struct {
+type ListCreatedByRequest struct {
 	OwnerId              string   `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ListArticleCreatedByRequest) Reset()         { *m = ListArticleCreatedByRequest{} }
-func (m *ListArticleCreatedByRequest) String() string { return proto.CompactTextString(m) }
-func (*ListArticleCreatedByRequest) ProtoMessage()    {}
-func (*ListArticleCreatedByRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7eb0a1d4c43f90a9, []int{2}
+func (m *ListCreatedByRequest) Reset()         { *m = ListCreatedByRequest{} }
+func (m *ListCreatedByRequest) String() string { return proto.CompactTextString(m) }
+func (*ListCreatedByRequest) ProtoMessage()    {}
+func (*ListCreatedByRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7eb0a1d4c43f90a9, []int{4}
 }
-func (m *ListArticleCreatedByRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListArticleCreatedByRequest.Unmarshal(m, b)
+func (m *ListCreatedByRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListCreatedByRequest.Unmarshal(m, b)
 }
-func (m *ListArticleCreatedByRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListArticleCreatedByRequest.Marshal(b, m, deterministic)
+func (m *ListCreatedByRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListCreatedByRequest.Marshal(b, m, deterministic)
 }
-func (m *ListArticleCreatedByRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListArticleCreatedByRequest.Merge(m, src)
+func (m *ListCreatedByRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListCreatedByRequest.Merge(m, src)
 }
-func (m *ListArticleCreatedByRequest) XXX_Size() int {
-	return xxx_messageInfo_ListArticleCreatedByRequest.Size(m)
+func (m *ListCreatedByRequest) XXX_Size() int {
+	return xxx_messageInfo_ListCreatedByRequest.Size(m)
 }
-func (m *ListArticleCreatedByRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListArticleCreatedByRequest.DiscardUnknown(m)
+func (m *ListCreatedByRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListCreatedByRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ListArticleCreatedByRequest proto.InternalMessageInfo
+var xxx_messageInfo_ListCreatedByRequest proto.InternalMessageInfo
 
-func (m *ListArticleCreatedByRequest) GetOwnerId() string {
+func (m *ListCreatedByRequest) GetOwnerId() string {
 	if m != nil {
 		return m.OwnerId
 	}
 	return ""
 }
 
-type GetArticletRequest struct {
+type GetRequest struct {
 	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *GetArticletRequest) Reset()         { *m = GetArticletRequest{} }
-func (m *GetArticletRequest) String() string { return proto.CompactTextString(m) }
-func (*GetArticletRequest) ProtoMessage()    {}
-func (*GetArticletRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7eb0a1d4c43f90a9, []int{3}
+func (m *GetRequest) Reset()         { *m = GetRequest{} }
+func (m *GetRequest) String() string { return proto.CompactTextString(m) }
+func (*GetRequest) ProtoMessage()    {}
+func (*GetRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7eb0a1d4c43f90a9, []int{5}
 }
-func (m *GetArticletRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetArticletRequest.Unmarshal(m, b)
+func (m *GetRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetRequest.Unmarshal(m, b)
 }
-func (m *GetArticletRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetArticletRequest.Marshal(b, m, deterministic)
+func (m *GetRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetRequest.Marshal(b, m, deterministic)
 }
-func (m *GetArticletRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetArticletRequest.Merge(m, src)
+func (m *GetRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetRequest.Merge(m, src)
 }
-func (m *GetArticletRequest) XXX_Size() int {
-	return xxx_messageInfo_GetArticletRequest.Size(m)
+func (m *GetRequest) XXX_Size() int {
+	return xxx_messageInfo_GetRequest.Size(m)
 }
-func (m *GetArticletRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetArticletRequest.DiscardUnknown(m)
+func (m *GetRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GetArticletRequest proto.InternalMessageInfo
+var xxx_messageInfo_GetRequest proto.InternalMessageInfo
 
-func (m *GetArticletRequest) GetId() string {
+func (m *GetRequest) GetId() string {
 	if m != nil {
 		return m.Id
 	}
 	return ""
 }
 
-type DeleteArticletRequest struct {
+type DeleteRequest struct {
 	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *DeleteArticletRequest) Reset()         { *m = DeleteArticletRequest{} }
-func (m *DeleteArticletRequest) String() string { return proto.CompactTextString(m) }
-func (*DeleteArticletRequest) ProtoMessage()    {}
-func (*DeleteArticletRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7eb0a1d4c43f90a9, []int{4}
+func (m *DeleteRequest) Reset()         { *m = DeleteRequest{} }
+func (m *DeleteRequest) String() string { return proto.CompactTextString(m) }
+func (*DeleteRequest) ProtoMessage()    {}
+func (*DeleteRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7eb0a1d4c43f90a9, []int{6}
 }
-func (m *DeleteArticletRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeleteArticletRequest.Unmarshal(m, b)
+func (m *DeleteRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteRequest.Unmarshal(m, b)
 }
-func (m *DeleteArticletRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeleteArticletRequest.Marshal(b, m, deterministic)
+func (m *DeleteRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteRequest.Marshal(b, m, deterministic)
 }
-func (m *DeleteArticletRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteArticletRequest.Merge(m, src)
+func (m *DeleteRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteRequest.Merge(m, src)
 }
-func (m *DeleteArticletRequest) XXX_Size() int {
-	return xxx_messageInfo_DeleteArticletRequest.Size(m)
+func (m *DeleteRequest) XXX_Size() int {
+	return xxx_messageInfo_DeleteRequest.Size(m)
 }
-func (m *DeleteArticletRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteArticletRequest.DiscardUnknown(m)
+func (m *DeleteRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_DeleteArticletRequest proto.InternalMessageInfo
+var xxx_messageInfo_DeleteRequest proto.InternalMessageInfo
 
-func (m *DeleteArticletRequest) GetId() string {
+func (m *DeleteRequest) GetId() string {
 	if m != nil {
 		return m.Id
 	}
 	return ""
 }
 
-type ListArticleRequest struct {
+type ListRequest struct {
 	Offset               int64    `protobuf:"varint,1,opt,name=offset,proto3" json:"offset,omitempty"`
 	Limit                int64    `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -241,76 +317,76 @@ type ListArticleRequest struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ListArticleRequest) Reset()         { *m = ListArticleRequest{} }
-func (m *ListArticleRequest) String() string { return proto.CompactTextString(m) }
-func (*ListArticleRequest) ProtoMessage()    {}
-func (*ListArticleRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7eb0a1d4c43f90a9, []int{5}
+func (m *ListRequest) Reset()         { *m = ListRequest{} }
+func (m *ListRequest) String() string { return proto.CompactTextString(m) }
+func (*ListRequest) ProtoMessage()    {}
+func (*ListRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7eb0a1d4c43f90a9, []int{7}
 }
-func (m *ListArticleRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListArticleRequest.Unmarshal(m, b)
+func (m *ListRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListRequest.Unmarshal(m, b)
 }
-func (m *ListArticleRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListArticleRequest.Marshal(b, m, deterministic)
+func (m *ListRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListRequest.Marshal(b, m, deterministic)
 }
-func (m *ListArticleRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListArticleRequest.Merge(m, src)
+func (m *ListRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListRequest.Merge(m, src)
 }
-func (m *ListArticleRequest) XXX_Size() int {
-	return xxx_messageInfo_ListArticleRequest.Size(m)
+func (m *ListRequest) XXX_Size() int {
+	return xxx_messageInfo_ListRequest.Size(m)
 }
-func (m *ListArticleRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListArticleRequest.DiscardUnknown(m)
+func (m *ListRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ListArticleRequest proto.InternalMessageInfo
+var xxx_messageInfo_ListRequest proto.InternalMessageInfo
 
-func (m *ListArticleRequest) GetOffset() int64 {
+func (m *ListRequest) GetOffset() int64 {
 	if m != nil {
 		return m.Offset
 	}
 	return 0
 }
 
-func (m *ListArticleRequest) GetLimit() int64 {
+func (m *ListRequest) GetLimit() int64 {
 	if m != nil {
 		return m.Limit
 	}
 	return 0
 }
 
-type ListArticleResponse struct {
+type ListResponse struct {
 	Articles             []*Article `protobuf:"bytes,1,rep,name=articles,proto3" json:"articles,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
 	XXX_unrecognized     []byte     `json:"-"`
 	XXX_sizecache        int32      `json:"-"`
 }
 
-func (m *ListArticleResponse) Reset()         { *m = ListArticleResponse{} }
-func (m *ListArticleResponse) String() string { return proto.CompactTextString(m) }
-func (*ListArticleResponse) ProtoMessage()    {}
-func (*ListArticleResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7eb0a1d4c43f90a9, []int{6}
+func (m *ListResponse) Reset()         { *m = ListResponse{} }
+func (m *ListResponse) String() string { return proto.CompactTextString(m) }
+func (*ListResponse) ProtoMessage()    {}
+func (*ListResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7eb0a1d4c43f90a9, []int{8}
 }
-func (m *ListArticleResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListArticleResponse.Unmarshal(m, b)
+func (m *ListResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListResponse.Unmarshal(m, b)
 }
-func (m *ListArticleResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListArticleResponse.Marshal(b, m, deterministic)
+func (m *ListResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListResponse.Marshal(b, m, deterministic)
 }
-func (m *ListArticleResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListArticleResponse.Merge(m, src)
+func (m *ListResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListResponse.Merge(m, src)
 }
-func (m *ListArticleResponse) XXX_Size() int {
-	return xxx_messageInfo_ListArticleResponse.Size(m)
+func (m *ListResponse) XXX_Size() int {
+	return xxx_messageInfo_ListResponse.Size(m)
 }
-func (m *ListArticleResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListArticleResponse.DiscardUnknown(m)
+func (m *ListResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ListArticleResponse proto.InternalMessageInfo
+var xxx_messageInfo_ListResponse proto.InternalMessageInfo
 
-func (m *ListArticleResponse) GetArticles() []*Article {
+func (m *ListResponse) GetArticles() []*Article {
 	if m != nil {
 		return m.Articles
 	}
@@ -318,23 +394,22 @@ func (m *ListArticleResponse) GetArticles() []*Article {
 }
 
 type Article struct {
-	Id                   string            `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Title                string            `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	Content              string            `protobuf:"bytes,3,opt,name=content,proto3" json:"content,omitempty"`
-	LastUpdate           string            `protobuf:"bytes,4,opt,name=last_update,json=lastUpdate,proto3" json:"last_update,omitempty"`
-	CreatedBy            string            `protobuf:"bytes,5,opt,name=created_by,json=createdBy,proto3" json:"created_by,omitempty"`
-	CreatedById          string            `protobuf:"bytes,6,opt,name=created_by_id,json=createdById,proto3" json:"created_by_id,omitempty"`
-	Statistic            *ArticleStatistic `protobuf:"bytes,7,opt,name=statistic,proto3" json:"statistic,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
-	XXX_unrecognized     []byte            `json:"-"`
-	XXX_sizecache        int32             `json:"-"`
+	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Title                string   `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	Content              string   `protobuf:"bytes,3,opt,name=content,proto3" json:"content,omitempty"`
+	LastUpdate           string   `protobuf:"bytes,4,opt,name=last_update,json=lastUpdate,proto3" json:"last_update,omitempty"`
+	CreatedBy            string   `protobuf:"bytes,5,opt,name=created_by,json=createdBy,proto3" json:"created_by,omitempty"`
+	CreatedById          string   `protobuf:"bytes,6,opt,name=created_by_id,json=createdById,proto3" json:"created_by_id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *Article) Reset()         { *m = Article{} }
 func (m *Article) String() string { return proto.CompactTextString(m) }
 func (*Article) ProtoMessage()    {}
 func (*Article) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7eb0a1d4c43f90a9, []int{7}
+	return fileDescriptor_7eb0a1d4c43f90a9, []int{9}
 }
 func (m *Article) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Article.Unmarshal(m, b)
@@ -396,180 +471,17 @@ func (m *Article) GetCreatedById() string {
 	return ""
 }
 
-func (m *Article) GetStatistic() *ArticleStatistic {
-	if m != nil {
-		return m.Statistic
-	}
-	return nil
-}
-
-type ArticleDetails struct {
-	Id                   string            `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Title                string            `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	Content              string            `protobuf:"bytes,3,opt,name=content,proto3" json:"content,omitempty"`
-	Markdown             string            `protobuf:"bytes,4,opt,name=markdown,proto3" json:"markdown,omitempty"`
-	LastUpdate           string            `protobuf:"bytes,5,opt,name=last_update,json=lastUpdate,proto3" json:"last_update,omitempty"`
-	CreatedBy            string            `protobuf:"bytes,6,opt,name=created_by,json=createdBy,proto3" json:"created_by,omitempty"`
-	CreatedById          string            `protobuf:"bytes,7,opt,name=created_by_id,json=createdById,proto3" json:"created_by_id,omitempty"`
-	Statistic            *ArticleStatistic `protobuf:"bytes,8,opt,name=statistic,proto3" json:"statistic,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
-	XXX_unrecognized     []byte            `json:"-"`
-	XXX_sizecache        int32             `json:"-"`
-}
-
-func (m *ArticleDetails) Reset()         { *m = ArticleDetails{} }
-func (m *ArticleDetails) String() string { return proto.CompactTextString(m) }
-func (*ArticleDetails) ProtoMessage()    {}
-func (*ArticleDetails) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7eb0a1d4c43f90a9, []int{8}
-}
-func (m *ArticleDetails) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ArticleDetails.Unmarshal(m, b)
-}
-func (m *ArticleDetails) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ArticleDetails.Marshal(b, m, deterministic)
-}
-func (m *ArticleDetails) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ArticleDetails.Merge(m, src)
-}
-func (m *ArticleDetails) XXX_Size() int {
-	return xxx_messageInfo_ArticleDetails.Size(m)
-}
-func (m *ArticleDetails) XXX_DiscardUnknown() {
-	xxx_messageInfo_ArticleDetails.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ArticleDetails proto.InternalMessageInfo
-
-func (m *ArticleDetails) GetId() string {
-	if m != nil {
-		return m.Id
-	}
-	return ""
-}
-
-func (m *ArticleDetails) GetTitle() string {
-	if m != nil {
-		return m.Title
-	}
-	return ""
-}
-
-func (m *ArticleDetails) GetContent() string {
-	if m != nil {
-		return m.Content
-	}
-	return ""
-}
-
-func (m *ArticleDetails) GetMarkdown() string {
-	if m != nil {
-		return m.Markdown
-	}
-	return ""
-}
-
-func (m *ArticleDetails) GetLastUpdate() string {
-	if m != nil {
-		return m.LastUpdate
-	}
-	return ""
-}
-
-func (m *ArticleDetails) GetCreatedBy() string {
-	if m != nil {
-		return m.CreatedBy
-	}
-	return ""
-}
-
-func (m *ArticleDetails) GetCreatedById() string {
-	if m != nil {
-		return m.CreatedById
-	}
-	return ""
-}
-
-func (m *ArticleDetails) GetStatistic() *ArticleStatistic {
-	if m != nil {
-		return m.Statistic
-	}
-	return nil
-}
-
-type ArticleStatistic struct {
-	ArticleId            string   `protobuf:"bytes,1,opt,name=article_id,json=articleId,proto3" json:"article_id,omitempty"`
-	ViewCount            int64    `protobuf:"varint,2,opt,name=view_count,json=viewCount,proto3" json:"view_count,omitempty"`
-	CommentCount         int64    `protobuf:"varint,3,opt,name=comment_count,json=commentCount,proto3" json:"comment_count,omitempty"`
-	VoteCount            int64    `protobuf:"varint,4,opt,name=vote_count,json=voteCount,proto3" json:"vote_count,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *ArticleStatistic) Reset()         { *m = ArticleStatistic{} }
-func (m *ArticleStatistic) String() string { return proto.CompactTextString(m) }
-func (*ArticleStatistic) ProtoMessage()    {}
-func (*ArticleStatistic) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7eb0a1d4c43f90a9, []int{9}
-}
-func (m *ArticleStatistic) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ArticleStatistic.Unmarshal(m, b)
-}
-func (m *ArticleStatistic) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ArticleStatistic.Marshal(b, m, deterministic)
-}
-func (m *ArticleStatistic) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ArticleStatistic.Merge(m, src)
-}
-func (m *ArticleStatistic) XXX_Size() int {
-	return xxx_messageInfo_ArticleStatistic.Size(m)
-}
-func (m *ArticleStatistic) XXX_DiscardUnknown() {
-	xxx_messageInfo_ArticleStatistic.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ArticleStatistic proto.InternalMessageInfo
-
-func (m *ArticleStatistic) GetArticleId() string {
-	if m != nil {
-		return m.ArticleId
-	}
-	return ""
-}
-
-func (m *ArticleStatistic) GetViewCount() int64 {
-	if m != nil {
-		return m.ViewCount
-	}
-	return 0
-}
-
-func (m *ArticleStatistic) GetCommentCount() int64 {
-	if m != nil {
-		return m.CommentCount
-	}
-	return 0
-}
-
-func (m *ArticleStatistic) GetVoteCount() int64 {
-	if m != nil {
-		return m.VoteCount
-	}
-	return 0
-}
-
 func init() {
+	proto.RegisterType((*CreateRequest)(nil), "littlebird.article.v1.CreateRequest")
+	proto.RegisterType((*CreateResponse)(nil), "littlebird.article.v1.CreateResponse")
 	proto.RegisterType((*TrendingRequest)(nil), "littlebird.article.v1.TrendingRequest")
-	proto.RegisterType((*UpdateArticletRequest)(nil), "littlebird.article.v1.UpdateArticletRequest")
-	proto.RegisterType((*ListArticleCreatedByRequest)(nil), "littlebird.article.v1.ListArticleCreatedByRequest")
-	proto.RegisterType((*GetArticletRequest)(nil), "littlebird.article.v1.GetArticletRequest")
-	proto.RegisterType((*DeleteArticletRequest)(nil), "littlebird.article.v1.DeleteArticletRequest")
-	proto.RegisterType((*ListArticleRequest)(nil), "littlebird.article.v1.ListArticleRequest")
-	proto.RegisterType((*ListArticleResponse)(nil), "littlebird.article.v1.ListArticleResponse")
+	proto.RegisterType((*UpdateRequest)(nil), "littlebird.article.v1.UpdateRequest")
+	proto.RegisterType((*ListCreatedByRequest)(nil), "littlebird.article.v1.ListCreatedByRequest")
+	proto.RegisterType((*GetRequest)(nil), "littlebird.article.v1.GetRequest")
+	proto.RegisterType((*DeleteRequest)(nil), "littlebird.article.v1.DeleteRequest")
+	proto.RegisterType((*ListRequest)(nil), "littlebird.article.v1.ListRequest")
+	proto.RegisterType((*ListResponse)(nil), "littlebird.article.v1.ListResponse")
 	proto.RegisterType((*Article)(nil), "littlebird.article.v1.Article")
-	proto.RegisterType((*ArticleDetails)(nil), "littlebird.article.v1.ArticleDetails")
-	proto.RegisterType((*ArticleStatistic)(nil), "littlebird.article.v1.ArticleStatistic")
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -585,17 +497,17 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type ArticleServiceClient interface {
 	// List articles
-	ListArticles(ctx context.Context, in *ListArticleRequest, opts ...grpc.CallOption) (*ListArticleResponse, error)
-	// ListArticleCreatedBy list articles by a specific user
-	ListArticleCreatedBy(ctx context.Context, in *ListArticleCreatedByRequest, opts ...grpc.CallOption) (*ListArticleResponse, error)
-	// DeleteArticle delete an article
-	DeleteArticle(ctx context.Context, in *DeleteArticletRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	// GetArticle get a specific article
-	GetArticle(ctx context.Context, in *GetArticletRequest, opts ...grpc.CallOption) (*Article, error)
-	// UpdateArticle update a specific article
-	UpdateArticle(ctx context.Context, in *UpdateArticletRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	// Trending return list of trending articles
-	Trending(ctx context.Context, in *TrendingRequest, opts ...grpc.CallOption) (*ListArticleResponse, error)
+	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
+	// ListCreatedBy list articles by a specific user
+	ListCreatedBy(ctx context.Context, in *ListCreatedByRequest, opts ...grpc.CallOption) (*ListResponse, error)
+	// Delete delete an article
+	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Get get a specific article
+	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*Article, error)
+	// Update update a specific article
+	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Update update a specific article
+	Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error)
 }
 
 type articleServiceClient struct {
@@ -606,54 +518,54 @@ func NewArticleServiceClient(cc *grpc.ClientConn) ArticleServiceClient {
 	return &articleServiceClient{cc}
 }
 
-func (c *articleServiceClient) ListArticles(ctx context.Context, in *ListArticleRequest, opts ...grpc.CallOption) (*ListArticleResponse, error) {
-	out := new(ListArticleResponse)
-	err := c.cc.Invoke(ctx, "/littlebird.article.v1.ArticleService/ListArticles", in, out, opts...)
+func (c *articleServiceClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
+	out := new(ListResponse)
+	err := c.cc.Invoke(ctx, "/littlebird.article.v1.ArticleService/List", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *articleServiceClient) ListArticleCreatedBy(ctx context.Context, in *ListArticleCreatedByRequest, opts ...grpc.CallOption) (*ListArticleResponse, error) {
-	out := new(ListArticleResponse)
-	err := c.cc.Invoke(ctx, "/littlebird.article.v1.ArticleService/ListArticleCreatedBy", in, out, opts...)
+func (c *articleServiceClient) ListCreatedBy(ctx context.Context, in *ListCreatedByRequest, opts ...grpc.CallOption) (*ListResponse, error) {
+	out := new(ListResponse)
+	err := c.cc.Invoke(ctx, "/littlebird.article.v1.ArticleService/ListCreatedBy", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *articleServiceClient) DeleteArticle(ctx context.Context, in *DeleteArticletRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *articleServiceClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/littlebird.article.v1.ArticleService/DeleteArticle", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/littlebird.article.v1.ArticleService/Delete", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *articleServiceClient) GetArticle(ctx context.Context, in *GetArticletRequest, opts ...grpc.CallOption) (*Article, error) {
+func (c *articleServiceClient) Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*Article, error) {
 	out := new(Article)
-	err := c.cc.Invoke(ctx, "/littlebird.article.v1.ArticleService/GetArticle", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/littlebird.article.v1.ArticleService/Get", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *articleServiceClient) UpdateArticle(ctx context.Context, in *UpdateArticletRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *articleServiceClient) Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/littlebird.article.v1.ArticleService/UpdateArticle", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/littlebird.article.v1.ArticleService/Update", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *articleServiceClient) Trending(ctx context.Context, in *TrendingRequest, opts ...grpc.CallOption) (*ListArticleResponse, error) {
-	out := new(ListArticleResponse)
-	err := c.cc.Invoke(ctx, "/littlebird.article.v1.ArticleService/Trending", in, out, opts...)
+func (c *articleServiceClient) Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error) {
+	out := new(CreateResponse)
+	err := c.cc.Invoke(ctx, "/littlebird.article.v1.ArticleService/Create", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -663,127 +575,127 @@ func (c *articleServiceClient) Trending(ctx context.Context, in *TrendingRequest
 // ArticleServiceServer is the server API for ArticleService service.
 type ArticleServiceServer interface {
 	// List articles
-	ListArticles(context.Context, *ListArticleRequest) (*ListArticleResponse, error)
-	// ListArticleCreatedBy list articles by a specific user
-	ListArticleCreatedBy(context.Context, *ListArticleCreatedByRequest) (*ListArticleResponse, error)
-	// DeleteArticle delete an article
-	DeleteArticle(context.Context, *DeleteArticletRequest) (*empty.Empty, error)
-	// GetArticle get a specific article
-	GetArticle(context.Context, *GetArticletRequest) (*Article, error)
-	// UpdateArticle update a specific article
-	UpdateArticle(context.Context, *UpdateArticletRequest) (*empty.Empty, error)
-	// Trending return list of trending articles
-	Trending(context.Context, *TrendingRequest) (*ListArticleResponse, error)
+	List(context.Context, *ListRequest) (*ListResponse, error)
+	// ListCreatedBy list articles by a specific user
+	ListCreatedBy(context.Context, *ListCreatedByRequest) (*ListResponse, error)
+	// Delete delete an article
+	Delete(context.Context, *DeleteRequest) (*empty.Empty, error)
+	// Get get a specific article
+	Get(context.Context, *GetRequest) (*Article, error)
+	// Update update a specific article
+	Update(context.Context, *UpdateRequest) (*empty.Empty, error)
+	// Update update a specific article
+	Create(context.Context, *CreateRequest) (*CreateResponse, error)
 }
 
 func RegisterArticleServiceServer(s *grpc.Server, srv ArticleServiceServer) {
 	s.RegisterService(&_ArticleService_serviceDesc, srv)
 }
 
-func _ArticleService_ListArticles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListArticleRequest)
+func _ArticleService_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArticleServiceServer).ListArticles(ctx, in)
+		return srv.(ArticleServiceServer).List(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/littlebird.article.v1.ArticleService/ListArticles",
+		FullMethod: "/littlebird.article.v1.ArticleService/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArticleServiceServer).ListArticles(ctx, req.(*ListArticleRequest))
+		return srv.(ArticleServiceServer).List(ctx, req.(*ListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArticleService_ListArticleCreatedBy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListArticleCreatedByRequest)
+func _ArticleService_ListCreatedBy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListCreatedByRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArticleServiceServer).ListArticleCreatedBy(ctx, in)
+		return srv.(ArticleServiceServer).ListCreatedBy(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/littlebird.article.v1.ArticleService/ListArticleCreatedBy",
+		FullMethod: "/littlebird.article.v1.ArticleService/ListCreatedBy",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArticleServiceServer).ListArticleCreatedBy(ctx, req.(*ListArticleCreatedByRequest))
+		return srv.(ArticleServiceServer).ListCreatedBy(ctx, req.(*ListCreatedByRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArticleService_DeleteArticle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteArticletRequest)
+func _ArticleService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArticleServiceServer).DeleteArticle(ctx, in)
+		return srv.(ArticleServiceServer).Delete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/littlebird.article.v1.ArticleService/DeleteArticle",
+		FullMethod: "/littlebird.article.v1.ArticleService/Delete",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArticleServiceServer).DeleteArticle(ctx, req.(*DeleteArticletRequest))
+		return srv.(ArticleServiceServer).Delete(ctx, req.(*DeleteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArticleService_GetArticle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetArticletRequest)
+func _ArticleService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArticleServiceServer).GetArticle(ctx, in)
+		return srv.(ArticleServiceServer).Get(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/littlebird.article.v1.ArticleService/GetArticle",
+		FullMethod: "/littlebird.article.v1.ArticleService/Get",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArticleServiceServer).GetArticle(ctx, req.(*GetArticletRequest))
+		return srv.(ArticleServiceServer).Get(ctx, req.(*GetRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArticleService_UpdateArticle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateArticletRequest)
+func _ArticleService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArticleServiceServer).UpdateArticle(ctx, in)
+		return srv.(ArticleServiceServer).Update(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/littlebird.article.v1.ArticleService/UpdateArticle",
+		FullMethod: "/littlebird.article.v1.ArticleService/Update",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArticleServiceServer).UpdateArticle(ctx, req.(*UpdateArticletRequest))
+		return srv.(ArticleServiceServer).Update(ctx, req.(*UpdateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArticleService_Trending_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TrendingRequest)
+func _ArticleService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArticleServiceServer).Trending(ctx, in)
+		return srv.(ArticleServiceServer).Create(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/littlebird.article.v1.ArticleService/Trending",
+		FullMethod: "/littlebird.article.v1.ArticleService/Create",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArticleServiceServer).Trending(ctx, req.(*TrendingRequest))
+		return srv.(ArticleServiceServer).Create(ctx, req.(*CreateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -793,28 +705,28 @@ var _ArticleService_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*ArticleServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "ListArticles",
-			Handler:    _ArticleService_ListArticles_Handler,
+			MethodName: "List",
+			Handler:    _ArticleService_List_Handler,
 		},
 		{
-			MethodName: "ListArticleCreatedBy",
-			Handler:    _ArticleService_ListArticleCreatedBy_Handler,
+			MethodName: "ListCreatedBy",
+			Handler:    _ArticleService_ListCreatedBy_Handler,
 		},
 		{
-			MethodName: "DeleteArticle",
-			Handler:    _ArticleService_DeleteArticle_Handler,
+			MethodName: "Delete",
+			Handler:    _ArticleService_Delete_Handler,
 		},
 		{
-			MethodName: "GetArticle",
-			Handler:    _ArticleService_GetArticle_Handler,
+			MethodName: "Get",
+			Handler:    _ArticleService_Get_Handler,
 		},
 		{
-			MethodName: "UpdateArticle",
-			Handler:    _ArticleService_UpdateArticle_Handler,
+			MethodName: "Update",
+			Handler:    _ArticleService_Update_Handler,
 		},
 		{
-			MethodName: "Trending",
-			Handler:    _ArticleService_Trending_Handler,
+			MethodName: "Create",
+			Handler:    _ArticleService_Create_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -824,48 +736,37 @@ var _ArticleService_serviceDesc = grpc.ServiceDesc{
 func init() { proto.RegisterFile("article/v1/rpc.proto", fileDescriptor_7eb0a1d4c43f90a9) }
 
 var fileDescriptor_7eb0a1d4c43f90a9 = []byte{
-	// 683 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x55, 0xdb, 0x6e, 0xd3, 0x40,
-	0x10, 0x55, 0x92, 0xe6, 0x36, 0x6d, 0x0a, 0x9a, 0x26, 0xc5, 0xb8, 0xb4, 0x54, 0x06, 0x51, 0xa8,
-	0x90, 0xa3, 0x96, 0x97, 0x0a, 0x09, 0x21, 0x7a, 0x11, 0xaa, 0xc4, 0x0b, 0x29, 0x3c, 0x47, 0x8e,
-	0xbd, 0xad, 0x56, 0x38, 0xde, 0xe0, 0x9d, 0xa4, 0x8a, 0xaa, 0xbe, 0xc0, 0x27, 0x80, 0xe0, 0xc3,
-	0xf8, 0x05, 0x3e, 0x81, 0x0f, 0x40, 0x5e, 0xaf, 0x93, 0x26, 0x71, 0x70, 0x5b, 0x1e, 0x67, 0xe6,
-	0xec, 0x5c, 0xce, 0xec, 0x9e, 0x85, 0xba, 0x13, 0x12, 0x77, 0x7d, 0xd6, 0x1c, 0xec, 0x34, 0xc3,
-	0x9e, 0x6b, 0xf7, 0x42, 0x41, 0x02, 0x1b, 0x3e, 0x27, 0xf2, 0x59, 0x87, 0x87, 0x9e, 0xad, 0x01,
-	0xf6, 0x60, 0xc7, 0x7c, 0x70, 0x26, 0xc4, 0x99, 0xcf, 0x9a, 0x4e, 0x8f, 0x37, 0x9d, 0x20, 0x10,
-	0xe4, 0x10, 0x17, 0x81, 0x8c, 0x0f, 0x99, 0x6b, 0x3a, 0xaa, 0xac, 0x4e, 0xff, 0xb4, 0xc9, 0xba,
-	0x3d, 0x1a, 0xc6, 0x41, 0xeb, 0x35, 0xdc, 0xf9, 0x10, 0xb2, 0xc0, 0xe3, 0xc1, 0x59, 0x8b, 0x7d,
-	0xee, 0x33, 0x49, 0xb8, 0x0a, 0x25, 0x71, 0x7a, 0x2a, 0x19, 0x19, 0xb9, 0xcd, 0xdc, 0xd3, 0x42,
-	0x4b, 0x5b, 0x58, 0x87, 0xa2, 0xcf, 0xbb, 0x9c, 0x8c, 0xbc, 0x72, 0xc7, 0x86, 0xe5, 0x40, 0xe3,
-	0x63, 0xcf, 0x73, 0x88, 0xbd, 0x89, 0xfb, 0xa1, 0x24, 0xcd, 0x32, 0xe4, 0xb9, 0xa7, 0x52, 0x54,
-	0x5b, 0x79, 0xee, 0xe1, 0x1e, 0x94, 0x75, 0xcb, 0x2a, 0xc1, 0xe2, 0xee, 0x86, 0x9d, 0x3a, 0x8d,
-	0xad, 0x13, 0xb5, 0x12, 0xb8, 0xb5, 0x07, 0x6b, 0xef, 0xb8, 0x24, 0xed, 0x3f, 0x08, 0x99, 0x43,
-	0xcc, 0xdb, 0x1f, 0x26, 0x85, 0xee, 0x43, 0x45, 0x9c, 0x07, 0x2c, 0x6c, 0x8f, 0xca, 0x95, 0x95,
-	0x7d, 0xec, 0x59, 0x8f, 0x01, 0xdf, 0x32, 0xca, 0xe8, 0xcc, 0xda, 0x82, 0xc6, 0x21, 0xf3, 0x59,
-	0xe6, 0x08, 0xd6, 0x3e, 0xe0, 0x95, 0x46, 0x6e, 0xc7, 0xd7, 0x7b, 0x58, 0x99, 0xc8, 0x21, 0x7b,
-	0x22, 0x90, 0x0c, 0x5f, 0x42, 0x45, 0x8f, 0x2b, 0x8d, 0xdc, 0x66, 0xe1, 0x1a, 0xf4, 0x8c, 0xf0,
-	0xd6, 0x9f, 0x1c, 0x94, 0xb5, 0x77, 0x86, 0xf5, 0x3a, 0x14, 0x89, 0x93, 0xe6, 0xbc, 0xda, 0x8a,
-	0x0d, 0x34, 0xa0, 0xec, 0x8a, 0x80, 0x58, 0x40, 0x46, 0x21, 0x66, 0x4c, 0x9b, 0xf8, 0x10, 0x16,
-	0x7d, 0x47, 0x52, 0xbb, 0xaf, 0x76, 0x6a, 0x2c, 0xa8, 0x28, 0x44, 0xae, 0x78, 0xcb, 0xb8, 0x0e,
-	0xe0, 0xc6, 0x1b, 0x68, 0x77, 0x86, 0x46, 0x51, 0xc5, 0xab, 0x6e, 0xb2, 0x13, 0xb4, 0xa0, 0x36,
-	0x0e, 0x47, 0x1b, 0x29, 0x29, 0xc4, 0xe2, 0x08, 0x71, 0xec, 0xe1, 0x11, 0x54, 0x65, 0x74, 0x45,
-	0x25, 0x71, 0xd7, 0x28, 0xab, 0xbb, 0xb0, 0xf5, 0xef, 0x61, 0x4f, 0x12, 0x78, 0x6b, 0x7c, 0xd2,
-	0xfa, 0x99, 0x87, 0x65, 0x1d, 0x3f, 0x64, 0xe4, 0x70, 0x5f, 0xfe, 0xf7, 0xf4, 0x26, 0x54, 0xba,
-	0x4e, 0xf8, 0xc9, 0x13, 0xe7, 0x81, 0x1e, 0x7d, 0x64, 0x4f, 0x33, 0x53, 0xcc, 0x60, 0xa6, 0x94,
-	0xc9, 0x4c, 0x39, 0x83, 0x99, 0xca, 0xad, 0x99, 0xf9, 0x9e, 0x83, 0xbb, 0xd3, 0xf1, 0xa8, 0x3d,
-	0x7d, 0x7c, 0xfc, 0x50, 0xaa, 0xda, 0x73, 0xec, 0x45, 0xe1, 0x01, 0x67, 0xe7, 0x6d, 0x57, 0xf4,
-	0x83, 0xe4, 0xca, 0x56, 0x23, 0xcf, 0x41, 0xe4, 0xc0, 0x47, 0x50, 0x73, 0x45, 0xb7, 0xcb, 0x02,
-	0xd2, 0x88, 0x82, 0x42, 0x2c, 0x69, 0x67, 0x0c, 0x8a, 0x72, 0x08, 0x62, 0x1a, 0xb1, 0xa0, 0x73,
-	0x08, 0x62, 0x2a, 0xbc, 0xfb, 0xb5, 0x34, 0x5a, 0xd8, 0x09, 0x0b, 0x07, 0xdc, 0x65, 0x78, 0x01,
-	0x4b, 0x57, 0x5e, 0x83, 0xc4, 0x67, 0x73, 0xa6, 0x9d, 0x7d, 0x76, 0xe6, 0xf6, 0x75, 0xa0, 0xf1,
-	0xeb, 0xb2, 0xea, 0x5f, 0x7e, 0xfd, 0xfe, 0x96, 0x5f, 0xc6, 0xa5, 0x48, 0x4e, 0x93, 0x77, 0x83,
-	0x3f, 0x72, 0x50, 0x4f, 0x13, 0x16, 0xdc, 0xcd, 0x4e, 0x3d, 0xad, 0x42, 0x37, 0x6a, 0x67, 0x43,
-	0xb5, 0x63, 0xe0, 0xea, 0xd5, 0x76, 0x9a, 0xfa, 0x22, 0x74, 0x86, 0x18, 0x42, 0x6d, 0x42, 0x90,
-	0xf0, 0xf9, 0x9c, 0xe4, 0xa9, 0xb2, 0x65, 0xae, 0xda, 0xb1, 0xe2, 0xdb, 0x89, 0xe2, 0xdb, 0x47,
-	0x91, 0xe2, 0x5b, 0x6b, 0xaa, 0x6c, 0x63, 0x7b, 0x65, 0xa2, 0xec, 0x05, 0xf7, 0x5e, 0x6d, 0x5f,
-	0x22, 0x01, 0x8c, 0xa5, 0x72, 0xee, 0x1e, 0x66, 0xd5, 0xd4, 0xcc, 0xd0, 0xa9, 0xa4, 0x2a, 0xa6,
-	0x56, 0x0d, 0xa1, 0x36, 0xf1, 0x7b, 0xcc, 0x9d, 0x34, 0xf5, 0x8f, 0xc9, 0x9a, 0xd4, 0x4c, 0xad,
-	0x79, 0x09, 0x95, 0xe4, 0xcb, 0xc3, 0x27, 0x73, 0xca, 0x4d, 0xfd, 0x89, 0x37, 0xda, 0xee, 0xba,
-	0x2a, 0x7e, 0x0f, 0x1b, 0x13, 0xc5, 0x49, 0x67, 0xec, 0x94, 0x54, 0xaf, 0x2f, 0xfe, 0x06, 0x00,
-	0x00, 0xff, 0xff, 0xaa, 0xa3, 0xc5, 0x69, 0xe2, 0x07, 0x00, 0x00,
+	// 506 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x54, 0x4d, 0x6f, 0xd3, 0x40,
+	0x10, 0x6d, 0x92, 0xc6, 0x69, 0x26, 0x38, 0x48, 0xab, 0x50, 0x19, 0x53, 0x68, 0x58, 0x40, 0x42,
+	0x42, 0xb2, 0x95, 0x72, 0x41, 0x70, 0x40, 0x7c, 0xa9, 0xa4, 0xe2, 0x82, 0x01, 0x21, 0x4e, 0x91,
+	0x63, 0x4f, 0xa2, 0x95, 0x5c, 0xaf, 0xb1, 0x27, 0x41, 0x39, 0xf2, 0x83, 0xf8, 0x8f, 0xc8, 0xbb,
+	0xeb, 0x34, 0x29, 0x38, 0x2d, 0xdc, 0x3c, 0x3b, 0x6f, 0xe7, 0xbd, 0x79, 0x3b, 0x63, 0x18, 0x84,
+	0x39, 0x89, 0x28, 0x41, 0x7f, 0x39, 0xf2, 0xf3, 0x2c, 0xf2, 0xb2, 0x5c, 0x92, 0x64, 0xb7, 0x12,
+	0x41, 0x94, 0xe0, 0x54, 0xe4, 0xb1, 0x67, 0x00, 0xde, 0x72, 0xe4, 0x1e, 0xcd, 0xa5, 0x9c, 0x27,
+	0xe8, 0x87, 0x99, 0xf0, 0xc3, 0x34, 0x95, 0x14, 0x92, 0x90, 0x69, 0xa1, 0x2f, 0xb9, 0x77, 0x4c,
+	0x56, 0x45, 0xd3, 0xc5, 0xcc, 0xc7, 0xf3, 0x8c, 0x56, 0x3a, 0xc9, 0xc7, 0x60, 0xbf, 0xc9, 0x31,
+	0x24, 0x0c, 0xf0, 0xfb, 0x02, 0x0b, 0x62, 0xcf, 0xa0, 0x63, 0x2a, 0x3b, 0x8d, 0x61, 0xe3, 0x71,
+	0xef, 0xe4, 0x9e, 0xf7, 0x57, 0x52, 0xef, 0x95, 0xfe, 0x0c, 0x2a, 0x38, 0x1f, 0x42, 0xbf, 0x2a,
+	0x55, 0x64, 0x32, 0x2d, 0x90, 0xf5, 0xa1, 0x29, 0x62, 0x55, 0xa6, 0x1b, 0x34, 0x45, 0xcc, 0x5f,
+	0xc2, 0xcd, 0xcf, 0x39, 0xa6, 0xb1, 0x48, 0xe7, 0x15, 0xdd, 0x21, 0x58, 0x72, 0x36, 0x2b, 0x90,
+	0x14, 0xac, 0x15, 0x98, 0x88, 0x0d, 0xa0, 0x9d, 0x88, 0x73, 0x41, 0x4e, 0x53, 0x1d, 0xeb, 0x80,
+	0x7f, 0x03, 0xfb, 0x4b, 0x16, 0x6f, 0xa8, 0xbd, 0xc4, 0xb0, 0xa9, 0xbe, 0xf9, 0x6f, 0xea, 0x47,
+	0x30, 0xf8, 0x20, 0x0a, 0xd2, 0x1d, 0xc4, 0xaf, 0x57, 0x15, 0xc3, 0x6d, 0x38, 0x90, 0x3f, 0x52,
+	0xcc, 0x27, 0x6b, 0x9e, 0x8e, 0x8a, 0xc7, 0x31, 0x3f, 0x02, 0x38, 0x45, 0xaa, 0x91, 0xc2, 0x8f,
+	0xc1, 0x7e, 0x8b, 0x09, 0xd6, 0x6a, 0xe5, 0x2f, 0xa0, 0x57, 0x32, 0xfe, 0x9f, 0x13, 0x67, 0x70,
+	0x43, 0x5f, 0x36, 0x56, 0x3f, 0x87, 0x03, 0xd3, 0x49, 0xe1, 0x34, 0x86, 0xad, 0x6b, 0x74, 0xbe,
+	0xc6, 0xf3, 0x5f, 0x0d, 0xe8, 0x98, 0xd3, 0x3f, 0x0c, 0x1d, 0x40, 0x9b, 0x04, 0x19, 0x3b, 0xbb,
+	0x81, 0x0e, 0x98, 0x03, 0x9d, 0x48, 0xa6, 0x84, 0x29, 0x39, 0x2d, 0xed, 0x89, 0x09, 0xd9, 0x31,
+	0xf4, 0x92, 0xb0, 0xa0, 0xc9, 0x42, 0x3d, 0x93, 0xb3, 0xaf, 0xb2, 0x50, 0x1e, 0xe9, 0x87, 0x63,
+	0x77, 0x01, 0x22, 0xed, 0xf1, 0x64, 0xba, 0x72, 0xda, 0x2a, 0xdf, 0x8d, 0x2a, 0xd7, 0x19, 0x07,
+	0xfb, 0x22, 0x5d, 0x7a, 0x6e, 0x29, 0x44, 0x6f, 0x8d, 0x18, 0xc7, 0x27, 0x3f, 0xf7, 0xa1, 0x6f,
+	0xf4, 0x7e, 0xc2, 0x7c, 0x29, 0x22, 0x64, 0x1f, 0x61, 0xbf, 0xb4, 0x83, 0xf1, 0x9a, 0xa6, 0x37,
+	0x8c, 0x76, 0x1f, 0xec, 0xc4, 0x68, 0x3f, 0xf9, 0x1e, 0x8b, 0xc0, 0xde, 0x1a, 0x08, 0xf6, 0x64,
+	0xc7, 0xbd, 0xcb, 0x63, 0x73, 0x5d, 0x92, 0xf7, 0x60, 0xe9, 0x21, 0x61, 0x0f, 0x6b, 0x2e, 0x6c,
+	0xcd, 0x90, 0x7b, 0xe8, 0xe9, 0x65, 0xf6, 0xaa, 0x65, 0xf6, 0xde, 0x95, 0xcb, 0xcc, 0xf7, 0xd8,
+	0x19, 0xb4, 0x4e, 0x91, 0xd8, 0xfd, 0x9a, 0x32, 0x17, 0x83, 0xea, 0x5e, 0x31, 0x18, 0x5a, 0x95,
+	0x79, 0xad, 0x3a, 0x55, 0x5b, 0x5b, 0xb8, 0x43, 0xd5, 0x57, 0xb0, 0xb4, 0x35, 0xb5, 0x95, 0xb6,
+	0xfe, 0x3e, 0xee, 0xa3, 0x2b, 0x50, 0x95, 0x71, 0x53, 0x4b, 0x51, 0x3d, 0xfd, 0x1d, 0x00, 0x00,
+	0xff, 0xff, 0x89, 0x4b, 0x17, 0xe9, 0x28, 0x05, 0x00, 0x00,
 }

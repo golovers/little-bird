@@ -9,29 +9,30 @@ package littlebird.article.v1;
 // ArticleService provide all operations related to articles
 service ArticleService {
     // List articles
-    rpc ListArticles (ListArticleRequest) returns (ListArticleResponse) {
-        option (google.api.http) = { get: "/v1/articles"};
+    rpc List(ListRequest) returns (ListResponse) {
     }
-    // ListArticleCreatedBy list articles by a specific user
-    rpc ListArticleCreatedBy (ListArticleCreatedByRequest) returns (ListArticleResponse) {
-        option (google.api.http) = { get: "/v1/articles/createdby"};
+    // ListCreatedBy list articles by a specific user
+    rpc ListCreatedBy (ListCreatedByRequest) returns (ListResponse) {
     }
-    // DeleteArticle delete an article
-    rpc DeleteArticle(DeleteArticletRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/v1/articles/{id=*}" };
+    // Delete delete an article
+    rpc Delete(DeleteRequest) returns (google.protobuf.Empty) {
     }
-    // GetArticle get a specific article
-    rpc GetArticle(GetArticletRequest) returns (Article) {
-        option (google.api.http) = { get: "/v1/articles/{id=*}" };
+    // Get get a specific article
+    rpc Get(GetRequest) returns (Article) {
     }
-    // UpdateArticle update a specific article
-    rpc UpdateArticle(UpdateArticletRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { put: "/v1/articles/{id=*}" };
+    // Update update a specific article
+    rpc Update(UpdateRequest) returns (google.protobuf.Empty) {
     }
-    // Trending return list of trending articles
-    rpc Trending(TrendingRequest) returns (ListArticleResponse) {
-        option (google.api.http) = {get: "/v1/articles/trending"};
+    // Update update a specific article
+    rpc Create(CreateRequest) returns (CreateResponse) {
     }
+}
+
+message CreateRequest {
+    Article article = 1;
+}
+message CreateResponse {
+    string id = 1;
 }
 
 message TrendingRequest {
@@ -39,29 +40,29 @@ message TrendingRequest {
     int64 limit = 2;
 }
 
-message UpdateArticletRequest {
+message UpdateRequest {
     string id = 1;
     Article article = 2;
 }
 
-message ListArticleCreatedByRequest {
+message ListCreatedByRequest {
     string owner_id = 1;    
 }
 
-message GetArticletRequest {
+message GetRequest {
     string id = 1;
 }
 
-message DeleteArticletRequest {
+message DeleteRequest {
     string id = 1;
 }
 
-message ListArticleRequest {
+message ListRequest {
     int64 offset = 1;
     int64 limit = 2;
 }
 
-message ListArticleResponse {
+message ListResponse {
     repeated Article articles = 1;
 }
 
@@ -73,26 +74,4 @@ message Article {
 
 	string created_by = 5;
 	string created_by_id = 6;
-
-    ArticleStatistic statistic = 7;
-}
-
-message ArticleDetails {
-    string id = 1;
-	string title = 2;
-	string content = 3;
-	string markdown = 4;
-	string last_update = 5;
-
-	string created_by = 6;
-	string created_by_id = 7;
-
-    ArticleStatistic statistic = 8;
-}
-
-message ArticleStatistic {
-    string article_id = 1;
-    int64 view_count = 2;
-    int64 comment_count = 3;
-    int64 vote_count = 4;
 }
