@@ -50,6 +50,7 @@
     },
     "/v1/articles/createdby": {
       "get": {
+        "summary": "ListArticleCreatedBy list articles by a specific user",
         "operationId": "ListArticleCreatedBy",
         "responses": {
           "200": {
@@ -72,8 +73,42 @@
         ]
       }
     },
+    "/v1/articles/trending": {
+      "get": {
+        "summary": "Trending return list of trending articles",
+        "operationId": "Trending",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/v1ListArticleResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ArticleService"
+        ]
+      }
+    },
     "/v1/articles/{id}": {
       "get": {
+        "summary": "GetArticle get a specific article",
         "operationId": "GetArticle",
         "responses": {
           "200": {
@@ -96,6 +131,7 @@
         ]
       },
       "delete": {
+        "summary": "DeleteArticle delete an article",
         "operationId": "DeleteArticle",
         "responses": {
           "200": {
@@ -118,6 +154,7 @@
         ]
       },
       "put": {
+        "summary": "UpdateArticle update a specific article",
         "operationId": "UpdateArticle",
         "responses": {
           "200": {
@@ -159,9 +196,6 @@
         "content": {
           "type": "string"
         },
-        "markdown": {
-          "type": "string"
-        },
         "last_update": {
           "type": "string"
         },
@@ -170,6 +204,29 @@
         },
         "created_by_id": {
           "type": "string"
+        },
+        "statistic": {
+          "$ref": "#/definitions/v1ArticleStatistic"
+        }
+      }
+    },
+    "v1ArticleStatistic": {
+      "type": "object",
+      "properties": {
+        "article_id": {
+          "type": "string"
+        },
+        "view_count": {
+          "type": "string",
+          "format": "int64"
+        },
+        "comment_count": {
+          "type": "string",
+          "format": "int64"
+        },
+        "vote_count": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -218,6 +275,19 @@
           "items": {
             "$ref": "#/definitions/v1Article"
           }
+        }
+      }
+    },
+    "v1TrendingRequest": {
+      "type": "object",
+      "properties": {
+        "offset": {
+          "type": "string",
+          "format": "int64"
+        },
+        "limit": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },

@@ -2,7 +2,7 @@ syntax = "proto3";
 
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
-import "google/protobuf/field_mask.proto";
+//import "google/protobuf/field_mask.proto";
 
 package littlebird.article.v1;
 
@@ -12,18 +12,31 @@ service ArticleService {
     rpc ListArticles (ListArticleRequest) returns (ListArticleResponse) {
         option (google.api.http) = { get: "/v1/articles"};
     }
-    rpc DeleteArticle(DeleteArticletRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/v1/articles/{id=*}" };
-    }
-    rpc GetArticle(GetArticletRequest) returns (Article) {
-        option (google.api.http) = { get: "/v1/articles/{id=*}" };
-    }
+    // ListArticleCreatedBy list articles by a specific user
     rpc ListArticleCreatedBy (ListArticleCreatedByRequest) returns (ListArticleResponse) {
         option (google.api.http) = { get: "/v1/articles/createdby"};
     }
+    // DeleteArticle delete an article
+    rpc DeleteArticle(DeleteArticletRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/v1/articles/{id=*}" };
+    }
+    // GetArticle get a specific article
+    rpc GetArticle(GetArticletRequest) returns (Article) {
+        option (google.api.http) = { get: "/v1/articles/{id=*}" };
+    }
+    // UpdateArticle update a specific article
     rpc UpdateArticle(UpdateArticletRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { put: "/v1/articles/{id=*}" };
     }
+    // Trending return list of trending articles
+    rpc Trending(TrendingRequest) returns (ListArticleResponse) {
+        option (google.api.http) = {get: "/v1/articles/trending"};
+    }
+}
+
+message TrendingRequest {
+    int64 offset = 1;
+    int64 limit = 2;
 }
 
 message UpdateArticletRequest {
@@ -56,10 +69,30 @@ message Article {
     string id = 1;
 	string title = 2;
 	string content = 3;
+	string last_update = 4;
+
+	string created_by = 5;
+	string created_by_id = 6;
+
+    ArticleStatistic statistic = 7;
+}
+
+message ArticleDetails {
+    string id = 1;
+	string title = 2;
+	string content = 3;
 	string markdown = 4;
 	string last_update = 5;
 
 	string created_by = 6;
 	string created_by_id = 7;
+
+    ArticleStatistic statistic = 8;
 }
 
+message ArticleStatistic {
+    string article_id = 1;
+    int64 view_count = 2;
+    int64 comment_count = 3;
+    int64 vote_count = 4;
+}
