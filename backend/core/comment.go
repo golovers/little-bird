@@ -18,6 +18,7 @@ type Comment struct {
 // CommentServicer provide operations on comments
 type CommentServicer interface {
 	ListByArticle(ctx context.Context, articleID string) ([]*Comment, error)
+	CountByArticles(ctx context.Context, articleIDs ...string) (map[string]int, error)
 	Update(ctx context.Context, c *Comment) error
 	Delete(ctx context.Context, id string) error
 	Create(ctx context.Context, c *Comment) (id string, err error)

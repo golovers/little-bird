@@ -12,5 +12,6 @@ type Vote struct {
 
 //VoteServicer provide operations on voting
 type VoteServicer interface {
-	Create(ctx context.Context, articleID string) (id string, err error)
+	Create(ctx context.Context, v *Vote) (id string, err error)
+	CountByArticles(ctx context.Context, articleID ...string) (map[string]int, error)
 }
