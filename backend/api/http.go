@@ -1,0 +1,48 @@
+package api
+
+import (
+	"encoding/json"
+	"fmt"
+	"io"
+	"log"
+	"net/http"
+)
+
+type appHandler func(http.ResponseWriter, *http.Request) *appError
+
+type appError struct {
+	Error   error
+	Message string
+	Code    int
+}
+
+func (fn appHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	if e := fn(w, r); e != nil {
+		log.Printf("Handler error: status code: %d, message: %s, underlying err: %#v",
+			e.Code, e.Message, e.Error)
+		http.Error(w, e.Message, e.Code)
+	}
+}
+
+func appErrorf(err error, format string, v ...interface{}) *appError {
+	return &appError{
+		Error:   err,
+		Message: fmt.Sprintf(format, v...),
+		Code:    http.StatusInternalServerError,
+	}
+}
+
+func responseWithData(w http.ResponseWriter, status int, data interface{}) {
+	w.WriteHeader(status)
+	if err := encode(w, data); err != nil {
+		http.Error(w, "failed to encode data", http.StatusInternalServerError)
+	}
+}
+
+func encode(w io.Writer, data interface{}) error {
+	return json.NewEncoder(w).Encode(data)
+}
+
+func decode(r io.ReadCloser, data interface{}) error {
+	return json.NewDecoder(r).Decode(&data)
+}

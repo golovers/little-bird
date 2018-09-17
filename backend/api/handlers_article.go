@@ -7,7 +7,7 @@ import (
 	"golang.org/x/net/context"
 )
 
-func articleDetailsHandler(w http.ResponseWriter, r *http.Request) *appError {
+func handleArticleDetail(w http.ResponseWriter, r *http.Request) *appError {
 	vars := mux.Vars(r)
 	id := vars["id"]
 	p, err := gw.GetArticle(context.Background(), id)
@@ -17,7 +17,7 @@ func articleDetailsHandler(w http.ResponseWriter, r *http.Request) *appError {
 	return articleDetailsTmpl.Execute(w, r, p)
 }
 
-func newArticleHandler(w http.ResponseWriter, r *http.Request) *appError {
+func handleArticleNew(w http.ResponseWriter, r *http.Request) *appError {
 	profile := profileFromSession(r)
 	if profile == nil {
 		http.Redirect(w, r, "/login?redirect=/articles/add", http.StatusFound)
@@ -26,10 +26,10 @@ func newArticleHandler(w http.ResponseWriter, r *http.Request) *appError {
 	return newArticleTmpl.Execute(w, r, "")
 }
 
-func myArticlesHandler(w http.ResponseWriter, r *http.Request) *appError {
+func handleArticleMine(w http.ResponseWriter, r *http.Request) *appError {
 	return myArticlesTmpl.Execute(w, r, "")
 }
 
-func trendingArticlesHandler(w http.ResponseWriter, r *http.Request) *appError {
+func handleArticleTrending(w http.ResponseWriter, r *http.Request) *appError {
 	return trendingArticlesTmpl.Execute(w, r, "")
 }

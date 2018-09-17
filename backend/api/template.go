@@ -57,12 +57,10 @@ func (tmpl *appTemplate) Execute(w http.ResponseWriter, r *http.Request, data in
 		LoginURL:    "/login?redirect=" + r.URL.RequestURI(),
 		LogoutURL:   "/logout?redirect=" + r.URL.RequestURI(),
 	}
-
 	if d.AuthEnabled {
 		// Ignore any errors.
 		d.Profile = profileFromSession(r)
 	}
-
 	if err := tmpl.t.Execute(w, d); err != nil {
 		return appErrorf(err, "could not write template: %v", err)
 	}

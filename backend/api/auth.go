@@ -175,6 +175,7 @@ func profileFromSession(r *http.Request) *Profile {
 	return profile
 }
 
+//Profile hold user profile information
 type Profile struct {
 	ID, DisplayName, ImageURL string
 }

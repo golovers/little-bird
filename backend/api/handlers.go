@@ -2,9 +2,6 @@ package api
 
 import (
 	"context"
-	"encoding/json"
-	"fmt"
-	"log"
 	"net/http"
 	"os"
 
@@ -23,10 +20,10 @@ func RegisterHandlers() {
 	r.Methods("GET").Path("/").Handler(appHandler(index))
 
 	r.Path("/articles").Methods("GET").Handler(appHandler(index))
-	r.Path("/articles/trending").Methods("GET").Handler(appHandler(trendingArticlesHandler))
-	r.Path("/articles/mine").Methods("GET").Handler(appHandler(myArticlesHandler))
-	r.Path("/articles/add").Methods("GET").Handler(appHandler(newArticleHandler))
-	r.Path("/articles/details/{id:[a-z0-9]+}").Methods("GET").Handler(appHandler(articleDetailsHandler))
+	r.Path("/articles/trending").Methods("GET").Handler(appHandler(handleArticleTrending))
+	r.Path("/articles/mine").Methods("GET").Handler(appHandler(handleArticleMine))
+	r.Path("/articles/add").Methods("GET").Handler(appHandler(handleArticleNew))
+	r.Path("/articles/details/{id:[a-z0-9]+}").Methods("GET").Handler(appHandler(handleArticleDetail))
 
 	r.Methods("GET").Path("/login").Handler(appHandler(loginHandler))
 	r.Methods("POST").Path("/logout").Handler(appHandler(logoutHandler))
@@ -52,39 +49,4 @@ func index(w http.ResponseWriter, r *http.Request) *appError {
 		a.Markdown = ""
 	}
 	return indexTmpl.Execute(w, r, articles)
-}
-
-type appHandler func(http.ResponseWriter, *http.Request) *appError
-
-type appError struct {
-	Error   error
-	Message string
-	Code    int
-}
-
-func (fn appHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if e := fn(w, r); e != nil { // e is *appError, not os.Error.
-		log.Printf("Handler error: status code: %d, message: %s, underlying err: %#v",
-			e.Code, e.Message, e.Error)
-		http.Error(w, e.Message, e.Code)
-	}
-}
-
-func appErrorf(err error, format string, v ...interface{}) *appError {
-	return &appError{
-		Error:   err,
-		Message: fmt.Sprintf(format, v...),
-		Code:    500,
-	}
-}
-
-func appOK(id string, w http.ResponseWriter) *appError {
-	data := struct {
-		ID string
-	}{
-		ID: id,
-	}
-	b, _ := json.Marshal(data)
-	w.Write(b)
-	return nil
 }
