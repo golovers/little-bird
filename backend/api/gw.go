@@ -2,9 +2,9 @@ package api
 
 import (
 	"gitlab.com/koffee/little-bird/backend/articles"
+	"gitlab.com/koffee/little-bird/backend/comments"
 	"gitlab.com/koffee/little-bird/backend/core"
-	"gitlab.com/koffee/little-bird/comments"
-	"gitlab.com/koffee/little-bird/votes"
+	"gitlab.com/koffee/little-bird/backend/votes"
 	"golang.org/x/net/context"
 )
 

@@ -15,11 +15,11 @@ var (
 	sessionStore sessions.Store
 	_            mgo.Session
 	cfg          Cfg
+	gw           GW
 )
 
 //Cfg wrapper of configurations
 type Cfg struct {
-	HTTPAddress        string `envconfig:"HTTP_ADDRESS"`
 	OAuth2ClientID     string `envconfig:"OAUTH2_CLIENT_ID"`
 	OAuth2ClientSecret string `envconfig:"OAUTH2_CLIENT_SECRET"`
 	OAuth2Callback     string `envconfig:"OAUTH2_CALLBACK"`
@@ -34,6 +34,12 @@ func init() {
 		HttpOnly: true,
 	}
 	sessionStore = cookieStore
+
+	var err error
+	gw, err = NewGWService()
+	if err != nil {
+		panic("failed to create gw: " + err.Error())
+	}
 }
 
 // configureOAuthClient https://developers.google.com/identity/sign-in/web/sign-in

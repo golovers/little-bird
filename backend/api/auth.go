@@ -11,6 +11,8 @@ import (
 	"golang.org/x/net/context"
 	"golang.org/x/oauth2"
 
+	"os"
+
 	uuid "github.com/satori/go.uuid"
 )
 
@@ -151,6 +153,13 @@ func logoutHandler(w http.ResponseWriter, r *http.Request) *appError {
 // profileFromSession retreives the Google+ profile from the default session.
 // Returns nil if the profile cannot be retreived (e.g. user is logged out).
 func profileFromSession(r *http.Request) *Profile {
+	// this should only be used for testing when have no internet connection
+	if os.Getenv("LITTLE_BIRD_IGNORE_AUTH") == "true" {
+		return &Profile{
+			ID:          defaultSessionID,
+			DisplayName: "Anonymous",
+		}
+	}
 	session, err := sessionStore.Get(r, defaultSessionID)
 	if err != nil {
 		return nil

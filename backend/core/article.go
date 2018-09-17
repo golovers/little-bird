@@ -19,6 +19,21 @@ type Article struct {
 	*ArticleStatistic
 }
 
+// CreatedByDisplayName returns a string appropriate for displaying the name of
+// the user who created this book object.
+func (a *Article) CreatedByDisplayName() string {
+	if a.CreatedByID == "anonymous" {
+		return "Anonymous"
+	}
+	return a.CreatedBy
+}
+
+// SetCreatorAnonymous sets the CreatedByID field to the "anonymous" ID.
+func (a *Article) SetCreatorAnonymous() {
+	a.CreatedBy = ""
+	a.CreatedByID = "anonymous"
+}
+
 //ArticleStatistic hold statistic data of an article
 type ArticleStatistic struct {
 	ViewCount    int `json:"view_count,omitempty"`

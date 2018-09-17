@@ -11,11 +11,11 @@ import (
 )
 
 var (
-	indexTmpl        = parseTemplate("index.html")
-	postTmpl         = parseTemplate("posts/details.html")
-	postTrendingTmpl = parseTemplate("posts/trending.html")
-	postAddTmpl      = parseTemplate("posts/new.html")
-	postMineTmpl     = parseTemplate("posts/mine.html")
+	indexTmpl            = parseTemplate("index.html")
+	articleDetailsTmpl   = parseTemplate("articles/details.html")
+	trendingArticlesTmpl = parseTemplate("articles/trending.html")
+	newArticleTmpl       = parseTemplate("articles/new.html")
+	myArticlesTmpl       = parseTemplate("articles/mine.html")
 )
 
 // parseTemplate applies a given file to the body of the base template.

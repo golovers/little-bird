@@ -8,10 +8,10 @@ import (
 
 // Repository database access to articles
 type Repository interface {
-	// List returns a list of posts, ordered by title.
+	// List returns a list of articles, ordered by title.
 	List(offset, limit int64) ([]*core.Article, error)
 
-	// ListByCreatedBy returns a list of posts, ordered by title, filtered by
+	// ListByCreatedBy returns a list of articles, ordered by title, filtered by
 	// the user who created the post entry.
 	ListByCreatedBy(userID string) ([]*core.Article, error)
 
