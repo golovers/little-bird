@@ -1,6 +1,7 @@
 package api
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -33,10 +34,13 @@ func appErrorf(err error, format string, v ...interface{}) *appError {
 }
 
 func responseWithData(w http.ResponseWriter, status int, data interface{}) {
-	w.WriteHeader(status)
-	if err := encode(w, data); err != nil {
+	var b bytes.Buffer
+	if err := encode(&b, data); err != nil {
 		http.Error(w, "failed to encode data", http.StatusInternalServerError)
+		return
 	}
+	w.WriteHeader(status)
+	w.Write(b.Bytes())
 }
 
 func encode(w io.Writer, data interface{}) error {

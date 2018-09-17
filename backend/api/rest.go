@@ -26,7 +26,6 @@ func createArticle(w http.ResponseWriter, r *http.Request) *appError {
 	if err != nil {
 		return appErrorf(err, "internal server error")
 	}
-	w.WriteHeader(http.StatusOK)
 	responseWithData(w, http.StatusOK, map[string]string{
 		"ID": id,
 	})
