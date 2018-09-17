@@ -2,6 +2,7 @@ package api
 
 import (
 	"context"
+	"log"
 	"net/http"
 	"os"
 
@@ -44,6 +45,8 @@ func index(w http.ResponseWriter, r *http.Request) *appError {
 	if err != nil {
 		return appErrorf(err, "failed to list all articles")
 	}
+	log.Println("articles: ", articles)
+
 	// don't need the markdown details in this case
 	for _, a := range articles {
 		a.Markdown = ""

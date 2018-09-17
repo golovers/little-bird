@@ -69,9 +69,10 @@ func (gw *gwService) ListArticle(ctx context.Context, p core.Pagination) ([]*Art
 	if err != nil {
 		return []*ArticleOverview{}, err
 	}
-	articlesOverview := make([]*ArticleOverview, len(articles))
+	articlesOverview := make([]*ArticleOverview, 0)
 	ids := make([]string, 0)
 	for _, a := range articles {
+		a := a
 		articlesOverview = append(articlesOverview, &ArticleOverview{
 			Article: a,
 		})
@@ -102,8 +103,15 @@ func (gw *gwService) DeleteArticle(ctx context.Context, id string) error {
 }
 
 func (gw *gwService) GetArticle(ctx context.Context, id string) (*ArticleDetails, error) {
-	//TODO implement me
-	return &ArticleDetails{}, nil
+	a, err := gw.articleService.Get(ctx, id)
+	if err != nil {
+		return &ArticleDetails{}, err
+	}
+	return &ArticleDetails{
+		ArticleOverview: &ArticleOverview{
+			Article: a,
+		},
+	}, nil
 }
 
 func (gw *gwService) CreateComment(ctx context.Context, c *core.Comment) (string, error) {
