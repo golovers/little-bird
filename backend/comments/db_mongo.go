@@ -4,8 +4,8 @@ import (
 	"fmt"
 
 	"gitlab.com/koffee/little-bird/backend/core"
-	"gitlab.com/koffee/micro/config"
-	"gopkg.in/mgo.v2"
+
+	"github.com/go-mgo/mgo"
 )
 
 var _ Repository = &mongoDB{}
@@ -26,7 +26,7 @@ type mongCfg struct {
 // authenticated with given credentials.
 func newMongoDB() (*mongoDB, error) {
 	var cfg mongCfg
-	config.LoadEnvConfig(&cfg)
+	core.LoadEnvConfig(&cfg)
 
 	conn, err := mgo.Dial(cfg.DbURI)
 	if err != nil {

@@ -3,11 +3,10 @@ package votes
 import (
 	"fmt"
 
+	"github.com/go-mgo/mgo"
+	"github.com/go-mgo/mgo/bson"
 	"github.com/rs/xid"
 	"gitlab.com/koffee/little-bird/backend/core"
-	"gitlab.com/koffee/micro/config"
-	"gopkg.in/mgo.v2"
-	"gopkg.in/mgo.v2/bson"
 )
 
 var _ Repository = &mongoDB{}
@@ -28,7 +27,7 @@ type mongCfg struct {
 // authenticated with given credentials.
 func newMongoDB() (*mongoDB, error) {
 	var cfg mongCfg
-	config.LoadEnvConfig(&cfg)
+	core.LoadEnvConfig(&cfg)
 
 	conn, err := mgo.Dial(cfg.DbURI)
 	if err != nil {

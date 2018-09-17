@@ -1,10 +1,10 @@
 package api
 
 import (
-	"gitlab.com/koffee/micro/config"
-
 	"github.com/gorilla/sessions"
-	"gopkg.in/mgo.v2"
+	"gitlab.com/koffee/little-bird/backend/core"
+
+	"github.com/go-mgo/mgo"
 
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
@@ -26,7 +26,7 @@ type Conf struct {
 }
 
 func init() {
-	config.LoadEnvConfig(&conf)
+	core.LoadEnvConfig(&conf)
 
 	oauthConfig = configureOAuthClient(conf.OAuth2ClientID, conf.OAuth2ClientSecret)
 	cookieStore := sessions.NewCookieStore([]byte("Little Bird - August 20, 2018 - Spread out the world with little things"))
