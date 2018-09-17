@@ -4,7 +4,6 @@ NAME=bird
 LOCAL_REGISTRY_SERVER=192.168.98.100:5000
 LOCAL_DOCKER_IMAGE=$(LOCAL_REGISTRY_SERVER)/$(NAME):latest
 
-
 all: fmt vet install
 
 build:
@@ -18,7 +17,8 @@ fmt:
 clean:
 	rm -rf $(NAME)
 
-config-heroku:
+heroku-config:
+	heroku login
 	cd scripts && ./env-heroku.sh
 run-local:
 	cd scripts && ./env-local.sh
@@ -32,4 +32,8 @@ dist: build
 docker-local: build
 	docker build -t $(LOCAL_DOCKER_IMAGE) .
 	docker push $(LOCAL_DOCKER_IMAGE)
-
+heroku-deploy:
+	heroku container:login
+	heroku container:push web --app my-little-bird
+	heroku container:release web --app my-little-bird
+	heroku open --app my-little-bird

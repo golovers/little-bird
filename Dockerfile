@@ -1,9 +1,9 @@
-FROM scratch
+FROM golang:latest
 
-WORKDIR /app
-COPY bird.bin /app
 
-COPY templates /app/templates/
-COPY static /app/static/
+COPY bird.bin . 
 
-CMD ["/app/bird.bin"]
+COPY templates ./templates/
+COPY static ./static/
+
+CMD ["./bird.bin"]
