@@ -10,9 +10,20 @@ type Article struct {
 	ID          string    `json:"id,omitempty"`
 	Title       string    `json:"title,omitempty"`
 	Content     string    `json:"content,omitempty"`
+	Markdown    string    `json:"markdown,omitempty"`
 	LastUpdate  time.Time `json:"last_update,omitempty"`
 	CreatedBy   string    `json:"created_by,omitempty"`
 	CreatedByID string    `json:"created_by_id,omitempty"`
+	Tags        []string  `json:"tags,omitempty"`
+
+	*ArticleStatistic
+}
+
+//ArticleStatistic hold statistic data of an article
+type ArticleStatistic struct {
+	ViewCount    int `json:"view_count,omitempty"`
+	CommentCount int `json:"comment_count,omitempty"`
+	VoteCount    int `json:"vote_count,omitempty"`
 }
 
 // ArticleServicer is the server API for ArticleService service.

@@ -1,13 +1,17 @@
 package core
 
-import "context"
+import (
+	"context"
+	"time"
+)
 
 // Vote represent content of a vote for a specific article
 type Vote struct {
-	ID          string `json:"id,omitempty"`
-	ArticleID   string `json:"article_id,omitempty"`
-	CreatedBy   string `json:"created_by,omitempty"`
-	CreatedByID string `json:"created_by_id,omitempty"`
+	ID          string    `json:"id,omitempty"`
+	ArticleID   string    `json:"article_id,omitempty"`
+	CreatedBy   string    `json:"created_by,omitempty"`
+	CreatedByID string    `json:"created_by_id,omitempty"`
+	LastUpdate  time.Time `json:"last_update,omitempty"`
 }
 
 //VoteServicer provide operations on voting

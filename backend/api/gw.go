@@ -1,24 +1,16 @@
 package api
 
 import (
-	"github.com/sirupsen/logrus"
 	"gitlab.com/koffee/little-bird/backend/articles"
 	"gitlab.com/koffee/little-bird/backend/core"
+	"gitlab.com/koffee/little-bird/comments"
+	"gitlab.com/koffee/little-bird/votes"
 	"golang.org/x/net/context"
 )
 
 //ArticleOverview hold article information and its statistic data
 type ArticleOverview struct {
 	*core.Article
-	*ArticleStatistic
-}
-
-//ArticleStatistic hold statistic data of article
-type ArticleStatistic struct {
-	ViewCount    int      `json:"view_count,omitempty"`
-	CommentCount int      `json:"comment_count,omitempty"`
-	VoteCount    int      `json:"vote_count,omitempty"`
-	Tags         []string `json:"tags,omitempty"`
 }
 
 //ArticleDetails hold details information of an article
@@ -57,8 +49,18 @@ func NewGWService() (GW, error) {
 	if err != nil {
 		return &gwService{}, err
 	}
+	comment, err := comments.NewCommentService()
+	if err != nil {
+		return &gwService{}, err
+	}
+	vote, err := votes.NewVoteService()
+	if err != nil {
+		return &gwService{}, err
+	}
 	return &gwService{
 		articleService: article,
+		commentService: comment,
+		voteService:    vote,
 	}, nil
 }
 
@@ -75,28 +77,6 @@ func (gw *gwService) ListArticle(ctx context.Context, p core.Pagination) ([]*Art
 		})
 		ids = append(ids, a.ID)
 	}
-	// update comment count
-	comments, err := gw.commentService.CountByArticles(ctx, ids...)
-	if err != nil {
-		logrus.Errorf("failed to fetch comments: %v", err)
-	} else {
-		for _, a := range articlesOverview {
-			a.CommentCount = comments[a.ID]
-		}
-	}
-
-	// update vote count
-	votes, err := gw.voteService.CountByArticles(ctx, ids...)
-	if err != nil {
-		logrus.Errorf("failed to fetch votes: %v", err)
-	} else {
-		for _, a := range articlesOverview {
-			a.VoteCount = votes[a.ID]
-		}
-	}
-	// update view count
-	// TODO implement me
-
 	return articlesOverview, nil
 }
 
@@ -127,14 +107,16 @@ func (gw *gwService) GetArticle(ctx context.Context, id string) (*ArticleDetails
 }
 
 func (gw *gwService) CreateComment(ctx context.Context, c *core.Comment) (string, error) {
+	//TODO update comment count in article
 	return gw.commentService.Create(ctx, c)
 }
 
 func (gw *gwService) DeleteComment(ctx context.Context, id string) error {
+	// TODO update comment count in article
 	return gw.commentService.Delete(ctx, id)
 }
 
 func (gw *gwService) CreateVote(ctx context.Context, v *core.Vote) (string, error) {
-	//TODO implement me
+	// TODO update vote count in article
 	return gw.voteService.Create(ctx, v)
 }
