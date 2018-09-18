@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"path/filepath"
+	"time"
 
 	"github.com/golovers/xtract"
 )
@@ -24,6 +25,7 @@ func parseTemplate(filename string) *appTemplate {
 	fn := template.FuncMap{
 		"htmlNoEscape": htmlNoEscape,
 		"htmlShort":    htmlShort,
+		"shortDate":    shortDate,
 	}
 	tmpl.Funcs(fn)
 	// Put the named file into a template called "body"
@@ -73,4 +75,29 @@ func htmlNoEscape(v string) template.HTML {
 
 func htmlShort(v string, n int) string {
 	return xtract.ValueLim(v, n)
+}
+
+func shortDate(d time.Time) string {
+	t := time.Since(d)
+	if t.Seconds() < 60 {
+		return fmt.Sprintf("%d seconds ago", int(t.Seconds()))
+	}
+
+	since := t.Hours()
+	if since < 1 {
+		return fmt.Sprintf("%d minutes ago", int(t.Minutes()))
+	}
+	if since < 24 {
+		return fmt.Sprintf("%d hours ago", int(since))
+	}
+	if since < 7*24 {
+		return fmt.Sprintf("%d days ago", int(since)/(24))
+	}
+	if since < 7*24*4 {
+		return fmt.Sprintf("%d weeks ago", int(since)/(7*24))
+	}
+	if since < 7*24*4*12 {
+		return fmt.Sprintf("%d months ago", int(since)/(7*24*4))
+	}
+	return fmt.Sprintf("%d years ago", int(since)/(7*24*4*12))
 }

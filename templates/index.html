@@ -19,7 +19,7 @@
                     <div>
                         <div>
                             <span class="catalogue-title">{{.Title}}</span>
-                            <span class="catalogue-time">{{.LastUpdate}}</span>
+                            <span class="catalogue-time">{{shortDate .LastUpdate}}</span>
                         </div>
                         <div class="catalogue-content">
                             {{htmlNoEscape .Content }}
