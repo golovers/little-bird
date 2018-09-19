@@ -23,5 +23,5 @@ dist: build
 	mkdir -p dist/templates
 	mkdir -p dist/static
 	cp $(NAME) dist/
-	cp -R templates/* dist/templates
-	cp -R static/* dist/static
+	cp -R -f templates/* dist/templates
+	cp -R -f static/* dist/static

@@ -2,6 +2,7 @@ package votes
 
 import (
 	"context"
+	"errors"
 
 	"gitlab.com/koffee/little-bird/backend/core"
 )
@@ -34,7 +35,7 @@ func NewVoteService() (core.VoteServicer, error) {
 
 func (s *voteService) Create(ctx context.Context, v *core.Vote) (string, error) {
 	if v, _ := s.repo.GetByArticleAndUserID(v.ArticleID, v.CreatedByID); v.ID != "" {
-		return v.ID, nil
+		return v.ID, errors.New("already voted")
 	}
 	return s.repo.Create(v)
 }
