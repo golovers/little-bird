@@ -125,6 +125,6 @@ func (gw *gwService) DeleteComment(ctx context.Context, id string) error {
 }
 
 func (gw *gwService) CreateVote(ctx context.Context, v *core.Vote) (string, error) {
-	// TODO update vote count in article
+	go gw.articleService.UpdateStatistic(ctx, v.ArticleID, &core.ArticleStatistic{VoteCount: 1})
 	return gw.voteService.Create(ctx, v)
 }

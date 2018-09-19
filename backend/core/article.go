@@ -16,7 +16,7 @@ type Article struct {
 	CreatedByID string    `json:"created_by_id,omitempty"`
 	Tags        []string  `json:"tags,omitempty"`
 
-	*ArticleStatistic
+	ArticleStatistic
 }
 
 // CreatedByDisplayName returns a string appropriate for displaying the name of
@@ -55,4 +55,6 @@ type ArticleServicer interface {
 	Update(context.Context, *Article) error
 	// Update update a specific article
 	Create(context.Context, *Article) (string, error)
+	// Update vote count, view count, comment  count,...
+	UpdateStatistic(ctx context.Context, articleID string, statistic *ArticleStatistic) error
 }

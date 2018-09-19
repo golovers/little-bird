@@ -12,6 +12,8 @@ var _ core.VoteServicer = (*voteService)(nil)
 type Repository interface {
 	ListByArticle(articleID string) ([]*core.Vote, error)
 	Create(b *core.Vote) (id string, err error)
+	Get(id string) (*core.Vote, error)
+	GetByArticleAndUserID(articleID string, userID string) (*core.Vote, error)
 	Close()
 }
 
@@ -31,8 +33,12 @@ func NewVoteService() (core.VoteServicer, error) {
 }
 
 func (s *voteService) Create(ctx context.Context, v *core.Vote) (string, error) {
+	if v, _ := s.repo.GetByArticleAndUserID(v.ArticleID, v.CreatedByID); v.ID != "" {
+		return v.ID, nil
+	}
 	return s.repo.Create(v)
 }
+
 func (s *voteService) CountByArticles(ctx context.Context, articleID ...string) (map[string]int, error) {
 	rs := make(map[string]int)
 	for _, id := range articleID {

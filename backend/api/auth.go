@@ -156,7 +156,7 @@ func profileFromSession(r *http.Request) *Profile {
 	// this should only be used for testing when have no internet connection
 	if os.Getenv("LITTLE_BIRD_IGNORE_AUTH") == "true" {
 		return &Profile{
-			ID:          defaultSessionID,
+			ID:          "anonymous",
 			DisplayName: "Anonymous",
 		}
 	}

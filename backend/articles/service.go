@@ -2,6 +2,7 @@ package articles
 
 import (
 	"context"
+	"sync"
 
 	"gitlab.com/koffee/little-bird/backend/core"
 )
@@ -36,6 +37,7 @@ var _ core.ArticleServicer = &articleService{}
 
 type articleService struct {
 	repo Repository
+	mu   sync.RWMutex
 }
 
 // NewArticleService create new ready-to-use article service with default underlying database (mongodb)
@@ -85,4 +87,19 @@ func (s *articleService) Update(ctx context.Context, a *core.Article) error {
 
 func (s *articleService) Create(ctx context.Context, a *core.Article) (string, error) {
 	return s.repo.Create(a)
+}
+
+func (s *articleService) UpdateStatistic(ctx context.Context, articleID string, statistic *core.ArticleStatistic) error {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	a, err := s.Get(ctx, articleID)
+	if err != nil {
+		return err
+	}
+	a.ViewCount += statistic.ViewCount
+	a.CommentCount += statistic.CommentCount
+	a.VoteCount += statistic.VoteCount
+
+	s.Update(ctx, a)
+	return nil
 }

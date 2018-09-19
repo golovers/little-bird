@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-2"></div>
+    <div class="hidden-xs col-md-2"></div>
     <div class="catalogue col-md-8">  
         {{ range .}}
         <div class="row vertical-align-top catalogue-item-wrapper">
@@ -8,10 +8,7 @@
                     <a class="upvote">
                         <span class="glyphicon glyphicon-arrow-up"></span>
                     </a>
-                    <span class="count">64.5K</span>
-                    <a class="downvote">
-                        <span class="glyphicon glyphicon-arrow-down"></span>
-                    </a>
+                    <span class="count">{{.VoteCount}}</span>
                 </div>
             </div>
             <div class="col-sm-11">
@@ -32,11 +29,12 @@
         <h1>No post found</h1>
         {{ end }}
     </div>
-    <div class="col-md-2"></div>
+    <div class="hidden-xs col-md-2"></div>
 </div>
 
 <link rel="stylesheet" href="../static/js/upvote/upvote.css">
 
 <script>
+    
     
 </script>

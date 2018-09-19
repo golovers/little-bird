@@ -7,6 +7,7 @@ import (
 	"gitlab.com/koffee/little-bird/backend/core"
 	"gitlab.com/koffee/micro/config"
 	"gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
 )
 
 var _ Repository = &mongoDB{}
@@ -66,6 +67,22 @@ func (db *mongoDB) Create(v *core.Vote) (id string, err error) {
 		return id, fmt.Errorf("mongodb: could not create vote: %v", err)
 	}
 	return id, nil
+}
+
+func (db *mongoDB) Get(id string) (*core.Vote, error) {
+	var v core.Vote
+	if err := db.c.FindId(bson.D{{Name: "id", Value: id}}).One(&v); err != nil {
+		return &core.Vote{}, err
+	}
+	return &v, nil
+}
+
+func (db *mongoDB) GetByArticleAndUserID(articleID string, userID string) (*core.Vote, error) {
+	var v core.Vote
+	if err := db.c.Find(bson.D{{Name: "articleid", Value: articleID}, {Name: "createdbyid", Value: userID}}).One(&v); err != nil {
+		return &core.Vote{}, err
+	}
+	return &v, nil
 }
 
 func (db *mongoDB) Close() {
