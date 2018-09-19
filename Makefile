@@ -17,7 +17,8 @@ clean:
 config-heroku:
 	cd scripts && ./env-heroku.sh
 run-local:
-	cd scripts && ./env-local.sh && cd ../ && go run main.go
+	cd scripts && ./env-local.sh
+	go run main.go
 dist: build
 	mkdir -p dist/templates
 	mkdir -p dist/static

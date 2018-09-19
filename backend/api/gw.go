@@ -125,6 +125,6 @@ func (gw *gwService) DeleteComment(ctx context.Context, id string) error {
 }
 
 func (gw *gwService) CreateVote(ctx context.Context, v *core.Vote) (string, error) {
-	go gw.articleService.UpdateStatistic(ctx, v.ArticleID, &core.ArticleStatistic{VoteCount: 1})
+	gw.articleService.UpdateStatistic(ctx, v.ArticleID, &core.ArticleStatistic{VoteCount: 1})
 	return gw.voteService.Create(ctx, v)
 }

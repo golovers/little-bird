@@ -45,10 +45,11 @@ func upVote(w http.ResponseWriter, r *http.Request) *appError {
 	v.CreatedByID = profile.ID
 	v.LastUpdate = time.Now()
 
-	id, err := gw.CreateVote(context.Background(), v)
+	_, err := gw.CreateVote(context.Background(), v)
 	if err != nil {
 		return appErrorf(err, "internal server error")
 	}
-	responseWithData(w, http.StatusOK, map[string]string{"ID": id})
+	article, _ := gw.GetArticle(context.Background(), v.ArticleID)
+	responseWithData(w, http.StatusOK, map[string]interface{}{"count": article.VoteCount})
 	return nil
 }

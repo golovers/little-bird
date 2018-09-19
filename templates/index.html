@@ -4,11 +4,11 @@
         {{ range .}}
         <div class="row vertical-align-top catalogue-item-wrapper">
             <div class="col-sm-1">
-                <div id="topic" class="upvote">
-                    <a class="upvote">
+                <div id=article-{{.ID}} class="upvote" onclick="upVote(this, {{.ID}})">
+                    <a class="upvote" >
                         <span class="glyphicon glyphicon-arrow-up"></span>
                     </a>
-                    <span class="count">{{.VoteCount}}</span>
+                    <span id=article-vote-count-{{.ID}} class="count">{{.VoteCount}}</span>
                 </div>
             </div>
             <div class="col-sm-11">
@@ -35,6 +35,18 @@
 <link rel="stylesheet" href="../static/js/upvote/upvote.css">
 
 <script>
-    
-    
+    function upVote(el, id) {
+        $.ajax({
+            type: "POST",
+            url: "/api/v1/articles/"+id+"/vote",
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            success: function (data, status, jqXHR) {
+                el.querySelector("#article-vote-count-" +id).innerHTML=data.count;
+            },
+            error: function (jqXHR, status) {
+                alert('fail to vote: ' + status.code);
+            }
+        });
+    }
 </script>

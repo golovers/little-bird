@@ -82,7 +82,6 @@ func shortDate(d time.Time) string {
 	if t.Seconds() < 60 {
 		return fmt.Sprintf("%d seconds ago", int(t.Seconds()))
 	}
-
 	since := t.Hours()
 	if since < 1 {
 		return fmt.Sprintf("%d minutes ago", int(t.Minutes()))
