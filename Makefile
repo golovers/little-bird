@@ -1,5 +1,5 @@
 GO_BUILD_ENV := CGO_ENABLED=0 GOOS=linux GOARCH=amd64
-NAME=littlebird.bin
+NAME=bird.bin
 
 all: fmt vet install
 
@@ -14,7 +14,13 @@ fmt:
 clean:
 	rm -rf $(NAME)
 
-heroku-config:
-	heroku config:set $(cat .env | sed '/^$/d; /#[[:print:]]*$/d')
-local-config:
-	export $(grep -v '^#' .env | xargs)
+config-heroku:
+	cd scripts && ./env-heroku.sh
+run-local:
+	cd scripts && ./env-local.sh && cd ../ && go run main.go
+dist: build
+	mkdir -p dist/templates
+	mkdir -p dist/static
+	cp $(NAME) dist/
+	cp -R templates/* dist/templates
+	cp -R static/* dist/static
