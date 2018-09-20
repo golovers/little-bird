@@ -21,7 +21,7 @@ func handleArticleDetail(w http.ResponseWriter, r *http.Request) *appError {
 		IsMine bool
 	}{
 		ArticleDetails: *a,
-		IsMine:         a.CreatedByID == profile.ID,
+		IsMine:         profile != nil && a.CreatedByID == profile.ID,
 	})
 }
 
