@@ -107,8 +107,9 @@ pre code{
   user-select:none
 }
 .post{
-  padding:3rem 0;
+  padding:1rem 2rem 1rem 2rem;
   background-color: white;
+  
 }
 .post-info{
   color:#aaa;

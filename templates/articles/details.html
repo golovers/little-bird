@@ -1,13 +1,17 @@
 <div>
-    <div class="post">
-        <div class="post-info">
-            <span>Written by</span>{{.CreatedBy}}
-            <span>&nbsp;&nbsp;</span><time datetime="Aug 20, 2018">{{shortDate .LastUpdate}}</time>
-        </div>
-        <h1 class="post-title">{{.Title}}</h1>
-        <div class="post-line"></div>
-        <div>
-             {{htmlNoEscape .Content}}
+    <div class="hidden-xs col-md-1"></div>
+    <div class="catalogue col-md-10">  
+        <div class="post">
+            <div class="post-info">
+                <span>Written by</span>{{.CreatedBy}}
+                <span>&nbsp;&nbsp;</span><time datetime="Aug 20, 2018">{{shortDate .LastUpdate}}</time>
+            </div>
+            <h1 class="post-title">{{.Title}}</h1>
+            <div class="post-line"></div>
+            <div>
+                {{htmlNoEscape .Content}}
+            </div>
         </div>
     </div>
+    <div class="hidden-xs col-md-1"></div>
 </div>
