@@ -1,0 +1,72 @@
+hash: 03b4099413cfbf84aa17e623fb170ab912e44d53d4f5c8cc84e6c98242678d1a
+updated: 2018-09-20T15:02:30.254615754+07:00
+imports:
+- name: cloud.google.com/go
+  version: 6ac3b6f62dd4a827aef880b7d374f4a55b8b446f
+  subpackages:
+  - compute/metadata
+- name: github.com/go-mgo/mgo
+  version: 7446a0344b7872c067b3d6e1b7642571eafbae17
+- name: github.com/golang/protobuf
+  version: 7716a980bceefe9a0213654823d9ea62d23b87a2
+  subpackages:
+  - proto
+- name: github.com/golovers/xtract
+  version: b7fe05ed4d5db2a9dafb1ef5f5ef05d617c29a35
+- name: github.com/gorilla/context
+  version: 08b5f424b9271eedf6f9f0ce86cb9396ed337a42
+- name: github.com/gorilla/handlers
+  version: 7e0847f9db758cdebd26c149d0ae9d5d0b9c98ce
+- name: github.com/gorilla/mux
+  version: e3702bed27f0d39777b0b37b664b6280e8ef8fbf
+- name: github.com/gorilla/securecookie
+  version: bb1ab76598893258e90f45d8a708a2505a95af2a
+- name: github.com/gorilla/sessions
+  version: 81547393f870a35be888759a606ba7bf71dbe5c7
+- name: github.com/kelseyhightower/envconfig
+  version: f611eb38b3875cc3bd991ca91c51d06446afa14c
+- name: github.com/rs/xid
+  version: 15d26544def341f036c5f8dca987a4cbe575032c
+- name: github.com/satori/go.uuid
+  version: f58768cc1a7a7e77a3bd49e98cdd21419399b6a3
+- name: golang.org/x/net
+  version: 26e67e76b6c3f6ce91f7c52def5af501b4e0f3a2
+  subpackages:
+  - context
+  - html
+  - context/ctxhttp
+  - html/atom
+- name: golang.org/x/oauth2
+  version: d2e6202438beef2727060aa7cabdd924d92ebfd9
+  subpackages:
+  - google
+  - internal
+  - jws
+  - jwt
+- name: google.golang.org/api
+  version: 19ff8768a5c0b8e46ea281065664787eefc24121
+  subpackages:
+  - plus/v1
+  - gensupport
+  - googleapi
+  - googleapi/internal/uritemplates
+- name: google.golang.org/appengine
+  version: ae0ab99deb4dc413a2b4bd6c8bdd0eb67f1e4d06
+  subpackages:
+  - internal
+  - internal/app_identity
+  - internal/modules
+  - internal/base
+  - internal/datastore
+  - internal/log
+  - internal/remote_api
+  - urlfetch
+  - internal/urlfetch
+- name: gopkg.in/mgo.v2
+  version: 9856a29383ce1c59f308dd1cf0363a79b5bef6b5
+  subpackages:
+  - bson
+  - internal/json
+  - internal/sasl
+  - internal/scram
+testImports: []

@@ -3,10 +3,10 @@ package votes
 import (
 	"fmt"
 
-	"github.com/go-mgo/mgo"
-	"github.com/go-mgo/mgo/bson"
 	"github.com/rs/xid"
 	"gitlab.com/koffee/little-bird/backend/core"
+	"gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
 )
 
 var _ Repository = &mongoDB{}

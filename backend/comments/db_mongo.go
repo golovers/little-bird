@@ -4,8 +4,7 @@ import (
 	"fmt"
 
 	"gitlab.com/koffee/little-bird/backend/core"
-
-	"github.com/go-mgo/mgo"
+	"gopkg.in/mgo.v2"
 )
 
 var _ Repository = &mongoDB{}

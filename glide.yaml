@@ -1,6 +1,6 @@
 package: gitlab.com/koffee/little-bird
 import:
-- package: github.com/go-mgo/mgo
+- package: gopkg.in/mgo.v2
   subpackages:
   - bson
 - package: github.com/golovers/xtract

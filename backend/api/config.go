@@ -4,7 +4,7 @@ import (
 	"github.com/gorilla/sessions"
 	"gitlab.com/koffee/little-bird/backend/core"
 
-	"github.com/go-mgo/mgo"
+	"gopkg.in/mgo.v2"
 
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
