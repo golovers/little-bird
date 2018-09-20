@@ -19,6 +19,7 @@ var (
 	newArticleTmpl         = parseTemplate("articles/new.html")
 	myArticlesTmpl         = parseTemplateWithSubTemplates("articles/mine.html", articleListSubTemplate)
 	editArticleTmpl        = parseTemplate("articles/edit.html")
+	notFoundTmpl           = parseTemplate("notfound.html")
 )
 
 type templateItem struct {
