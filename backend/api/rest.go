@@ -67,7 +67,7 @@ func updateArticle(w http.ResponseWriter, r *http.Request) *appError {
 	if err != nil {
 		return appErrorf(err, "could not get existing article for update")
 	}
-	if profile.ID != article.CreatedByID {
+	if profile.ID != existingArticle.CreatedByID {
 		return appErrorf(fmt.Errorf("unauthorized"), "you are not allowed to edit this article")
 	}
 	existingArticle.Markdown = article.Markdown
