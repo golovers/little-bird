@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"gitlab.com/koffee/little-bird/backend/core"
 	"golang.org/x/net/context"
 )
 
@@ -27,9 +28,25 @@ func handleArticleNew(w http.ResponseWriter, r *http.Request) *appError {
 }
 
 func handleArticleMine(w http.ResponseWriter, r *http.Request) *appError {
-	return myArticlesTmpl.Execute(w, r, "")
+	profile := profileFromSession(r)
+	if profile == nil {
+		http.Redirect(w, r, "/login?redirect=/articles/mine", http.StatusFound)
+		return nil
+	}
+	articles, err := gw.ListArticleCreatedBy(context.Background(), profile.ID)
+	if err != nil {
+		return appErrorf(err, "failed to list my articles")
+	}
+	return myArticlesTmpl.Execute(w, r, articles)
 }
 
 func handleArticleTrending(w http.ResponseWriter, r *http.Request) *appError {
-	return trendingArticlesTmpl.Execute(w, r, "")
+	articles, err := gw.TrendingArticle(context.Background(), core.Pagination{})
+	if err != nil {
+		return appErrorf(err, "failed to list all articles")
+	}
+	for _, a := range articles {
+		a.Markdown = ""
+	}
+	return trendingArticlesTmpl.Execute(w, r, articles)
 }

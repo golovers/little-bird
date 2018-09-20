@@ -12,12 +12,18 @@ import (
 )
 
 var (
-	indexTmpl            = parseTemplate("index.html")
-	articleDetailsTmpl   = parseTemplate("articles/details.html")
-	trendingArticlesTmpl = parseTemplate("articles/trending.html")
-	newArticleTmpl       = parseTemplate("articles/new.html")
-	myArticlesTmpl       = parseTemplate("articles/mine.html")
+	articleListSubTemplate = templateItem{"articleList", "articles/list.html"}
+	indexTmpl              = parseTemplateWithSubTemplates("index.html", articleListSubTemplate)
+	articleDetailsTmpl     = parseTemplate("articles/details.html")
+	trendingArticlesTmpl   = parseTemplateWithSubTemplates("articles/trending.html", articleListSubTemplate)
+	newArticleTmpl         = parseTemplate("articles/new.html")
+	myArticlesTmpl         = parseTemplateWithSubTemplates("articles/mine.html", articleListSubTemplate)
 )
+
+type templateItem struct {
+	name     string
+	filename string
+}
 
 // parseTemplate applies a given file to the body of the base template.
 func parseTemplate(filename string) *appTemplate {
@@ -37,6 +43,20 @@ func parseTemplate(filename string) *appTemplate {
 	template.Must(tmpl.New("body").Parse(string(b)))
 
 	return &appTemplate{tmpl.Lookup("base.html")}
+}
+
+func parseTemplateWithSubTemplates(filename string, templates ...templateItem) *appTemplate {
+	tmpl := parseTemplate(filename)
+	for _, item := range templates {
+		path := filepath.Join("templates", item.filename)
+		b, err := ioutil.ReadFile(path)
+		if err != nil {
+			panic(fmt.Errorf("could not read template: %v", err))
+		}
+		template.Must(tmpl.t.New(item.name).Parse(string(b)))
+	}
+
+	return &appTemplate{tmpl.t.Lookup("base.html")}
 }
 
 // appTemplate is a user login-aware wrapper for a html/template.

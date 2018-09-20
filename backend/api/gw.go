@@ -1,6 +1,8 @@
 package api
 
 import (
+	"sort"
+
 	"gitlab.com/koffee/little-bird/backend/articles"
 	"gitlab.com/koffee/little-bird/backend/comments"
 	"gitlab.com/koffee/little-bird/backend/core"
@@ -69,25 +71,29 @@ func (gw *gwService) ListArticle(ctx context.Context, p core.Pagination) ([]*Art
 	if err != nil {
 		return []*ArticleOverview{}, err
 	}
-	articlesOverview := make([]*ArticleOverview, 0)
-	ids := make([]string, 0)
-	for _, a := range articles {
-		a := a
-		articlesOverview = append(articlesOverview, &ArticleOverview{
-			Article: a,
-		})
-		ids = append(ids, a.ID)
-	}
-	return articlesOverview, nil
+	return articlesToArticleOverview(articles), nil
 }
 
 func (gw *gwService) ListArticleCreatedBy(ctx context.Context, userID string) ([]*ArticleOverview, error) {
-	return []*ArticleOverview{}, nil
+	articles, err := gw.articleService.ListCreatedBy(ctx, userID)
+	if err != nil {
+		return []*ArticleOverview{}, err
+	}
+	return articlesToArticleOverview(articles), nil
 }
 
 func (gw *gwService) TrendingArticle(ctx context.Context, p core.Pagination) ([]*ArticleOverview, error) {
-	//TODO implement me
-	return []*ArticleOverview{}, nil
+	articles, err := gw.ListArticle(context.Background(), core.Pagination{})
+	if err != nil {
+		return articles, err
+	}
+	sort.Slice(articles, func(i, j int) bool {
+		if less := articles[i].VoteCount < articles[j].VoteCount; less {
+			return less
+		}
+		return articles[i].LastUpdate.Before(articles[j].LastUpdate)
+	})
+	return articles, nil
 }
 
 func (gw *gwService) CreateArticle(ctx context.Context, a *core.Article) (string, error) {
@@ -130,4 +136,17 @@ func (gw *gwService) CreateVote(ctx context.Context, v *core.Vote) (string, erro
 		gw.articleService.UpdateStatistic(ctx, v.ArticleID, &core.ArticleStatistic{VoteCount: 1})
 	}
 	return id, nil
+}
+
+func articlesToArticleOverview(articles []*core.Article) []*ArticleOverview {
+	articlesOverview := make([]*ArticleOverview, 0)
+	ids := make([]string, 0)
+	for _, a := range articles {
+		a := a
+		articlesOverview = append(articlesOverview, &ArticleOverview{
+			Article: a,
+		})
+		ids = append(ids, a.ID)
+	}
+	return articlesOverview
 }
