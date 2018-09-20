@@ -11,11 +11,18 @@ import (
 func handleArticleDetail(w http.ResponseWriter, r *http.Request) *appError {
 	vars := mux.Vars(r)
 	id := vars["id"]
-	p, err := gw.GetArticle(context.Background(), id)
+	a, err := gw.GetArticle(context.Background(), id)
 	if err != nil {
 		return appErrorf(err, "failed to load article %s", id)
 	}
-	return articleDetailsTmpl.Execute(w, r, p)
+	profile := profileFromSession(r)
+	return articleDetailsTmpl.Execute(w, r, struct {
+		ArticleDetails
+		IsMine bool
+	}{
+		ArticleDetails: *a,
+		IsMine:         a.CreatedByID == profile.ID,
+	})
 }
 
 func handleArticleNew(w http.ResponseWriter, r *http.Request) *appError {
@@ -25,6 +32,19 @@ func handleArticleNew(w http.ResponseWriter, r *http.Request) *appError {
 		return nil
 	}
 	return newArticleTmpl.Execute(w, r, "")
+}
+
+func handleArticleEdit(w http.ResponseWriter, r *http.Request) *appError {
+	profile := profileFromSession(r)
+	if profile == nil {
+		http.Redirect(w, r, "/login?redirect="+r.URL.Path, http.StatusFound)
+		return nil
+	}
+	article, err := gw.GetArticle(context.Background(), mux.Vars(r)["id"])
+	if err != nil {
+		return appErrorf(err, "failed to get existing article")
+	}
+	return editArticleTmpl.Execute(w, r, article)
 }
 
 func handleArticleMine(w http.ResponseWriter, r *http.Request) *appError {

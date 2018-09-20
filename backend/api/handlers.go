@@ -16,6 +16,8 @@ func RegisterHandlers() {
 	// REST API
 	r.Path("/api/v1/articles").Methods("POST").Handler(appHandler(createArticle))
 	r.Path("/api/v1/articles/{id}/vote").Methods("POST").Handler(appHandler(upVote))
+	r.Path("/api/v1/articles/{id}").Methods("PUT").Handler(appHandler(updateArticle))
+	r.Path("/api/v1/articles/{id}").Methods("DELETE").Handler(appHandler(deleteArticle))
 
 	// Form request
 	r.Methods("GET").Path("/").Handler(appHandler(index))
@@ -24,7 +26,8 @@ func RegisterHandlers() {
 	r.Path("/articles/trending").Methods("GET").Handler(appHandler(handleArticleTrending))
 	r.Path("/articles/mine").Methods("GET").Handler(appHandler(handleArticleMine))
 	r.Path("/articles/add").Methods("GET").Handler(appHandler(handleArticleNew))
-	r.Path("/articles/details/{id:[a-z0-9]+}").Methods("GET").Handler(appHandler(handleArticleDetail))
+	r.Path("/articles/{id:[a-z0-9]+}/details").Methods("GET").Handler(appHandler(handleArticleDetail))
+	r.Path("/articles/{id:[a-z0-9]+}/edit").Methods("GET").Handler(appHandler(handleArticleEdit))
 
 	r.Methods("GET").Path("/login").Handler(appHandler(loginHandler))
 	r.Methods("POST").Path("/logout").Handler(appHandler(logoutHandler))

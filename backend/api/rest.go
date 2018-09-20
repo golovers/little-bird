@@ -53,3 +53,54 @@ func upVote(w http.ResponseWriter, r *http.Request) *appError {
 	responseWithData(w, http.StatusOK, map[string]interface{}{"count": article.VoteCount})
 	return nil
 }
+
+func updateArticle(w http.ResponseWriter, r *http.Request) *appError {
+	profile := profileFromSession(r)
+	if profile == nil {
+		return appErrorf(fmt.Errorf("unauthorized"), "unauthorized")
+	}
+	var article core.Article
+	if err := decode(r.Body, &article); err != nil {
+		return appErrorf(err, "invalid input")
+	}
+	existingArticle, err := gw.GetArticle(context.Background(), article.ID)
+	if err != nil {
+		return appErrorf(err, "could not get existing article for update")
+	}
+	if profile.ID != article.CreatedByID {
+		return appErrorf(fmt.Errorf("unauthorized"), "you are not allowed to edit this article")
+	}
+	existingArticle.Markdown = article.Markdown
+	existingArticle.Content = article.Content
+	existingArticle.LastUpdate = time.Now()
+
+	err = gw.UpdateArticle(context.Background(), existingArticle.Article)
+	if err != nil {
+		return appErrorf(err, "internal server error")
+	}
+	responseWithData(w, http.StatusOK, map[string]string{
+		"ID": existingArticle.ID,
+	})
+	return nil
+}
+
+func deleteArticle(w http.ResponseWriter, r *http.Request) *appError {
+	profile := profileFromSession(r)
+	if profile == nil {
+		return appErrorf(fmt.Errorf("unauthorized"), "unauthorized")
+	}
+	article, err := gw.GetArticle(context.Background(), mux.Vars(r)["id"])
+	if err != nil {
+		return appErrorf(err, "could not found the given article")
+	}
+	if profile.ID != article.CreatedByID {
+		return appErrorf(fmt.Errorf("unauthorized"), "you are not allowed to delete this article")
+	}
+
+	err = gw.DeleteArticle(context.Background(), article.ID)
+	//TODO remove all relevants comments, votes,...
+	if err != nil {
+		return appErrorf(err, "internal server error")
+	}
+	return nil
+}

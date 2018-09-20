@@ -5,50 +5,49 @@
 
 <div class="article-new">
     <form>
+        <input type="hidden" id="id" name="id" value="{{.ID}}">
         <div class="form-group">
-            <label for="exampleInputEmail1">Title</label>
-            <input type="title" class="form-control" id="postTile" name="postTitle" aria-describedby="postTitle" placeholder="Enter title">
+            <label for="title">Title</label>
+            <input type="title" class="form-control" id="title" name="title" aria-describedby="title" value="{{.Title}}">
         </div>
         <div class="form-group">
-            <label for="postContent">Content</label>
-            <textarea id="postContent" name="postContent" class="form-control"></textarea>
+            <label for="markdown">Content</label>
+            <textarea id="markdown" name="markdown" class="form-control"></textarea>
         </div>
-        <button type="button" id="btnPostNow" class="btn btn-primary">Post Now</button>
+        <button type="button" id="btnUpdate" class="btn btn-primary">Update Now</button>
     </form>    
 </div>
 
 <script>
     var simplemde = new SimpleMDE({ 
-            element: $("#postContent")[0],
-            placeholder: "Enter content here...",
+            element: $("#markdown")[0],
             renderingConfig: {
                 singleLineBreaks: false,
                 codeSyntaxHighlighting: true,
             },
         });
-    //simplemde.value("default value");
-    $( "#btnPostNow" ).click(function() {
+    simplemde.value("{{.Markdown}}")
+    $( "#btnUpdate" ).click(function() {
         htmlValue = simplemde.markdown(simplemde.value())
-        postData = {
-            Title: $("#postTile").val(),
+        article = {
+            ID: $("#id").val(),
+            Title: $("#title").val(),
             Content: htmlValue,
             Markdown: simplemde.value(),
         }
         $.ajax({
-            type: "POST",
-            url: "/api/v1/articles",
-            data: JSON.stringify(postData),
+            type: "PUT",
+            url: "/api/v1/articles/" + article.ID,
+            data: JSON.stringify(article),
             contentType: "application/json; charset=utf-8",
             crossDomain: true,
             dataType: "json",
             success: function (data, status, jqXHR) {
-                $(location).attr('href', '/articles/details/'+data.ID)
+                $(location).attr('href', '/articles/'+data.ID + "/details")
             },
             error: function (jqXHR, status) {
                 alert('fail' + status.code);
             }
         });
     });
-
-    
 </script>

@@ -18,6 +18,7 @@ var (
 	trendingArticlesTmpl   = parseTemplateWithSubTemplates("articles/trending.html", articleListSubTemplate)
 	newArticleTmpl         = parseTemplate("articles/new.html")
 	myArticlesTmpl         = parseTemplateWithSubTemplates("articles/mine.html", articleListSubTemplate)
+	editArticleTmpl        = parseTemplate("articles/edit.html")
 )
 
 type templateItem struct {

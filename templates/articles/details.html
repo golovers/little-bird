@@ -5,6 +5,13 @@
             <div class="post-info">
                 <span>Written by&nbsp;</span>{{.CreatedBy}}
                 <span>&nbsp;&nbsp;</span><time datetime="Aug 20, 2018">{{shortDate .LastUpdate}}</time>
+                {{if .IsMine}}
+                <div class="pull-right">
+                    <a href="/articles/{{.ID}}/edit" class="glyphicon glyphicon-edit text-info" style="font-size:1.5rem"></a>
+                    &nbsp;
+                    <a href="#" onclick="deleteArticle({{.ID}})" class="glyphicon glyphicon-remove text-danger" style="font-size:1.5rem"></a>
+                </div>
+                {{end}}
             </div>
             <h1 class="post-title">{{.Title}}</h1>
             <div class="post-line"></div>
@@ -15,3 +22,22 @@
     </div>
     <div class="hidden-xs col-md-1"></div>
 </div>
+
+<script>
+    function deleteArticle(id) {
+        var result = confirm("Delete this article will lead to delete all relevants votes, comments and your audiences will never see this article again. Do you want to continue?");
+        if (result) {
+            $.ajax({
+                type: "DELETE",
+                url: "/api/v1/articles/"+id,
+                contentType: "application/json; charset=utf-8",
+                success: function (data, status, jqXHR) {
+                    $(location).attr('href', '/articles');
+                },
+                error: function (jqXHR, status) {
+                    alert('Oooops: fail to delete: ' + status.code);
+                }
+            });
+        }
+    }
+</script>
