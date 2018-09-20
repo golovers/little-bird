@@ -88,10 +88,13 @@ func (gw *gwService) TrendingArticle(ctx context.Context, p core.Pagination) ([]
 		return articles, err
 	}
 	sort.Slice(articles, func(i, j int) bool {
-		if less := articles[i].VoteCount < articles[j].VoteCount; less {
-			return less
+		if less := articles[j].VoteCount < articles[i].VoteCount; less {
+			return true
 		}
-		return articles[i].LastUpdate.Before(articles[j].LastUpdate)
+		if less := articles[i].VoteCount < articles[j].VoteCount; less {
+			return false
+		}
+		return articles[i].LastUpdate.After(articles[j].LastUpdate)
 	})
 	return articles, nil
 }
