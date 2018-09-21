@@ -29,7 +29,8 @@ type GW interface {
 	CreateArticle(ctx context.Context, a *core.Article) (string, error)
 	UpdateArticle(ctx context.Context, a *core.Article) error
 	DeleteArticle(ctx context.Context, id string) error
-	GetArticle(ctx context.Context, id string) (*ArticleDetails, error)
+	GetArticleDetails(ctx context.Context, id string) (*ArticleDetails, error)
+	GetArticle(ctx context.Context, id string) (*core.Article, error)
 
 	CreateComment(ctx context.Context, c *core.Comment) (string, error)
 	DeleteComment(ctx context.Context, id string) error
@@ -111,7 +112,7 @@ func (gw *gwService) DeleteArticle(ctx context.Context, id string) error {
 	return gw.articleService.Delete(ctx, id)
 }
 
-func (gw *gwService) GetArticle(ctx context.Context, id string) (*ArticleDetails, error) {
+func (gw *gwService) GetArticleDetails(ctx context.Context, id string) (*ArticleDetails, error) {
 	a, err := gw.articleService.Get(ctx, id)
 	if err != nil {
 		return &ArticleDetails{}, err
@@ -121,6 +122,10 @@ func (gw *gwService) GetArticle(ctx context.Context, id string) (*ArticleDetails
 			Article: a,
 		},
 	}, nil
+}
+
+func  (gw *gwService) GetArticle(ctx context.Context, id string) (*core.Article, error) {
+	return gw.articleService.Get(ctx, id)
 }
 
 func (gw *gwService) CreateComment(ctx context.Context, c *core.Comment) (string, error) {

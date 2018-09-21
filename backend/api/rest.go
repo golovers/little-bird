@@ -2,7 +2,6 @@ package api
 
 import (
 	"context"
-	"errors"
 	"fmt"
 	"net/http"
 	"time"
@@ -12,14 +11,20 @@ import (
 	"gitlab.com/koffee/little-bird/backend/core"
 )
 
+var (
+	errUnAuthorized   = appErrorf(fmt.Errorf("unauthorized"), "unauthorized")
+	errInternalServer = func(err error) *appError { return appErrorf(err, "internal server error") }
+	errInvalidInput   = func(err error) *appError { return appErrorf(err, "invalid input") }
+)
+
 func createArticle(w http.ResponseWriter, r *http.Request) *appError {
 	profile := profileFromSession(r)
 	if profile == nil {
-		return appErrorf(fmt.Errorf("unauthorized"), "unauthorized")
+		return errUnAuthorized
 	}
 	var article core.Article
 	if err := decode(r.Body, &article); err != nil {
-		return appErrorf(err, "invalid input")
+		return errInvalidInput(err)
 	}
 	article.LastUpdate = time.Now()
 	article.CreatedByID = profile.ID
@@ -27,7 +32,7 @@ func createArticle(w http.ResponseWriter, r *http.Request) *appError {
 
 	id, err := gw.CreateArticle(context.Background(), &article)
 	if err != nil {
-		return appErrorf(err, "internal server error")
+		return errInternalServer(err)
 	}
 	responseWithData(w, http.StatusOK, map[string]string{
 		"ID": id,
@@ -38,7 +43,7 @@ func createArticle(w http.ResponseWriter, r *http.Request) *appError {
 func upVote(w http.ResponseWriter, r *http.Request) *appError {
 	profile := profileFromSession(r)
 	if profile == nil {
-		return appErrorf(errors.New("unauthorized"), "unauthorized")
+		return errUnAuthorized
 	}
 	v := &core.Vote{}
 	v.ArticleID = mux.Vars(r)["id"]
@@ -48,7 +53,7 @@ func upVote(w http.ResponseWriter, r *http.Request) *appError {
 
 	_, err := gw.CreateVote(context.Background(), v)
 	if err != nil {
-		return appErrorf(err, "internal server error")
+		return errInternalServer(err)
 	}
 	article, _ := gw.GetArticle(context.Background(), v.ArticleID)
 	responseWithData(w, http.StatusOK, map[string]interface{}{"count": article.VoteCount})
@@ -58,11 +63,11 @@ func upVote(w http.ResponseWriter, r *http.Request) *appError {
 func updateArticle(w http.ResponseWriter, r *http.Request) *appError {
 	profile := profileFromSession(r)
 	if profile == nil {
-		return appErrorf(fmt.Errorf("unauthorized"), "unauthorized")
+		return errUnAuthorized
 	}
 	var article core.Article
 	if err := decode(r.Body, &article); err != nil {
-		return appErrorf(err, "invalid input")
+		return errInvalidInput(err)
 	}
 	existingArticle, err := gw.GetArticle(context.Background(), article.ID)
 	if err != nil {
@@ -75,9 +80,9 @@ func updateArticle(w http.ResponseWriter, r *http.Request) *appError {
 	existingArticle.Content = article.Content
 	existingArticle.LastUpdate = time.Now()
 
-	err = gw.UpdateArticle(context.Background(), existingArticle.Article)
+	err = gw.UpdateArticle(context.Background(), existingArticle)
 	if err != nil {
-		return appErrorf(err, "internal server error")
+		return errInternalServer(err)
 	}
 	responseWithData(w, http.StatusOK, map[string]string{
 		"ID": existingArticle.ID,
@@ -88,7 +93,7 @@ func updateArticle(w http.ResponseWriter, r *http.Request) *appError {
 func deleteArticle(w http.ResponseWriter, r *http.Request) *appError {
 	profile := profileFromSession(r)
 	if profile == nil {
-		return appErrorf(fmt.Errorf("unauthorized"), "unauthorized")
+		return errUnAuthorized
 	}
 	article, err := gw.GetArticle(context.Background(), mux.Vars(r)["id"])
 	if err != nil {
@@ -101,7 +106,7 @@ func deleteArticle(w http.ResponseWriter, r *http.Request) *appError {
 	err = gw.DeleteArticle(context.Background(), article.ID)
 	//TODO remove all relevants comments, votes,...
 	if err != nil {
-		return appErrorf(err, "internal server error")
+		return errInternalServer(err)
 	}
 	return nil
 }
