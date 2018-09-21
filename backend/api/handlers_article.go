@@ -11,7 +11,7 @@ import (
 func handleArticleDetail(w http.ResponseWriter, r *http.Request) *appError {
 	vars := mux.Vars(r)
 	id := vars["id"]
-	a, err := gw.GetArticle(context.Background(), id)
+	a, err := gw.GetArticleDetails(context.Background(), id)
 	if err != nil {
 		return appErrorf(err, "failed to load article %s", id)
 	}
