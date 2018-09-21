@@ -39,7 +39,7 @@
                 el.querySelector("#article-vote-count-" +id).innerHTML=data.count;
             },
             error: function (jqXHR, status) {
-                alert('Oooops: fail to vote: ' + status.code);
+                alert('Oooops: fail to vote. Please login first!');
             }
         });
     }
