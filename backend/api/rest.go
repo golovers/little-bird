@@ -37,7 +37,8 @@ func createArticle(w http.ResponseWriter, r *http.Request) *appError {
 func upVote(w http.ResponseWriter, r *http.Request) *appError {
 	profile := profileFromSession(r)
 	if profile == nil {
-		http.Redirect(w, r, "/login?redirect="+r.URL.Path, http.StatusFound)
+		http.Redirect(w, r, "/login?redirect=/articles", http.StatusFound)
+		return nil
 	}
 	v := &core.Vote{}
 	v.ArticleID = mux.Vars(r)["id"]

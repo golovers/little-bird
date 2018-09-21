@@ -38,9 +38,10 @@ func RegisterHandlers() {
 			w.Write([]byte("ok"))
 		})
 
-	http.Handle("/", handlers.CombinedLoggingHandler(os.Stderr, r))
 	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static/"))))
 	r.NotFoundHandler = appHandler(handleNotFound)
+
+	http.Handle("/", handlers.CombinedLoggingHandler(os.Stderr, r))
 }
 
 // index display the  index page
