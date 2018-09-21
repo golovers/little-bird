@@ -58,6 +58,10 @@ func loginHandler(w http.ResponseWriter, r *http.Request) *appError {
 	url := oauthConfig.AuthCodeURL(sessionID, oauth2.ApprovalForce,
 		oauth2.AccessTypeOnline)
 	http.Redirect(w, r, url, http.StatusFound)
+	http.SetCookie(w, http.Cookie{
+		Name:  "authorized",
+		Value: "true",
+	})
 	return nil
 }
 
@@ -147,6 +151,10 @@ func logoutHandler(w http.ResponseWriter, r *http.Request) *appError {
 		redirectURL = "/"
 	}
 	http.Redirect(w, r, redirectURL, http.StatusFound)
+	http.SetCookie(w, http.Cookie{
+		Name:  "authorized",
+		Value: "false",
+	})
 	return nil
 }
 
