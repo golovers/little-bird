@@ -3,10 +3,10 @@ package api
 import (
 	"sort"
 
-	"gitlab.com/koffee/little-bird/backend/articles"
-	"gitlab.com/koffee/little-bird/backend/comments"
+	"gitlab.com/koffee/little-bird/backend/services/articles"
+	"gitlab.com/koffee/little-bird/backend/services/comments"
 	"gitlab.com/koffee/little-bird/backend/core"
-	"gitlab.com/koffee/little-bird/backend/votes"
+	"gitlab.com/koffee/little-bird/backend/services/votes"
 	"golang.org/x/net/context"
 )
 
@@ -124,7 +124,7 @@ func (gw *gwService) GetArticleDetails(ctx context.Context, id string) (*Article
 	}, nil
 }
 
-func  (gw *gwService) GetArticle(ctx context.Context, id string) (*core.Article, error) {
+func (gw *gwService) GetArticle(ctx context.Context, id string) (*core.Article, error) {
 	return gw.articleService.Get(ctx, id)
 }
 
