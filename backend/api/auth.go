@@ -57,12 +57,7 @@ func loginHandler(w http.ResponseWriter, r *http.Request) *appError {
 	// See https://godoc.org/golang.org/x/oauth2#Config.AuthCodeURL for more detail.
 	url := oauthConfig.AuthCodeURL(sessionID, oauth2.ApprovalForce,
 		oauth2.AccessTypeOnline)
-	http.SetCookie(w, &http.Cookie{
-		Name:  "authorized",
-		Value: "true",
-	})
 	http.Redirect(w, r, url, http.StatusFound)
-
 	return nil
 }
 
@@ -121,7 +116,6 @@ func oauthCallbackHandler(w http.ResponseWriter, r *http.Request) *appError {
 	if err := session.Save(r, w); err != nil {
 		return appErrorf(err, "could not save session: %v", err)
 	}
-
 	http.Redirect(w, r, redirectURL, http.StatusFound)
 	return nil
 }
