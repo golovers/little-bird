@@ -7,7 +7,19 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"path/filepath"
 )
+
+var staticFilterHandler = func(h http.Handler, exts []string) http.Handler {
+	return http.HandlerFunc(
+		func(w http.ResponseWriter, r *http.Request) {
+			for _, ext := range exts {
+				if filepath.Ext(r.URL.Path) == ext {
+					h.ServeHTTP(w, r)
+				}
+			}
+		})
+}
 
 type appHandler func(http.ResponseWriter, *http.Request) *appError
 

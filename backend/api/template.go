@@ -12,13 +12,13 @@ import (
 )
 
 var (
-	articleListSubTemplate = templateItem{"articleList", "articles/list.html"}
+	articleListSubTemplate = templateItem{"articleList", "articles/list/list.html"}
 	indexTmpl              = parseTemplateWithSubTemplates("index.html", articleListSubTemplate)
-	articleDetailsTmpl     = parseTemplate("articles/details.html")
-	trendingArticlesTmpl   = parseTemplateWithSubTemplates("articles/trending.html", articleListSubTemplate)
-	newArticleTmpl         = parseTemplate("articles/new.html")
-	myArticlesTmpl         = parseTemplateWithSubTemplates("articles/mine.html", articleListSubTemplate)
-	editArticleTmpl        = parseTemplate("articles/edit.html")
+	articleDetailsTmpl     = parseTemplate("articles/details/details.html")
+	trendingArticlesTmpl   = parseTemplateWithSubTemplates("articles/trending/trending.html", articleListSubTemplate)
+	newArticleTmpl         = parseTemplate("articles/new/new.html")
+	myArticlesTmpl         = parseTemplateWithSubTemplates("articles/mine/mine.html", articleListSubTemplate)
+	editArticleTmpl        = parseTemplate("articles/edit/edit.html")
 	notFoundTmpl           = parseTemplate("notfound.html")
 )
 

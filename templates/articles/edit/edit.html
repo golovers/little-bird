@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/latest/styles/github.min.css">
+
+<div class="article-update-box">
+    <form>
+        <input type="hidden" id="id" name="id" value="{{.ID}}">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="title" class="form-control" id="title" name="title" aria-describedby="title" value="{{.Title}}">
+        </div>
+        <div class="form-group">
+            <label for="markdown">Content</label>
+            <textarea id="markdown" name="markdown" class="form-control"></textarea>
+        </div>
+        <button type="button" id="btnUpdate" class="btn btn-primary" onclick="updateArticle()" >Update Now</button>
+    </form>    
+</div>
+
+<script src="/templates/articles/edit/edit.js"></script>
+<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+<script src="https://cdn.jsdelivr.net/highlight.js/latest/highlight.min.js"></script>
+
+<script>
+    var simplemde = new SimpleMDE({ 
+        element: $("#markdown")[0],
+        renderingConfig: {
+            singleLineBreaks: false,
+            codeSyntaxHighlighting: true,
+        },
+    });
+    simplemde.value("{{.Markdown}}")
+</script>

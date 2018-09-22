@@ -39,6 +39,10 @@ func RegisterHandlers() {
 		})
 
 	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static/"))))
+
+	templatesStatic := staticFilterHandler(http.FileServer(http.Dir("./templates/")), []string{".css", ".js", ".png", ".jpg"})
+	r.PathPrefix("/templates/").Handler(http.StripPrefix("/templates/", templatesStatic))
+
 	r.NotFoundHandler = appHandler(handleNotFound)
 
 	http.Handle("/", handlers.CombinedLoggingHandler(os.Stderr, r))
