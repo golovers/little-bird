@@ -24,6 +24,8 @@
 </div>
 
 <script>
+    setTitle('Little Bird: ' + {{.Title}})
+
     function deleteArticle(id) {
         var result = confirm("Delete this article will lead to delete all relevants votes, comments and your audiences will never see this article again. Do you want to continue?");
         if (result) {
@@ -41,3 +43,60 @@
         }
     }
 </script>
+<style>
+    .post{
+        padding:1rem 2rem 1rem 2rem;
+        background-color: white;
+    }
+    .post-info{
+        color:#aaa;
+        font-family:Palatino,"Palatino LT STD","Palatino Linotype","Book Antiqua","Georgia",serif;
+        letter-spacing:0.5px;
+        text-align:left
+    }
+    .post-info span{
+        font-style:italic
+    }
+    .post-title{
+        color:#353535;
+        font-family:"Helvetica Neue","Segoe UI",Helvetica,Arial,sans-serif;
+        font-size:2.5rem;
+        margin:1rem 0;
+        text-align:left
+    }
+    .post-line{
+        border-top:0.4rem solid #520d0d;
+        display:block;
+        margin:0 0 3rem;
+        width:4rem;
+        text-align: left
+    }
+    .post p{
+        margin:0 0 1rem;
+        text-align:justify
+    }
+    .post a:hover{
+        text-decoration:underline
+    }
+    .post img{
+        margin:0 auto 0.5rem
+    }
+    .post img+em{
+        color:#aaa;
+        display:block;
+        font-family:"Helvetica Neue","Segoe UI",Helvetica,Arial,sans-serif;
+        font-size:0.9rem;
+        font-style:normal;
+        text-align:center
+    }
+    .post img.emoji{
+        display:inline-block;
+        left:0;
+        transform:none;
+        width:1rem;
+        height:1rem;
+        vertical-align:text-top;
+        padding:0;
+        margin:0
+    }
+</style>

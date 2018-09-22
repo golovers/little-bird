@@ -20,3 +20,6 @@ function getCookie(cname) {
     return "";
 }
 
+function setTitle(title) {
+    document.title = title
+}

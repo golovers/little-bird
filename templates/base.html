@@ -8,12 +8,10 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
 <link rel="stylesheet" href="/static/css/main.css">
-<script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="/static/js/app.js"></script>
+ <!--Java scripts-->
+ <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+ <script src="/static/js/app.js"></script>
 <!-- Favicon -->
 <link rel="icon" type="image/png" sizes="32x32" href="/static/img/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon-16x16.png">
@@ -62,19 +60,18 @@
         </div>
     </div>
   </div>
+  <script>
+    setCookie("_login_url", {{.LoginURL}}, 1)
+    {{if .AuthEnabled}}
+      {{if .Profile}}
+        setCookie("_user_id", {{.Profile.ID}}, 1)
+      {{else}}
+        setCookie("_user_id", "", 0)
+      {{end}}
+    {{end}}
+  </script>
   <div class="container">
     {{template "body" .Data}}
   </div>
 </body>
 </html>
-
-<script>
-  setCookie("_login_url", {{.LoginURL}}, 1)
-  {{if .AuthEnabled}}
-    {{if .Profile}}
-      setCookie("_user_id", {{.Profile.ID}}, 1)
-    {{else}}
-      setCookie("_user_id", "", 0)
-    {{end}}
-  {{end}}
-</script>
