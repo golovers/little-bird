@@ -2,7 +2,9 @@ package handlers
 
 import (
 	"context"
+	"errors"
 	"fmt"
+	"log"
 	"net/http"
 	"time"
 
@@ -105,6 +107,92 @@ func deleteArticle(w http.ResponseWriter, r *http.Request) *appError {
 
 	err = gw.DeleteArticle(context.Background(), article.ID)
 	//TODO remove all relevants comments, votes,...
+	if err != nil {
+		return errInternalServer(err)
+	}
+	return nil
+}
+
+func listCommentByArticle(w http.ResponseWriter, r *http.Request) *appError {
+	comments, err := gw.ListCommentByArticle(context.Background(), mux.Vars(r)["id"])
+	log.Println(mux.Vars(r)["id"])
+	if err != nil {
+		return appErrorf(err, "failed to get comments")
+	}
+	responseWithData(w, http.StatusOK, comments)
+	return nil
+}
+
+func createComment(w http.ResponseWriter, r *http.Request) *appError {
+	profile := profileFromSession(r)
+	if profile == nil {
+		return errUnAuthorized
+	}
+	var c core.Comment
+	if err := decode(r.Body, &c); err != nil {
+		return errInvalidInput(err)
+	}
+	if c.ArticleID == "" {
+		return appErrorf(errors.New("articleID is missing"), "invalid input")
+	}
+	c.LastUpdate = time.Now()
+	c.Created = time.Now()
+	c.CreatedBy = profile.DisplayName
+	c.CreatedByID = profile.ID
+
+	id, err := gw.CreateComment(context.Background(), &c)
+	if err != nil {
+		return errInternalServer(err)
+	}
+	responseWithData(w, http.StatusOK, map[string]string{
+		"ID": id,
+	})
+	return nil
+}
+
+func updateComment(w http.ResponseWriter, r *http.Request) *appError {
+	profile := profileFromSession(r)
+	if profile == nil {
+		return errUnAuthorized
+	}
+	var comment core.Comment
+	if err := decode(r.Body, &comment); err != nil {
+		return errInvalidInput(err)
+	}
+	existingComment, err := gw.GetComment(context.Background(), mux.Vars(r)["id"])
+	if err != nil {
+		return appErrorf(err, "could not get existing comment for update")
+	}
+	if profile.ID != existingComment.CreatedByID {
+		return appErrorf(fmt.Errorf("unauthorized"), "you are not allowed to edit this comment")
+	}
+	existingComment.Content = comment.Content
+	existingComment.LastUpdate = time.Now()
+
+	err = gw.UpdateComment(context.Background(), existingComment)
+	if err != nil {
+		return errInternalServer(err)
+	}
+	responseWithData(w, http.StatusOK, map[string]string{
+		"ID": existingComment.ID,
+	})
+	return nil
+}
+
+func deleteComment(w http.ResponseWriter, r *http.Request) *appError {
+	profile := profileFromSession(r)
+	if profile == nil {
+		return errUnAuthorized
+	}
+	comment, err := gw.GetComment(context.Background(), mux.Vars(r)["id"])
+	if err != nil {
+		return appErrorf(err, "could not found the given comment")
+	}
+	if profile.ID != comment.CreatedByID {
+		return appErrorf(fmt.Errorf("unauthorized"), "you are not allowed to delete this comment")
+	}
+
+	err = gw.DeleteComment(context.Background(), comment.ID)
 	if err != nil {
 		return errInternalServer(err)
 	}

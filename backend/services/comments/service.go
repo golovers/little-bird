@@ -11,6 +11,7 @@ type Repository interface {
 	ListByArticle(articleID string) ([]*core.Comment, error)
 	Create(b *core.Comment) (id string, err error)
 	Delete(id string) error
+	Get(id string) (*core.Comment, error)
 	Update(b *core.Comment) error
 	Close()
 }
@@ -57,4 +58,8 @@ func (s *commentService) Delete(ctx context.Context, id string) error {
 
 func (s *commentService) Create(ctx context.Context, c *core.Comment) (id string, err error) {
 	return s.repo.Create(c)
+}
+
+func (s *commentService) Get(ctx context.Context, id string) (*core.Comment, error) {
+	return s.repo.Get(id)
 }

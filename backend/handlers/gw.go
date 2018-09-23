@@ -32,8 +32,11 @@ type GW interface {
 	GetArticleDetails(ctx context.Context, id string) (*ArticleDetails, error)
 	GetArticle(ctx context.Context, id string) (*core.Article, error)
 
+	ListCommentByArticle(ctx context.Context, articleID string) ([]*core.Comment, error)
 	CreateComment(ctx context.Context, c *core.Comment) (string, error)
 	DeleteComment(ctx context.Context, id string) error
+	GetComment(ctx context.Context, id string) (*core.Comment, error)
+	UpdateComment(ctx context.Context, c *core.Comment) error
 
 	CreateVote(ctx context.Context, v *core.Vote) (string, error)
 }
@@ -157,4 +160,16 @@ func articlesToArticleOverview(articles []*core.Article) []*ArticleOverview {
 		ids = append(ids, a.ID)
 	}
 	return articlesOverview
+}
+
+func (gw *gwService) ListCommentByArticle(ctx context.Context, articleID string) ([]*core.Comment, error) {
+	return gw.commentService.ListByArticle(ctx, articleID)
+}
+
+func (gw *gwService) GetComment(ctx context.Context, id string) (*core.Comment, error) {
+	return gw.commentService.Get(ctx, id)
+}
+
+func (gw *gwService) UpdateComment(ctx context.Context, c *core.Comment) error {
+	return gw.commentService.Update(ctx, c)
 }

@@ -19,13 +19,77 @@
             <div>
                 {{htmlNoEscape .Content}}
             </div>
+            <hr>
+            <div id="comments-container">
+
+            </div>
         </div>
     </div>
     <div class="hidden-xs col-md-1"></div>
 </div>
 
 <script src="/templates/articles/details/details.js"></script>
-
+<link rel="stylesheet" type="text/css" href="/templates/articles/details/plugins/jquery-comments.css">
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<script type="text/javascript" src="/templates/articles/details/plugins/jquery-comments.min.js"></script>
 <script>
-    setTitle('Little Bird: ' + {{.Title}})
+    setTitle('Little Bird: ' + "{{.Title}}")
+    $('#comments-container').comments({
+        profilePictureURL: "",
+        getComments: function(success, error) {
+            $.ajax({
+                type: 'get',
+                url: '/api/v1/articles/{{.ID}}/comments',
+                dataType: 'json',
+                success: function(data) {
+                    if (data == null) {
+                        success([])
+                        return
+                    }
+                    console.log(data)
+                    success(data)
+                },
+                error: error
+            });
+        },
+        postComment: function(commentJSON, success, error) {
+            commentJSON.article_id = "{{.ID}}";
+            commentJSON.articleID = "{{.ID}}";
+            console.log(commentJSON);
+            console.log(JSON.stringify(commentJSON))
+            $.ajax({
+                type: 'post',
+                url: '/api/v1/comments',
+                data: JSON.stringify(commentJSON),
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                success: function(res) {
+                    commentJSON.id=res.id
+                    success(commentJSON)
+                },
+                error: error
+            });
+        },
+        putComment: function(commentJSON, success, error) {
+            $.ajax({
+                type: 'put',
+                url: '/api/v1/comments/' + commentJSON.id,
+                data: commentJSON,
+                dataType: 'json',
+                success: function(comment) {
+                    success(comment)
+                },
+                error: error
+            });
+        },
+        deleteComment: function(commentJSON, success, error) {
+            $.ajax({
+                type: 'delete',
+                url: '/api/v1/comments/' + commentJSON.id,
+                dataType: 'json',
+                success: success(),
+                error: error
+            });
+        },
+    });
 </script>

@@ -75,6 +75,8 @@
     {{if .AuthEnabled}}
       {{if .Profile}}
         setCookie("_user_id", {{.Profile.ID}}, 1)
+        setCookie("_user_name", {{.Profile.DisplayName}}, 1)
+        setCookie("_user_image", {{.Profile.ImageURL}}, 1)
       {{else}}
         setCookie("_user_id", "", 0)
       {{end}}

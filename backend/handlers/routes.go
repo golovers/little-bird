@@ -18,6 +18,11 @@ func Register() {
 	r.Path("/api/v1/articles/{id}/vote").Methods("POST").Handler(appHandler(upVote))
 	r.Path("/api/v1/articles/{id}").Methods("PUT").Handler(appHandler(updateArticle))
 	r.Path("/api/v1/articles/{id}").Methods("DELETE").Handler(appHandler(deleteArticle))
+	r.Path("/api/v1/articles/{id}/comments").Methods("GET").Handler(appHandler(listCommentByArticle))
+
+	r.Path("/api/v1/comments").Methods("POST").Handler(appHandler(createComment))
+	r.Path("/api/v1/comments/{id}").Methods("PUT").Handler(appHandler(updateComment))
+	r.Path("/api/v1/comments/{id}").Methods("DELETE").Handler(appHandler(deleteComment))
 
 	// Form request
 	r.Methods("GET").Path("/").Handler(appHandler(index))

@@ -3,8 +3,10 @@ package comments
 import (
 	"fmt"
 
+	"github.com/rs/xid"
 	"gitlab.com/koffee/little-bird/backend/core"
 	"gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
 )
 
 var _ Repository = &mongoDB{}
@@ -49,24 +51,42 @@ func newMongoDB() (*mongoDB, error) {
 }
 
 func (db *mongoDB) ListByArticle(articleID string) ([]*core.Comment, error) {
-	//TODO implement me
-	return []*core.Comment{}, nil
+	var rs []*core.Comment
+	err := db.c.Find(bson.D{{Name: "articleid", Value: articleID}}).All(&rs)
+	if err != nil {
+		return rs, err
+	}
+	return rs, nil
 }
 
-func (db *mongoDB) Create(b *core.Comment) (id string, err error) {
-	//TODO implement me
-	return "", nil
+func (db *mongoDB) Create(c *core.Comment) (id string, err error) {
+	c.ID = randomID()
+	if err := db.c.Insert(c); err != nil {
+		return "", fmt.Errorf("mongodb: could not create new comment: %v", err)
+	}
+	return c.ID, nil
 }
 func (db *mongoDB) Delete(id string) error {
-	//TODO implement me
-	return nil
+	return db.c.Remove(bson.D{{Name: "id", Value: id}})
 }
 
-func (db *mongoDB) Update(b *core.Comment) error {
-	//TODO implement me
-	return nil
+func (db *mongoDB) Update(c *core.Comment) error {
+	return db.c.Update(bson.D{{Name: "id", Value: c.ID}}, c)
+}
+
+func (db *mongoDB) Get(id string) (*core.Comment, error) {
+	c := &core.Comment{}
+	if err := db.c.Find(bson.D{{Name: "id", Value: id}}).One(c); err != nil {
+		return nil, err
+	}
+	return c, nil
 }
 
 func (db *mongoDB) Close() {
 	//TODO implement me
+}
+
+// randomID returns a positive number that fits within an int64.
+func randomID() string {
+	return xid.New().String()
 }
