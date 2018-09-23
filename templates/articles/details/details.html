@@ -55,8 +55,7 @@
         postComment: function(commentJSON, success, error) {
             commentJSON.article_id = "{{.ID}}";
             commentJSON.articleID = "{{.ID}}";
-            console.log(commentJSON);
-            console.log(JSON.stringify(commentJSON))
+            commentJSON.fullname = getCookie("_user_name")
             $.ajax({
                 type: 'post',
                 url: '/api/v1/comments',
