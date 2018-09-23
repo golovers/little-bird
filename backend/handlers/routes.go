@@ -14,10 +14,10 @@ import (
 func Register() {
 	r := mux.NewRouter()
 	// REST API
-	r.Path("/handlers/v1/articles").Methods("POST").Handler(appHandler(createArticle))
-	r.Path("/handlers/v1/articles/{id}/vote").Methods("POST").Handler(appHandler(upVote))
-	r.Path("/handlers/v1/articles/{id}").Methods("PUT").Handler(appHandler(updateArticle))
-	r.Path("/handlers/v1/articles/{id}").Methods("DELETE").Handler(appHandler(deleteArticle))
+	r.Path("/api/v1/articles").Methods("POST").Handler(appHandler(createArticle))
+	r.Path("/api/v1/articles/{id}/vote").Methods("POST").Handler(appHandler(upVote))
+	r.Path("/api/v1/articles/{id}").Methods("PUT").Handler(appHandler(updateArticle))
+	r.Path("/api/v1/articles/{id}").Methods("DELETE").Handler(appHandler(deleteArticle))
 
 	// Form request
 	r.Methods("GET").Path("/").Handler(appHandler(index))
