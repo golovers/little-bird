@@ -1,6 +1,7 @@
-package api
+package handlers
 
 import (
+	"context"
 	"encoding/gob"
 	"errors"
 	"net/http"
@@ -8,7 +9,6 @@ import (
 
 	plus "google.golang.org/api/plus/v1"
 
-	"golang.org/x/net/context"
 	"golang.org/x/oauth2"
 
 	"os"

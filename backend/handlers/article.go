@@ -1,11 +1,11 @@
-package api
+package handlers
 
 import (
+	"context"
 	"net/http"
 
 	"github.com/gorilla/mux"
 	"gitlab.com/koffee/little-bird/backend/core"
-	"golang.org/x/net/context"
 )
 
 func handleArticleDetail(w http.ResponseWriter, r *http.Request) *appError {

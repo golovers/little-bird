@@ -1,13 +1,13 @@
-package api
+package handlers
 
 import (
+	"context"
 	"sort"
 
+	"gitlab.com/koffee/little-bird/backend/core"
 	"gitlab.com/koffee/little-bird/backend/services/articles"
 	"gitlab.com/koffee/little-bird/backend/services/comments"
-	"gitlab.com/koffee/little-bird/backend/core"
 	"gitlab.com/koffee/little-bird/backend/services/votes"
-	"golang.org/x/net/context"
 )
 
 //ArticleOverview hold article information and its statistic data
@@ -21,7 +21,7 @@ type ArticleDetails struct {
 	Comments []*core.Comment
 }
 
-//GW join internal services and provide public operations to web or rest api
+//GW join internal services and provide public operations to web or rest handlers
 type GW interface {
 	ListArticle(ctx context.Context, p core.Pagination) ([]*ArticleOverview, error)
 	ListArticleCreatedBy(ctx context.Context, userID string) ([]*ArticleOverview, error)
@@ -46,8 +46,8 @@ type gwService struct {
 	voteService    core.VoteServicer
 }
 
-//NewGWService return a default implementation of GW service
-func NewGWService() (GW, error) {
+//NewGW return a default implementation of GW service
+func NewGW() (GW, error) {
 	article, err := articles.NewArticleService()
 	if err != nil {
 		return &gwService{}, err

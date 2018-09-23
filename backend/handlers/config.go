@@ -1,4 +1,4 @@
-package api
+package handlers
 
 import (
 	"github.com/gorilla/sessions"
@@ -36,7 +36,7 @@ func init() {
 	sessionStore = cookieStore
 
 	var err error
-	gw, err = NewGWService()
+	gw, err = NewGW()
 	if err != nil {
 		panic("failed to create gw: " + err.Error())
 	}

@@ -5,11 +5,11 @@ import (
 	"net/http"
 	"os"
 
-	"gitlab.com/koffee/little-bird/backend/api"
+	"gitlab.com/koffee/little-bird/backend/handlers"
 )
 
 func main() {
-	api.RegisterHandlers()
+	handlers.Register()
 
 	port := "8080"
 	if p := os.Getenv("PORT"); p != "" {

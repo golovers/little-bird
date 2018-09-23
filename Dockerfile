@@ -1,5 +1,4 @@
-FROM golang:latest
-
+FROM alpine:latest
 
 COPY bird.bin . 
 

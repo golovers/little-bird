@@ -1,4 +1,4 @@
-package api
+package handlers
 
 import (
 	"fmt"
@@ -7,8 +7,6 @@ import (
 	"net/http"
 	"path/filepath"
 	"time"
-
-	"github.com/golovers/xtract"
 )
 
 var (
@@ -32,7 +30,6 @@ func parseTemplate(filename string) *appTemplate {
 	tmpl := template.Must(template.ParseFiles("templates/base.html"))
 	fn := template.FuncMap{
 		"htmlNoEscape": htmlNoEscape,
-		"htmlShort":    htmlShort,
 		"shortDate":    shortDate,
 	}
 	tmpl.Funcs(fn)
@@ -93,10 +90,6 @@ func (tmpl *appTemplate) Execute(w http.ResponseWriter, r *http.Request, data in
 
 func htmlNoEscape(v string) template.HTML {
 	return template.HTML(v)
-}
-
-func htmlShort(v string, n int) string {
-	return xtract.ValueLim(v, n)
 }
 
 func shortDate(d time.Time) string {
