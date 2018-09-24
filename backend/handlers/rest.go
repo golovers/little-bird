@@ -4,7 +4,6 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"log"
 	"net/http"
 	"time"
 
@@ -115,11 +114,20 @@ func deleteArticle(w http.ResponseWriter, r *http.Request) *appError {
 
 func listCommentByArticle(w http.ResponseWriter, r *http.Request) *appError {
 	comments, err := gw.ListCommentByArticle(context.Background(), mux.Vars(r)["id"])
-	log.Println(mux.Vars(r)["id"])
 	if err != nil {
 		return appErrorf(err, "failed to get comments")
 	}
-	responseWithData(w, http.StatusOK, comments)
+	profile := profileFromSession(r)
+	updatedComments := make([]*core.Comment, 0)
+	for _, c := range comments {
+		c := c
+		c.CreatedByCurrentUser = false
+		if profile != nil && c.CreatedByID == profile.ID {
+			c.CreatedByCurrentUser = true
+		}
+		updatedComments = append(updatedComments, c)
+	}
+	responseWithData(w, http.StatusOK, updatedComments)
 	return nil
 }
 

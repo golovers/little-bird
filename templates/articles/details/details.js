@@ -14,3 +14,10 @@ function deleteArticle(id) {
         });
     }
 }
+
+function requireLogin() {
+    var userID = getCookie("_user_id");
+    if (userID == "") {
+        $(location).attr('href', getCookie("_login_url"))
+    }
+}

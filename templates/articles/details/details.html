@@ -53,6 +53,11 @@
             });
         },
         postComment: function(commentJSON, success, error) {
+            var userID = getCookie("_user_id");
+            if (userID == "") {
+                $(location).attr('href', getCookie("_login_url"))
+                return
+            }
             commentJSON.article_id = "{{.ID}}";
             commentJSON.articleID = "{{.ID}}";
             commentJSON.fullname = getCookie("_user_name")
@@ -70,6 +75,11 @@
             });
         },
         putComment: function(commentJSON, success, error) {
+            var userID = getCookie("_user_id");
+            if (userID == "") {
+                $(location).attr('href', getCookie("_login_url"))
+                return
+            }
             $.ajax({
                 type: 'put',
                 url: '/api/v1/comments/' + commentJSON.id,
@@ -82,6 +92,11 @@
             });
         },
         deleteComment: function(commentJSON, success, error) {
+            var userID = getCookie("_user_id");
+            if (userID == "") {
+                $(location).attr('href', getCookie("_login_url"))
+                return
+            }
             $.ajax({
                 type: 'delete',
                 url: '/api/v1/comments/' + commentJSON.id,
