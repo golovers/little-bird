@@ -30,12 +30,7 @@ func init() {
 
 // loginHandler initiates an OAuth flow to authenticate the user.
 func loginHandler(w http.ResponseWriter, r *http.Request) *appError {
-	var err error
-	sessionID := uuid.Must(uuid.NewV4(), err).String()
-	if err != nil {
-		return appErrorf(err, "could not create oauth session: %v", err)
-	}
-
+	sessionID := uuid.NewV4().String()
 	session, err := sessionStore.New(r, sessionID)
 	if err != nil {
 		return appErrorf(err, "could not create oauth session: %v", err)
