@@ -1,6 +1,7 @@
 # little-bird
 
 LittleBird is a little blog for sharing technical stuffs...
+
 LittleBird can be found at: https://my-little-bird.herokuapp.com/
 
 ##  Build
@@ -50,14 +51,22 @@ VOTE_DB_PASSWORD=pass
 
 ### Local Deployment
 Make sure mongodb started: `sudo service mongod start`
+
 Put the variables into a `local.env` file.
+
 Run `make run-local`
+
 Open the site at: http://localhost:8080/
 
 ### Deploy to heroku
 You can use online mongodb servive for storing data: https://mlab.com/
+
 Put appropriate variables into `heroku.env` file.
-Make sure you have an heroku account & heroku-cli is installed
+
+Make sure you have an heroku account & heroku-cli is installed.
+
+Run following commands:
+
 ```
 cd $GOPATH/src/github.com/golovers/little-bird
 heroku create little-bird
@@ -66,5 +75,6 @@ git push heroku master
 ```
 
 ## License
+
 This project is licensed under MIT.
 

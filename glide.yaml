@@ -1,4 +1,4 @@
-package: gitlab.com/koffee/little-bird
+package: github.com/golovers/little-bird
 import:
 - package: gopkg.in/mgo.v2
   subpackages:
