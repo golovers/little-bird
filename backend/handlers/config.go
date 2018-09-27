@@ -26,6 +26,7 @@ type Conf struct {
 	OAuth2ClientSecret string `envconfig:"OAUTH2_CLIENT_SECRET"`
 	OAuth2Callback     string `envconfig:"OAUTH2_CALLBACK" default:"http://localhost:8080/oauth2callback"`
 	SessionStorePath   string `envconfig:"SESSIONS_STORE_PATH" default:"_db/sessions/"`
+	SessionStoreType   string `envconfig:"SESSIONS_STORE_TYPE" default:"cookies"`
 }
 
 func init() {
@@ -43,19 +44,25 @@ func init() {
 
 func configureSessionStore(path string) sessions.Store {
 	k := []byte("Little Bird - August 20, 2018 - Spread out the little things ^_^") //64 bytes
-	if err := os.MkdirAll(path, os.ModePerm); err != nil {
-		log.Println("auth config: failed to create sessions file system store, fallback to use cookie store")
+	f := func() sessions.Store {
 		s := sessions.NewCookieStore(k)
 		s.Options = &sessions.Options{
 			HttpOnly: true,
 		}
 		return s
 	}
-	s := sessions.NewFilesystemStore(path, k)
-	s.Options = &sessions.Options{
-		HttpOnly: true,
+	if conf.SessionStoreType == "filesystem" {
+		if err := os.MkdirAll(path, os.ModePerm); err != nil {
+			log.Println("auth config: failed to create sessions file system store, fallback to use cookie store")
+			return f()
+		}
+		s := sessions.NewFilesystemStore(path, k)
+		s.Options = &sessions.Options{
+			HttpOnly: true,
+		}
+		return s
 	}
-	return s
+	return f()
 }
 
 // configureOAuthClient https://developers.google.com/identity/sign-in/web/sign-in
