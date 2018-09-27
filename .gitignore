@@ -5,3 +5,4 @@
 *-bin
 */**/node-modules/**
 dist/**
+_db
