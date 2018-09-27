@@ -4,7 +4,7 @@ import (
 	"context"
 	"sync"
 
-	"gitlab.com/koffee/little-bird/backend/core"
+	"github.com/golovers/little-bird/backend/core"
 )
 
 // Repository database access to articles

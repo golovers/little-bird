@@ -3,8 +3,8 @@ package articles
 import (
 	"fmt"
 
+	"github.com/golovers/little-bird/backend/core"
 	"github.com/rs/xid"
-	"gitlab.com/koffee/little-bird/backend/core"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )

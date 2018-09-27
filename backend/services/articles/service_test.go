@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"gitlab.com/koffee/little-bird/backend/core"
+	"github.com/golovers/little-bird/backend/core"
 	"golang.org/x/net/context"
 )
 

@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"os"
 
-	"gitlab.com/koffee/little-bird/backend/handlers"
+	"github.com/golovers/little-bird/backend/handlers"
 )
 
 func main() {

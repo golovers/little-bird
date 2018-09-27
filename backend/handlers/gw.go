@@ -4,10 +4,10 @@ import (
 	"context"
 	"sort"
 
-	"gitlab.com/koffee/little-bird/backend/core"
-	"gitlab.com/koffee/little-bird/backend/services/articles"
-	"gitlab.com/koffee/little-bird/backend/services/comments"
-	"gitlab.com/koffee/little-bird/backend/services/votes"
+	"github.com/golovers/little-bird/backend/core"
+	"github.com/golovers/little-bird/backend/services/articles"
+	"github.com/golovers/little-bird/backend/services/comments"
+	"github.com/golovers/little-bird/backend/services/votes"
 )
 
 //ArticleOverview hold article information and its statistic data

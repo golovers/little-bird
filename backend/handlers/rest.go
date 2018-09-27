@@ -9,7 +9,7 @@ import (
 
 	"github.com/gorilla/mux"
 
-	"gitlab.com/koffee/little-bird/backend/core"
+	"github.com/golovers/little-bird/backend/core"
 )
 
 var (

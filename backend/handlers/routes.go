@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/golovers/little-bird/backend/core"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
-	"gitlab.com/koffee/little-bird/backend/core"
 )
 
 // Register register all necessary handlers

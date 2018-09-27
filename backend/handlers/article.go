@@ -4,8 +4,8 @@ import (
 	"context"
 	"net/http"
 
+	"github.com/golovers/little-bird/backend/core"
 	"github.com/gorilla/mux"
-	"gitlab.com/koffee/little-bird/backend/core"
 )
 
 func handleArticleDetail(w http.ResponseWriter, r *http.Request) *appError {

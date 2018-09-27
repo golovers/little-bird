@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 
-	"gitlab.com/koffee/little-bird/backend/core"
+	"github.com/golovers/little-bird/backend/core"
 )
 
 var _ core.VoteServicer = (*voteService)(nil)

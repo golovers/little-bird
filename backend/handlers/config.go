@@ -1,9 +1,8 @@
 package handlers
 
 import (
+	"github.com/golovers/little-bird/backend/core"
 	"github.com/gorilla/sessions"
-	"gitlab.com/koffee/little-bird/backend/core"
-
 	"gopkg.in/mgo.v2"
 
 	"golang.org/x/oauth2"
