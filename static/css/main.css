@@ -1,113 +1,145 @@
 .vertical-align-center {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .vertical-align-top {
-  display: flex;
+    display: flex;
 }
 
-body { padding-top: 70px; }
-
-*{
-  -webkit-box-sizing:border-box;
-  -moz-box-sizing:border-box;
-  box-sizing:border-box;
-  line-height:1.5
+body {
+    padding-top: 70px;
 }
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    line-height: 1.5
+}
+
 .abs-center-x {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
-html,body{
-  margin:0;
+
+html, body {
+    margin: 0;
 }
-html{
-  font-family:"Libre Baskerville","Times New Roman",Times,serif;
-  font-size:16px;
-  overflow-y:scroll
+
+html {
+    font-family: "Libre Baskerville", "Times New Roman", Times, serif;
+    font-size: 16px;
+    overflow-y: scroll
 }
-@media (max-width: 600px){
-  html{
-      font-size:16px
-  }
+
+@media (max-width: 600px) {
+    html {
+        font-size: 16px
+    }
 }
-body{
-  -webkit-text-size-adjust:100%;
-  background-color: #D9DEE6
+
+body {
+    -webkit-text-size-adjust: 100%;
+    background-color: #D9DEE6
 }
-h1,h2,h3,h4,h5,h6{
-  color:#353535;
-  font-family:"Helvetica Neue","Segoe UI",Helvetica,Arial,sans-serif;
-  line-height:normal
+
+h1, h2, h3, h4, h5, h6 {
+    color: #353535;
+    font-family: "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: normal;
+
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
-a{
-  color:#4a9ae1;
-  text-decoration:none
+
+a {
+    color: #4a9ae1;
+    text-decoration: none
 }
-blockquote{
-  border-left:0.25rem solid #e5e5e5;
-  color:#979797;
-  margin:.8rem 0;
-  padding:.5rem 1rem
+
+blockquote {
+    border-left: 0.25rem solid #e5e5e5;
+    color: #979797;
+    margin: .8rem 0;
+    padding: .5rem 1rem;
+
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
-blockquote p:last-child{
-  margin-bottom:0
+
+blockquote p:last-child {
+    margin-bottom: 0
 }
-@media (min-width: 600px){
-  blockquote{
-      padding:0 5rem 0 1.25rem
-  }
+
+@media (min-width: 600px) {
+    blockquote {
+        padding: 0 5rem 0 1.25rem
+    }
 }
-img{
-  display:block;
-  margin:0 0 1rem;
-  max-width:100%
+
+img {
+    display: block;
+    margin: 0 0 1rem;
+    max-width: 100%
 }
-td{
-  vertical-align:top
+
+td {
+    vertical-align: top
 }
-pre,code{
-  font-family:Menlo,Monaco,monospace
+
+pre, code {
+    font-family: Menlo, Monaco, monospace
 }
-code{
-  background-color:#f9f9f9;
-  border-radius:3px;
-  color:#bf616a;
-  font-size:85%;
-  padding:.25em .5em
+
+code {
+    background-color: #f9f9f9;
+    border-radius: 3px;
+    color: #bf616a;
+    font-size: 85%;
+    padding: .25em .5em
 }
-pre{
-  margin:0 0 1rem
+
+pre {
+    margin: 0 0 1rem
 }
-pre code{
-  background-color:transparent;
-  color:inherit;
-  font-size:100%;
-  padding:0
+
+pre code {
+    background-color: transparent;
+    color: inherit;
+    font-size: 100%;
+    padding: 0
 }
-.highlight{
-  background-color:#f9f9f9;
-  border-radius:3px;
-  line-height:1.4;
-  margin:0 0 1rem;
-  padding:1rem
+
+.highlight {
+    background-color: #f9f9f9;
+    border-radius: 3px;
+    line-height: 1.4;
+    margin: 0 0 1rem;
+    padding: 1rem
 }
-.highlight pre{
-  margin-bottom:0;
-  overflow-x:auto
+
+.highlight pre {
+    margin-bottom: 0;
+    overflow-x: auto
 }
-.highlight .lineno{
-  color:#aaa;
-  display:inline-block;
-  padding:0 .75rem 0 .25rem;
-  -webkit-user-select:none;
-  -moz-user-select:none;
-  user-select:none
+
+.highlight .lineno {
+    color: #aaa;
+    display: inline-block;
+    padding: 0 .75rem 0 .25rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none
 }
 
 .article-update-box {
-  background-color: white;
-  padding: 10px 10px 10px 10px;
+    background-color: white;
+    padding: 10px 10px 10px 10px;
+}
+
+p, a {
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
