@@ -2,7 +2,7 @@
 
 LittleBird is a little blog for sharing technical stuffs...
 
-LittleBird can be found at: https://my-little-bird.herokuapp.com/
+LittleBird can be found at: https://goway.herokuapp.com/
 
 ##  Build
 
