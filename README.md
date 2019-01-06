@@ -2,8 +2,6 @@
 
 LittleBird is a little blog for sharing technical stuffs...
 
-LittleBird can be found at: https://goway.herokuapp.com/
-
 ##  Build
 
 This project used [glide](https://glide.sh/) for dependency management hence please make sure you have installed it before building the project.
