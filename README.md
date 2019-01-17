@@ -2,6 +2,10 @@
 
 LittleBird is a little blog for sharing technical stuffs...
 
+## Demo
+
+New version of Little Bird with VueJS is available at: https://goway.herokuapp.com/
+
 ##  Build
 
 This project used [glide](https://glide.sh/) for dependency management hence please make sure you have installed it before building the project.
